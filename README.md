@@ -15,3 +15,4 @@ Sistema desenvolvido utilizando as tecnologias abaixo:
 * CodeIgniter
 * Bootstrap
 * SB Admin2
+* Font Awesome
