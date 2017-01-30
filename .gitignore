@@ -1,3 +1,6 @@
 /www/nbproject/private/
 /nbproject/private/
 /nbproject/
+
+# Configurações da aplicação 
+/www/application/config/config.php
