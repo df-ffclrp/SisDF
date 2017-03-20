@@ -52,7 +52,7 @@ class Prototipo extends CI_Controller {
         
         $this->load->view('common/header');
         $this->load->view('prototipo/dash_gestor');
-        $this->load->view('common/js_footer');
+        $this->load->view('common/footer');
         
     }
     
@@ -63,7 +63,7 @@ class Prototipo extends CI_Controller {
     public function novo_chamado() {
         $this->load->view('common/header');
         $this->load->view('prototipo/novo_chamado');
-        $this->load->view('common/js_footer');
+        $this->load->view('common/footer');
         
     }
 }

@@ -1,4 +1,4 @@
-<body>
+
 
     <div id="wrapper">
 
@@ -43,10 +43,10 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="#"><i class="fa fa-tasks fa-fw"></i> Dashboard </a>
+                            <a href="<?= base_url() ?>prototipo/gestor"><i class="fa fa-tasks fa-fw"></i> Dashboard </a>
                         </li>
                         <li>
-                            <a href="#2"><i class="fa fa-file-text-o fa-fw"></i> 
+                            <a href="<?= base_url() ?>prototipo/novo_chamado"><i class="fa fa-file-text-o fa-fw"></i> 
                                 Abrir Chamado
                             </a>
                         </li>
@@ -174,86 +174,12 @@
                 </div>
             </div>
 
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-
-                    <!-- /.panel -->
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-comments fa-fw"></i> Chat
-
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="">
-
-
-
-
-                            </ul>
-                        </div>
-                        <!-- /.panel-body -->
-
-                        <!-- /.panel-footer -->
-                    </div>
-                    <!-- /.panel .chat-panel -->
-                </div>
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
+            
+            
         </div>
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="<?= base_url() ?>/assets/vendor/jquery/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?= base_url() ?>/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="<?= base_url() ?>/assets/vendor/metisMenu/metisMenu.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="<?= base_url() ?>/assets/vendor/raphael/raphael.min.js"></script>
-    <script src="<?= base_url() ?>/assets/vendor/morrisjs/morris.min.js"></script>
-    <script src="<?= base_url() ?>/assets/data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="<?= base_url() ?>/assets/dist/js/sb-admin-2.js"></script>
-
-</body>
-
-</html>
+    
