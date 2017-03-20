@@ -55,5 +55,15 @@ class Prototipo extends CI_Controller {
         $this->load->view('common/js_footer');
         
     }
+    
+    /*
+     * Protótipo de abertura de chamado
+     */
 
+    public function novo_chamado() {
+        $this->load->view('common/header');
+        $this->load->view('prototipo/novo_chamado');
+        $this->load->view('common/js_footer');
+        
+    }
 }
