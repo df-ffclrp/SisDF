@@ -66,4 +66,22 @@ class Prototipo extends CI_Controller {
         $this->load->view('common/footer');
         
     }
+    
+    /*
+     * Teste de protótipo de Template
+     * 
+     */
+    
+    public function template() {
+        $this->load->library('parser');
+        
+        $form = $this->load->view('prototipo/form_template', '' , TRUE);
+        
+        $conteudo['form'] = $form;
+        
+        $this->parser->parse('prototipo/template',$conteudo);
+        
+//        var_dump($form);
+        
+    }
 }
