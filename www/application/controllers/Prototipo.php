@@ -22,6 +22,8 @@ class Prototipo extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helper('url');
+        $this->load->library('parser');
+        $this->output->enable_profiler(TRUE);
     }
     
     
@@ -48,40 +50,27 @@ class Prototipo extends CI_Controller {
      * Protótipo do painel do gestor
      */
     
-    public function gestor() {
+    public function painel() {
         
-        $this->load->view('common/header');
-        $this->load->view('prototipo/dash_gestor');
-        $this->load->view('common/footer');
+        $dados['conteudo'] = $this->load->view('chamados', '' , TRUE);
+        
+        $this->parser->parse('templates/principal',$dados);
         
     }
     
-    /*
-     * Protótipo de abertura de chamado
-     */
 
-    public function novo_chamado() {
-        $this->load->view('common/header');
-        $this->load->view('prototipo/novo_chamado');
-        $this->load->view('common/footer');
-        
-    }
-    
     /*
      * Teste de protótipo de Template
-     * 
+     * Protótipo de abertura de chamado
      */
     
-    public function template() {
-        $this->load->library('parser');
+    public function novo_sti() {
+           
         
-        $form = $this->load->view('prototipo/form_template', '' , TRUE);
+        $dados['conteudo'] = $this->load->view('forms/informatica', '' , TRUE);
         
-        $conteudo['form'] = $form;
+        $this->parser->parse('templates/principal',$dados);
         
-        $this->parser->parse('prototipo/template',$conteudo);
-        
-//        var_dump($form);
         
     }
 }

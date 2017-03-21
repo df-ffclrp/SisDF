@@ -75,15 +75,18 @@
                 </ul>
                 <!-- /.navbar-top-links -->
 
+                <!--SIDEBAR-->
                 <div class="navbar-default sidebar" role="navigation">
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="#"><i class="fa fa-tasks fa-fw"></i> Dashboard </a>
+                                <a href="<?= base_url(); ?>prototipo/painel"><i class="fa fa-tasks fa-fw"></i> 
+                                    Chamados 
+                                </a>
                             </li>
                             <li>
-                                <a href="#2"><i class="fa fa-file-text-o fa-fw"></i> 
-                                    Abrir Chamado
+                                <a href="<?= base_url(); ?>prototipo/novo_sti"><i class="fa fa-file-text-o fa-fw"></i> 
+                                    Abrir Chamado STI
                                 </a>
                             </li>
 
@@ -92,12 +95,15 @@
                     <!-- /.sidebar-collapse -->
                 </div>
                 <!-- /.navbar-static-side -->
+                
+                
             </nav>
 
             <!--Conteudo-->
             <div id="page-wrapper">
                 
                 {conteudo}
+                
             </div>
             <!-- /#page-wrapper -->
 
