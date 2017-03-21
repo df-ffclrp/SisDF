@@ -95,7 +95,10 @@
             </nav>
 
             <!--Conteudo-->
-            {form}
+            <div id="page-wrapper">
+                
+                {conteudo}
+            </div>
             <!-- /#page-wrapper -->
 
         </div>
