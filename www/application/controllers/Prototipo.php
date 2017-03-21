@@ -73,4 +73,14 @@ class Prototipo extends CI_Controller {
         
         
     }
+    
+    public function novo_manut() {
+           
+        
+        $dados['conteudo'] = $this->load->view('forms/manutencao', '' , TRUE);
+        
+        $this->parser->parse('templates/principal',$dados);
+        
+        
+    }
 }

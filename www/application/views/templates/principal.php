@@ -89,6 +89,11 @@
                                     Abrir Chamado STI
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?= base_url(); ?>prototipo/novo_manut"><i class="fa fa-file-text-o fa-fw"></i> 
+                                    Abrir Chamado Manutenção
+                                </a>
+                            </li>
 
                         </ul>
                     </div>
