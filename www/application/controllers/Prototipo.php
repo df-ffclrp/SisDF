@@ -62,6 +62,8 @@ class Prototipo extends CI_Controller {
     /*
      * Teste de protótipo de Template
      * Protótipo de abertura de chamado
+     * 
+     * Atendimento básico
      */
     
     public function novo_sti() {
@@ -74,10 +76,34 @@ class Prototipo extends CI_Controller {
         
     }
     
+     /*
+     * Teste de protótipo de Template
+     * Protótipo de abertura de chamado
+     * 
+     * Atendimento manutenção
+     */
+    
     public function novo_manut() {
            
         
         $dados['conteudo'] = $this->load->view('forms/manutencao', '' , TRUE);
+        
+        $this->parser->parse('templates/principal',$dados);
+        
+        
+    }
+    
+     /*
+     * Teste de protótipo de Template
+     * Protótipo de abertura de chamado
+     * 
+     * Cadastramento de Ponto de Rede
+     */
+    
+    public function ponto_rede() {
+           
+        
+        $dados['conteudo'] = $this->load->view('forms/ponto_rede', '' , TRUE);
         
         $this->parser->parse('templates/principal',$dados);
         

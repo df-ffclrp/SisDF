@@ -94,6 +94,12 @@
                                     Abrir Chamado Manutenção
                                 </a>
                             </li>
+                            
+                            <li>
+                                <a href="<?= base_url(); ?>prototipo/ponto_rede"><i class="fa fa-file-text-o fa-fw"></i> 
+                                    Cadastrar Ponto
+                                </a>
+                            </li>
 
                         </ul>
                     </div>
