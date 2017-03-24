@@ -100,6 +100,11 @@
                                     Cadastrar Ponto
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?= base_url(); ?>prototipo/ver_chamado"><i class="fa fa-file-text-o fa-fw"></i> 
+                                    Chamado Individual
+                                </a>
+                            </li>
 
                         </ul>
                     </div>

@@ -109,4 +109,15 @@ class Prototipo extends CI_Controller {
         
         
     }
+    
+    /*
+     * Tela de Chamado individual
+     * 
+     */
+    
+    public function ver_chamado() {
+        $dados['conteudo'] = $this->load->view('info_chamado', '' , TRUE);
+        
+        $this->parser->parse('templates/principal',$dados);
+    }
 }
