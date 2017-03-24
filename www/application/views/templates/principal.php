@@ -105,6 +105,12 @@
                                     Chamado Individual
                                 </a>
                             </li>
+                            
+                            <li>
+                                <a href="<?= base_url(); ?>prototipo/imprimir_chamado"><i class="fa fa-print fa-fw"></i> 
+                                    Imprimir
+                                </a>
+                            </li>
 
                         </ul>
                     </div>

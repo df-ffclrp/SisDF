@@ -23,7 +23,7 @@ class Prototipo extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->library('parser');
-        $this->output->enable_profiler(TRUE);
+//        $this->output->enable_profiler(TRUE);
     }
     
     
@@ -119,5 +119,18 @@ class Prototipo extends CI_Controller {
         $dados['conteudo'] = $this->load->view('info_chamado', '' , TRUE);
         
         $this->parser->parse('templates/principal',$dados);
+    }
+    
+    /*
+     * Tela de Chamado 
+     * 
+     * Imprimir chamado
+     * 
+     */
+    
+    public function imprimir_chamado() {
+        $dados['conteudo'] = $this->load->view('info_chamado', '' , TRUE);
+        
+        $this->parser->parse('templates/imprimir_chamado',$dados);
     }
 }
