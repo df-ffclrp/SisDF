@@ -28,7 +28,7 @@
                 <p> <strong>Email:</strong> almeida@usp.br </p>
             </div>
         </div>
-        
+
         <!--Detalhes do Pedido-->
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -36,8 +36,15 @@
             </div>
 
             <div class="panel-body">
+                <p> 
+                    <strong>Data de Abertura:</strong> 2017-03-22 12:12:11 <br>
+                    <strong>Finalidade:</strong> Projetos didáticos <br>
+                    <strong>Local:</strong> Sala 42 - Laboratório Biomag <br>
+                    <strong>Responsável:</strong>  Prof. Belmiro Rosa
+
+                </p>
                 <p> <strong>Resumo:</strong> Troca de Lâmpada </p>
-                <p> <strong>Finalidade:</strong> Projetos didáticos </p>
+
                 <p> <strong>Descrição do Pedido:</strong> </p>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
@@ -49,7 +56,7 @@
 
             </div>
         </div>
-        
+
         <!--Dados do Material-->
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -57,7 +64,8 @@
             </div>
 
             <div class="panel-body">
-               <p> <strong>Descrição do Material:</strong> </p>
+                <p> <strong>Descrição do Material:</strong> </p>
+                <p> <strong>Fornecimento: </strong> Solicitante</p> 
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
                     eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -67,7 +75,7 @@
                 </p>
             </div>
         </div>
-        
+
 
         <button type="submit" class="btn btn-primary">Voltar</button>
         <button class="btn btn-default pull-right">
@@ -75,7 +83,7 @@
             Imprimir
         </button>
 
-        
+
 
     </div>
 </div>

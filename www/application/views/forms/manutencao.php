@@ -35,7 +35,23 @@
                 <label>Descrição:</label>
                 <textarea class="form-control" rows="3" placeholder="Exemplo: Lâmpada localizada próxima ao bebedouro do bloco 5."></textarea>
             </div>
-            
+
+            <div class="form-group">
+                <label>Fornecimento do Material:</label>
+                <div class="radio">
+                    <label>
+                        <input name="optionsRadios" id="optionsRadios1" value="option1" checked="" type="radio">Departamento
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input name="optionsRadios" id="optionsRadios2" value="option2" type="radio">Solicitante
+                    </label>
+                </div>
+                
+            </div>
+
+
             <div class="form-group">
                 <label>Material:</label>
                 <textarea class="form-control" rows="3" placeholder="Exemplo: Conjunto de 3 reatores."></textarea>
