@@ -40,9 +40,7 @@ class Prototipo extends CI_Controller {
      */
     public function login() {
         
-        $this->load->view('common/header');
-        $this->load->view('prototipo/login');
-        $this->load->view('common/js_footer');
+        $this->load->view('login');
         
     }
     
