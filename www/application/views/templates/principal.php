@@ -85,16 +85,44 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?= base_url(); ?>prototipo/novo_sti"><i class="fa fa-file-text-o fa-fw"></i> 
-                                    Abrir Chamado STI
+                                <a href="#"><i class="fa fa-file-text-o fa-fw"></i> 
+                                    Abrir Chamado
+                                    <span class="fa arrow"></span>
                                 </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-building fa-fw"></i> 
+                                            Manutenção Predial
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-cog fa-fw"></i> 
+                                            Mecânica
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-microchip fa-fw"></i> 
+                                            Eletrônica</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-desktop fa-fw"></i> 
+                                            Informática
+                                        </a>
+                                    </li>
+                                </ul>
+
                             </li>
+
                             <li>
                                 <a href="<?= base_url(); ?>prototipo/novo_manut"><i class="fa fa-file-text-o fa-fw"></i> 
                                     Abrir Chamado Manutenção
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="<?= base_url(); ?>prototipo/ponto_rede"><i class="fa fa-file-text-o fa-fw"></i> 
                                     Cadastrar Ponto
@@ -105,7 +133,7 @@
                                     Chamado Individual
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="<?= base_url(); ?>prototipo/imprimir_chamado"><i class="fa fa-print fa-fw"></i> 
                                     Imprimir
@@ -117,15 +145,15 @@
                     <!-- /.sidebar-collapse -->
                 </div>
                 <!-- /.navbar-static-side -->
-                
-                
+
+
             </nav>
 
             <!--Conteudo-->
             <div id="page-wrapper">
-                
+
                 {conteudo}
-                
+
             </div>
             <!-- /#page-wrapper -->
 
