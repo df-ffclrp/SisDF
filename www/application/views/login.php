@@ -37,11 +37,11 @@
 
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    
-                <?php
-                echo validation_errors('<div class="alert alert-danger" role="alert">'
-                        . '<i class="fa fa-exclamation-circle"></i> ', '</div>');
-                ?>
+
+                    <?php
+                    echo validation_errors('<div class="alert alert-danger" role="alert">'
+                            . '<i class="fa fa-exclamation-circle"></i> ', '</div>');
+                    ?>
                 </div>
 
             </div>
@@ -61,16 +61,18 @@
                             <form action="<?= base_url() ?>" method="post" role="form" >
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Número USP" name="nr_usp" type="text" autofocus>
+                                        <input class="form-control" placeholder="Número USP" name="num_usp" type="text" autofocus>
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Senha" name="senha" type="password" value="">
                                     </div>
-                                    <!--                                    <div class="checkbox">
-                                                                            <label>
-                                                                                <input name="remember" type="checkbox" value="Lembre-me">Lembre-me
-                                                                            </label>
-                                                                        </div>-->
+                                    <!--
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="remember" type="checkbox" value="Lembre-me">Lembre-me
+                                        </label>
+                                    </div>
+                                    -->
                                     <button type="submit" class="btn btn-lg btn-primary btn-block">Login
                                         <i class="fa fa-sign-in fa-fw"></i>
                                     </button>
