@@ -3,4 +3,5 @@
 /nbproject/
 
 # Configurações da aplicação 
-/www/application/config/
+/www/application/config/config.php
+/www/application/config/database.php
