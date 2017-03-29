@@ -58,6 +58,14 @@
                         </div>
 
                         <div class="panel-body">
+                            <?php if (isset($erro)): ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <i class="fa fa-exclamation-triangle"></i>  
+                                <?= $erro ?>
+                                </div>
+                            <?php endif; ?>
+
+
                             <form action="<?= base_url() ?>" method="post" role="form" >
                                 <fieldset>
                                     <div class="form-group">

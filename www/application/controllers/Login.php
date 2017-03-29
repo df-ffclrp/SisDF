@@ -36,13 +36,26 @@ class Login extends MY_Controller {
 
             $dados_usuario = $this->login_model->check_user($num_usp, $senha);
 
-            // Registra Sessão
-            $this->session->set_userdata($dados_usuario);
 
-            var_dump($dados_usuario);
+            if ($dados_usuario):
 
-            $this->_check_user_rights($_SESSION['nivel_acesso']);
-            var_dump($_SESSION);
+
+                // Registra Sessão
+                $this->session->set_userdata($dados_usuario);
+                
+                // Registra Role
+                $this->_check_user_rights($_SESSION['nivel_acesso']);
+
+
+                redirect($_SESSION['logged_in'], 'refresh');
+//                var_dump($dados_usuario);
+//
+//                var_dump($_SESSION);
+
+            else:
+                $data['erro'] = ('Email e/ou senha inválidos');
+                $this->load->view('login', $data);
+            endif;
 
         endif;
     }
