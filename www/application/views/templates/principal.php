@@ -47,13 +47,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">SisDF - Painel do Gestor</a>
+                    <a class="navbar-brand" href="#">
+                        Serviço de Atendimento Técnico - Departamento de Física
+                    </a>
                 </div>
                 <!-- /.navbar-header -->
 
                 <ul class="nav navbar-top-links navbar-right">
 
-                    <li> Gestor da Silva </li>
+                    <li> <?= $_SESSION['nome'] ?> </li>
                     <!-- .dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -80,7 +82,7 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="<?= base_url(); ?>prototipo/painel"><i class="fa fa-tasks fa-fw"></i> 
+                                <a href="<?= base_url() . $_SESSION['logged_in']; ?>"><i class="fa fa-tasks fa-fw"></i> 
                                     Chamados 
                                 </a>
                             </li>
@@ -117,28 +119,7 @@
 
                             </li>
 
-                            <li>
-                                <a href="<?= base_url(); ?>prototipo/novo_manut"><i class="fa fa-file-text-o fa-fw"></i> 
-                                    Abrir Chamado Manutenção
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="<?= base_url(); ?>prototipo/ponto_rede"><i class="fa fa-file-text-o fa-fw"></i> 
-                                    Cadastrar Ponto
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?= base_url(); ?>prototipo/ver_chamado"><i class="fa fa-file-text-o fa-fw"></i> 
-                                    Chamado Individual
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="<?= base_url(); ?>prototipo/imprimir_chamado"><i class="fa fa-print fa-fw"></i> 
-                                    Imprimir
-                                </a>
-                            </li>
+                            
 
                         </ul>
                     </div>
