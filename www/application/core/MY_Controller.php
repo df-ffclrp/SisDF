@@ -20,7 +20,7 @@ class MY_Controller extends CI_Controller {
         $this->load->helper('url_helper');
         $this->load->library('parser');
         $this->load->library('session');
-        //$this->load->helper('login'); // Helper desenvolvido para a aplicação
+        $this->load->helper('login'); // Helper desenvolvido para a aplicação
 
 
         
