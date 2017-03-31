@@ -21,10 +21,10 @@ class System_model extends CI_Model {
      */
 
     public function get_secoes() {
-        $this->db->select('nome_secao');
-        $this->db->from('secao');
+//        $this->db->select('nome_secao');
+//        $this->db->from('secao');
 
-        $areas = $this->db->get();
+        $areas = $this->db->get('secao');
         return $areas->result_array();
     }
 

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Relator extends MY_Controller {
+class Relator extends MY_Controller {   
 
     /**
      * Controller para nível de acesso de
@@ -19,16 +19,20 @@ class Relator extends MY_Controller {
         
         check_login('relator');
         
+        $this->load->helper('alert_box'); //custom
     }
     /*
      * Painel do relator. Lista chamados
      */
     
-    public function index() {
+    public function index($area = 'todas') {
         
-        $dados['conteudo'] = $this->load->view('chamados', '' , TRUE);
         
-        $this->parser->parse('templates/principal',$dados);
+        $to_view['secoes'] = $this->get_secoes();
+        
+        $to_parser['conteudo'] = $this->load->view('chamados', $to_view , TRUE);
+        
+        $this->parser->parse('templates/principal',$to_parser);
         
     }
     

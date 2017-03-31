@@ -12,7 +12,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class MY_Controller extends CI_Controller {
 
-    protected $secoes = ['todas'];
+    
+/* Deixando seção pré montada para debugs */
+//    protected $secoes = array(
+//        array(
+//            'id_secao' => 'all',
+//            'nome_secao' => 'Todas as Áreas',
+//            'icone' => 'fa-tasks'
+//        )
+//    );
+    
+    protected $secoes = [];
 
     public function __construct() {
         parent::__construct();
@@ -41,7 +51,7 @@ class MY_Controller extends CI_Controller {
 
         foreach ($result as $secao):
 
-            array_push($this->secoes, $secao['nome_secao']);
+            array_push($this->secoes, $secao);
         endforeach;
     }
     
