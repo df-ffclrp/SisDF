@@ -23,43 +23,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `secao`
---
-
-CREATE TABLE `secao` (
-  `id_secao` int(11) NOT NULL,
-  `nome_secao` varchar(45) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
 -- Dumping data for table `secao`
 --
 
-INSERT INTO `secao` (`id_secao`, `nome_secao`) VALUES
-(1, 'Manutenção Predial'),
-(2, 'Eletrônica'),
-(3, 'Oficina Mecânica'),
-(4, 'Informática');
+INSERT INTO `secao` (`id_secao`, `nome_secao`, `icone`) VALUES
+(1, 'Manutenção Predial', 'fa-building'),
+(2, 'Eletrônica', 'fa-microchip'),
+(3, 'Oficina Mecânica', 'fa-cog'),
+(4, 'Informática', 'fa-microchip');
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `secao`
---
-ALTER TABLE `secao`
-  ADD PRIMARY KEY (`id_secao`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `secao`
---
-ALTER TABLE `secao`
-  MODIFY `id_secao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
