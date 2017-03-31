@@ -3,8 +3,8 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            <i class="fa fa-tasks fa-fw"></i> 
-            Lista de Chamados - <?= 'teste' ?>
+            <i class="fa <?= $header_icon ?> fa-fw"></i> 
+            Lista de Chamados - <?= $header ?>
         </h1>
     </div>
     <!-- /.col-lg-12 -->
@@ -12,8 +12,7 @@
 
 <!--Alert Box-->
 <?php
-$test = 0;
-if ($test):
+if (isset($_SESSION['message'])):
     show_alert_box();
 endif;
 ?>
@@ -42,7 +41,7 @@ endif;
 
                         <?php foreach ($secoes as $secao): ?>
                             <li>
-                                <a href="<?= base_url() ?>relator/index/1">
+                                <a href="<?= base_url() . $controller ?>/index/1">
                                     <i class="fa <?= $secao['icone'] ?> fa-fw"></i> 
                                     <?= $secao['nome_secao'] ?>
                                 </a>
@@ -50,7 +49,7 @@ endif;
                         <?php endforeach; ?>
                         <li class="divider"></li>
                         <li>
-                            <a href="<?= base_url() ?>relator/">
+                            <a href="<?= base_url() .$controller ?>">
                                 <i class="fa fa-tasks fa-fw"></i> 
                                 Todas as Seções
                             </a>
