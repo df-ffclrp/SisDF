@@ -10,13 +10,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * 
  * @copyright (c) 2017, André Girol / FFCLRP - USP
  */
-class Login extends MY_Controller {
+class Login extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
 
+        $this->load->helper('url_helper');
         $this->load->library('form_validation');
         $this->load->model('login_model');
+        $this->load->library('session');
+        
+        // Habilita debugger para ambiente de desenvolvimento
+        if (ENVIRONMENT == 'development'):
+            $this->output->enable_profiler(TRUE);
+        endif;
     }
 
     public function index() {
@@ -42,7 +49,7 @@ class Login extends MY_Controller {
 
                 // Registra Sessão
                 $this->session->set_userdata($dados_usuario);
-                
+
                 // Registra Role
                 $this->_check_user_rights($_SESSION['nivel_acesso']);
 
