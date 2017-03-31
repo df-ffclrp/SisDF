@@ -24,12 +24,12 @@ SET time_zone = "+00:00";
 -- Dumping data for table `os_status`
 --
 
-INSERT INTO `os_status` (`id_status`, `descricao`) VALUES
+INSERT INTO `os_status` (`id_status`, `nome_status`) VALUES
 (1, 'Aberto'),
 (2, 'Em Atendimento'),
-(3, 'Atribuído'),
+(3, 'Atrendido'),
 (4, 'Retorno'),
-(5, 'Atendido');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
