@@ -25,6 +25,7 @@ class Relator_model extends CI_Model {
         $this->db->join('os_status', 'id_status = id_status_fk');
 
         $this->db->where('id_usuario_fk', $id_usuario);
+        $this->db->order_by('id_status','ASC');
         
         $result = $this->db->get();
         
