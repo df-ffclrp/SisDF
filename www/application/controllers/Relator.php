@@ -36,26 +36,14 @@ class Relator extends MY_Controller {
             $to_view['header_icon'] = 'fa-tasks';
 
             // mostra todos
-            $os_abertas = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
+            $os_abertas = $this->relator_model->get_os_by_user($_SESSION['id_usuario'],1);
 
-            
-            // Testing
+            var_dump($os_abertas);
             
             $os_status_array = $this->relator_model->get_os_status();
             
-            $os_container = $this->_make_os_container($os_status_array);
             
-            $os_grouped = $this->_group_by_status($os_abertas, $os_container);
             
-            echo 'OS Agrupadas: ';
-            
-//            var_dump($os_grouped);
-            
-            echo "Select original<hr>";
-            
-            var_dump($os_abertas);
-
-
         endif;
 
 
@@ -64,6 +52,7 @@ class Relator extends MY_Controller {
         $to_view['controller'] = $this->router->class;
         $to_view['secoes'] = $this->get_secoes();
         $to_view['status_menu'] = $os_status_array;
+        $to_view['os_abertas'] = $os_abertas;
 
         // Monta dados na view para passar ao parser
         $to_parser['conteudo'] = $this->load->view('chamados', $to_view, TRUE);
