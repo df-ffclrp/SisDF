@@ -36,24 +36,20 @@ class Relator extends MY_Controller {
             $to_view['header_icon'] = 'fa-tasks';
 
             // mostra todos
-            $os_abertas = $this->relator_model->get_chamados($_SESSION['id_usuario']);
+            $os_abertas = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
 
             
             // Testing
             
             $os_status_array = $this->relator_model->get_os_status();
             
-            var_dump($os_status_array);
-            
             $os_container = $this->_make_os_container($os_status_array);
-            var_dump($os_container);
             
-            echo '<hr>';
             $os_grouped = $this->_group_by_status($os_abertas, $os_container);
             
             echo 'OS Agrupadas: ';
             
-            var_dump($os_grouped);
+//            var_dump($os_grouped);
             
             echo "Select original<hr>";
             
@@ -91,6 +87,8 @@ class Relator extends MY_Controller {
         return false;
     }
 
+    // ======== Serão substituídos por AJAX ==============
+    
     /*
      * Agrupa as Ordem de serviço por status
      * colocando no container gerado no outro método

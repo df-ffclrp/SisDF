@@ -80,19 +80,7 @@ endif;
             </li>
 
             <?php endforeach ?>
-                    
-                <li class="active">
-                    <a href="#home" data-toggle="tab">Abertos</a>
-                </li>
-                <li>
-                    <a href="#profile" data-toggle="tab">Em Atendimento</a>
-                </li>
-                <li>
-                    <a href="#messages" data-toggle="tab">Atendidos</a>
-                </li>
-                <li>
-                    <a href="#settings" data-toggle="tab">Não atendidos</a>
-                </li>
+               
             </ul>
 
             <!-- Tab panes -->
@@ -100,6 +88,7 @@ endif;
                 <div class="tab-pane fade in active" id="home">
                     <div class="table-responsive">
                         <table class="table table-hover">
+                            
                             <thead>
                                 <tr>
                                     <th>Nº OS</th>
