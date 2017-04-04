@@ -63,11 +63,11 @@ INSERT INTO `finalidade` (`id_finalidade`, `descricao`) VALUES
 -- Dumping data for table `os_status`
 --
 
-INSERT INTO `os_status` (`id_status`, `nome_status`) VALUES
-(1, 'Aberto'),
-(2, 'Em Atendimento'),
-(3, 'Atrendido'),
-(4, 'Retorno');
+INSERT INTO `os_status` (`id_status`, `nome_status`, `alias`) VALUES
+(1, 'Aberto', 'aberto'),
+(2, 'Em Atendimento', 'em_atendimento'),
+(3, 'Atrendido', 'atendido' ),
+(4, 'Retorno', 'retorno');
 
 --
 -- Dumping data for table `ordem_servico`
