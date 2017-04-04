@@ -39,7 +39,7 @@ endif;
                     <!--Menu de seleção de seções a mostrar-->
                     <ul class="dropdown-menu pull-right" role="menu">
 
-                        <?php foreach ($secoes as $secao): ?>
+                        <?php foreach ($secoes as $secao):?>
                             <li>
                                 <a href="<?= base_url() . $controller ?>/index/1">
                                     <i class="fa <?= $secao['icone'] ?> fa-fw"></i> 
@@ -49,7 +49,7 @@ endif;
                         <?php endforeach; ?>
                         <li class="divider"></li>
                         <li>
-                            <a href="<?= base_url() .$controller ?>">
+                            <a href="<?= base_url() . $controller ?>">
                                 <i class="fa fa-tasks fa-fw"></i> 
                                 Todas as Seções
                             </a>
@@ -64,13 +64,34 @@ endif;
         <div class="panel-body">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#home" data-toggle="tab">Abertos</a>
+
+            <?php foreach ($status_menu as $status):
+                if($status['id_status'] == 1):
+                    $active_tab = "class='active'";
+                
+                else:
+                    $active_tab = '';
+                endif;
+            ?>
+            <li <?= $active_tab ?>>
+                <a href="#<?= $status['alias']?>" data-toggle="tab">
+                    <?= $status['nome_status']?>
+                </a>
+            </li>
+
+            <?php endforeach ?>
+                    
+                <li class="active">
+                    <a href="#home" data-toggle="tab">Abertos</a>
                 </li>
-                <li><a href="#profile" data-toggle="tab">Em Atendimento</a>
+                <li>
+                    <a href="#profile" data-toggle="tab">Em Atendimento</a>
                 </li>
-                <li><a href="#messages" data-toggle="tab">Atendidos</a>
+                <li>
+                    <a href="#messages" data-toggle="tab">Atendidos</a>
                 </li>
-                <li><a href="#settings" data-toggle="tab">Não atendidos</a>
+                <li>
+                    <a href="#settings" data-toggle="tab">Não atendidos</a>
                 </li>
             </ul>
 
@@ -87,6 +108,7 @@ endif;
                                     <th>Ação</th>
                                 </tr>
                             </thead>
+                            
                             <tbody>
 
                                 <tr>
