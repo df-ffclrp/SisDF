@@ -20,7 +20,7 @@ class Relator_model extends CI_Model {
      */
     
     public function get_chamados($id_usuario){
-        $this->db->select('id_os, resumo, data_abertura, id_status, nome_status as os_status');
+        $this->db->select('id_os, resumo, data_abertura, id_status, alias as status_alias');
         $this->db->from('ordem_servico');
         $this->db->join('os_status', 'id_status = id_status_fk');
 
