@@ -1,7 +1,13 @@
+# Relativo a IDEs
+# Netbeans
 /www/nbproject/private/
 /nbproject/private/
 /nbproject/
 
+# Sublime Text
+*sublime*
+
 # Configurações da aplicação 
 /www/application/config/config.php
 /www/application/config/database.php
+
