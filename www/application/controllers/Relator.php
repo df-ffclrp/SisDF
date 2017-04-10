@@ -13,6 +13,9 @@ class Relator extends MY_Controller {
      * - Abre chamados
      * - Lista chamados abertos por ele
      */
+
+    private $user;
+
     public function __construct() {
         parent::__construct();
 
@@ -32,18 +35,18 @@ class Relator extends MY_Controller {
 
         // Se a seção não existir, mostra todas
         if (!$secao_exists):
-            $to_view['header'] = '';
+            $to_view['header'] = 'Todos';
             $to_view['header_icon'] = 'fa-tasks';
 
             // mostra todos
-            $os_abertas = $this->relator_model->get_os_by_user($_SESSION['id_usuario'],1);
+            $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
 
-            var_dump($os_abertas);
+            // var_dump($os_abertas);
             
             $os_status_array = $this->relator_model->get_os_status();
-            
-            
-            
+
+            //var_dump($os_status_array);
+
         endif;
 
 
@@ -52,13 +55,30 @@ class Relator extends MY_Controller {
         $to_view['controller'] = $this->router->class;
         $to_view['secoes'] = $this->get_secoes();
         $to_view['status_menu'] = $os_status_array;
-        $to_view['os_abertas'] = $os_abertas;
+        $to_view['lista_os'] = $lista_os;
 
         // Monta dados na view para passar ao parser
         $to_parser['conteudo'] = $this->load->view('chamados', $to_view, TRUE);
 
         $this->parser->parse('templates/principal', $to_parser);
     }
+
+    /*
+     * Busca um único chamado aberto pelo usuário
+     * 
+     * link para o botão ver_chamado
+     */
+    
+    
+    public function ver_os($id_os) {
+        
+        
+    }
+
+
+
+
+
 
     /*
      * Checa se uma seção solicitada no index existe no array de configuração
@@ -121,5 +141,6 @@ class Relator extends MY_Controller {
         
         return $os_container;
     }
+
 
 }

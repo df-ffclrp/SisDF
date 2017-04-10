@@ -62,91 +62,53 @@ endif;
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs">
-                
-                <?php
-                
-                foreach ($status_menu as $status):
-                    if ($status['id_status'] == 1):
-                        $active_tab = "class='active'";
+            <div class="table-responsive">
+                <table class="table table-hover">
 
-                    else:
-                        $active_tab = '';
-                    endif;
-                ?>
-                
-                    <li <?= $active_tab ?>>
-                        <a href="#<?= $status['alias'] ?>" data-toggle="tab">
-                            <?= $status['nome_status'] ?>
-                        </a>
-                    </li>
+                    <thead>
+                        <tr>
+                            <th>Nº OS</th>
+                            <th>Resumo</th>
+                            <th>Data de Abertura</th>
+                            <th>Seção</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
 
-                <?php endforeach ?>
+                    <tbody>
 
-            </ul>
+                        <?php foreach ($lista_os as $os): ?>
+                            <tr>
+                                <td><?= $os['id_os']?></td>
+                                <td><?= $os['resumo']?></td>
+                                <td>
+                                    <?php
+                                            // Formata data de datetime para data amigável
+                                    $data = date_create($os['data_abertura']);
+                                    echo date_format($data, 'd/m/Y');
 
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div class="tab-pane fade in active" id="aberto">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
+                                    ?>
+                                </td>
+                                <td> <?= $os['nome_secao']?> </td>
+                                <td>
+                                    <span class="label label-default">
+                                        <?= $os ['nome_status'] ?>
+                                    </span>
 
-                            <thead>
-                                <tr>
-                                    <th>Nº OS</th>
-                                    <th>Resumo</th>
-                                    <th>Data de Abertura</th>
-                                    <th>Seção</th>
-                                    <th>Ação</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                <?php foreach ($os_abertas as $os): ?>
-                                    <tr>
-                                        <td><?= $os['id_os']?></td>
-                                        <td><?= $os['resumo']?></td>
-                                        <td>
-                                        <?php
-                                        // Formata data de datetime para data amigável
-                                        $data = date_create($os['data_abertura']);
-                                        echo date_format($data, 'd/m/Y');
-                                         
-                                        ?>
-                                        </td>
-                                        <td><?= $os['nome_secao']?></td>
-                                        <td>
-                                            <a class="btn btn-sm btn-default" href="#">
-                                                <i class="fa fa-eye fa-fw"></i> Ver OS
-                                            </a>
-                                        </td>
-                                    </tr>
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-default" href="#">
+                                        <i class="fa fa-eye fa-fw"></i> Ver OS
+                                    </a>
+                                </td>
+                            </tr>
 
 
-                                <?php endforeach; ?>
-                                
-                            </tbody>
-                        </table>
-                    </div>
+                        <?php endforeach; ?>
 
-                </div>
-
-                <div class="tab-pane fade" id="em_atendimento">
-                    <h4>Profile Tab</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-
-                <div class="tab-pane fade" id="atendido">
-                    <h4>Messages Tab</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-
-                <div class="tab-pane fade" id="retorno">
-                    <h4>Settings Tab</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- /.panel-body -->

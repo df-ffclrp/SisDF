@@ -21,14 +21,16 @@ class Relator_model extends CI_Model {
      * Busca chamados de todas as seções
      */
     
-    public function get_os_by_user($id_usuario,$id_status){
-        $this->db->select('id_os, resumo, data_abertura, id_status, alias as status_alias, nome_secao');
+    public function get_os_by_user($id_usuario , $id_status = NULL){
+        $this->db->select('id_os, resumo, data_abertura, nome_status, alias as status_alias, nome_secao');
         $this->db->from('ordem_servico');
         $this->db->join('os_status', 'id_status = id_status_fk');
         $this->db->join('secao', 'id_secao = id_secao_fk');
 
         $this->db->where('id_usuario_fk', $id_usuario);
-        $this->db->where('id_status_fk', $id_status);
+
+
+        //$this->db->where('id_status_fk', $id_status);
         $this->db->order_by('id_status','ASC');
         
         $result = $this->db->get();
