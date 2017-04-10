@@ -47,7 +47,7 @@ INSERT INTO `secao` (`id_secao`, `nome_secao`, `icone`) VALUES
 (1, 'Manutenção Predial', 'fa-building'),
 (2, 'Eletrônica', 'fa-microchip'),
 (3, 'Oficina Mecânica', 'fa-cog'),
-(4, 'Informática', 'fa-microchip');
+(4, 'Informática', 'fa-desktop');
 
 --
 -- Dumping data for table `finalidade`
@@ -63,11 +63,11 @@ INSERT INTO `finalidade` (`id_finalidade`, `descricao`) VALUES
 -- Dumping data for table `os_status`
 --
 
-INSERT INTO `os_status` (`id_status`, `nome_status`, `alias`) VALUES
-(1, 'Aberto', 'aberto'),
-(2, 'Em Atendimento', 'em_atendimento'),
-(3, 'Atrendido', 'atendido' ),
-(4, 'Retorno', 'retorno');
+INSERT INTO `os_status` (`id_status`, `nome_status`, `alias`, `bs_label`) VALUES
+(1, 'Aberto', 'aberto', 'default'),
+(2, 'Em Atendimento', 'em_atendimento', 'info'),
+(3, 'Atendido', 'atendido', 'success'),
+(4, 'Retorno', 'retorno', 'danger');
 
 --
 -- Dumping data for table `ordem_servico`

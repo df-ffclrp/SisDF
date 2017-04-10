@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2017 at 03:33 PM
--- Server version: 5.7.17-0ubuntu0.16.04.1
+-- Generation Time: Apr 10, 2017 at 12:17 PM
+-- Server version: 5.7.17-0ubuntu0.16.04.2
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -24,12 +24,11 @@ SET time_zone = "+00:00";
 -- Dumping data for table `os_status`
 --
 
-INSERT INTO `os_status` (`id_status`, `nome_status`) VALUES
-(1, 'Aberto'),
-(2, 'Em Atendimento'),
-(3, 'Atrendido'),
-(4, 'Retorno'),
-
+INSERT INTO `os_status` (`id_status`, `nome_status`, `alias`, `bs_label`) VALUES
+(1, 'Aberto', 'aberto', 'default'),
+(2, 'Em Atendimento', 'em_atendimento', 'info'),
+(3, 'Atendido', 'atendido', 'success'),
+(4, 'Retorno', 'retorno', 'danger');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
