@@ -22,7 +22,7 @@ class Relator_model extends CI_Model {
      */
     
     public function get_os_by_user($id_usuario , $id_status = NULL){
-        $this->db->select('id_os, resumo, data_abertura, nome_status, alias as status_alias, nome_secao');
+        $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, nome_secao');
         $this->db->from('ordem_servico');
         $this->db->join('os_status', 'id_status = id_status_fk');
         $this->db->join('secao', 'id_secao = id_secao_fk');

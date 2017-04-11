@@ -92,7 +92,7 @@ endif;
                                 </td>
                                 <td> <?= $os['nome_secao']?> </td>
                                 <td>
-                                    <span class="label label-default">
+                                    <span class="label label-<?= $os['bs_label']?>">
                                         <?= $os ['nome_status'] ?>
                                     </span>
 

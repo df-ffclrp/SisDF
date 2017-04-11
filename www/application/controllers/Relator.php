@@ -40,13 +40,7 @@ class Relator extends MY_Controller {
 
             // mostra todos
             $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
-
-            // var_dump($os_abertas);
-            
-            $os_status_array = $this->relator_model->get_os_status();
-
-            //var_dump($os_status_array);
-
+            // $os_status_array = $this->relator_model->get_os_status();
         endif;
 
 
@@ -54,7 +48,7 @@ class Relator extends MY_Controller {
         //Dados para os menus
         $to_view['controller'] = $this->router->class;
         $to_view['secoes'] = $this->get_secoes();
-        $to_view['status_menu'] = $os_status_array;
+        // $to_view['status_menu'] = $os_status_array;
         $to_view['lista_os'] = $lista_os;
 
         // Monta dados na view para passar ao parser
