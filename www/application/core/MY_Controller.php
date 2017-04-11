@@ -12,8 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class MY_Controller extends CI_Controller {
 
-    
-/* Deixando seção pré montada para debugs */
+
+    /* Deixando seção pré montada para debugs */
 //    protected $secoes = array(
 //        array(
 //            'id_secao' => 'all',
@@ -38,6 +38,20 @@ class MY_Controller extends CI_Controller {
         if (ENVIRONMENT == 'development'):
             $this->output->enable_profiler(TRUE);
         endif;
+    }
+
+
+    /*
+      Helper para redirecionamento
+    * Função que monta uma URL a partir da base_url e redireciona com refresh para outro local
+    * 
+    * Para ser usado com a técnica POST - REDIRECT -GET
+    * 
+    */
+
+    function redirection($sublocation = '') {
+        $uri = base_url() . $sublocation;
+        redirect($uri, 'location', 301);
     }
 
     /*
