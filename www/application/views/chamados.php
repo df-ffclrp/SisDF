@@ -84,7 +84,7 @@ endif;
                                 <td><?= $os['resumo']?></td>
                                 <td>
                                     <?php
-                                            // Formata data de datetime para data amigável
+                                    // Formata data de datetime para data amigável
                                     $data = date_create($os['data_abertura']);
                                     echo date_format($data, 'd/m/Y');
 
@@ -93,7 +93,7 @@ endif;
                                 <td> <?= $os['nome_secao']?> </td>
                                 <td>
                                     <span class="label label-<?= $os['bs_label']?>">
-                                        <i class="fa fa-exclamation-triangle fa-fw"></i>
+                                        <i class="fa fa-<?= $os['icone'] ?> fa-fw"></i>
 
                                         <?= $os ['nome_status'] ?>
                                     </span>

@@ -24,9 +24,6 @@ class Relator extends MY_Controller {
         $this->load->helper('alert_box'); //custom
         $this->load->model('relator_model');
 
-        //Dados para os menus
-        $to_view['controller'] = $this->router->class;
-        $to_view['secoes'] = $this->get_secoes();
     }
 
     /*
@@ -45,6 +42,7 @@ class Relator extends MY_Controller {
             // mostra todos
             $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
 
+            var_dump($lista_os);
         endif;
 
 
