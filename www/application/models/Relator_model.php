@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author André Luiz Girol - Departamento de Física - FFCLRP
  */
 class Relator_model extends CI_Model {
-    
+
     public function __construct() {
         parent::__construct();
         $this->load->database();
@@ -29,8 +29,11 @@ class Relator_model extends CI_Model {
 
         $this->db->where('id_usuario_fk', $id_usuario);
 
+        if(isset($id_status)){
+            $this->db->where('id_status_fk', $id_status);
+        }
 
-        //$this->db->where('id_status_fk', $id_status);
+
         $this->db->order_by('id_status','ASC');
         
         $result = $this->db->get();

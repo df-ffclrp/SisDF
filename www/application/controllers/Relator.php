@@ -23,6 +23,10 @@ class Relator extends MY_Controller {
 
         $this->load->helper('alert_box'); //custom
         $this->load->model('relator_model');
+
+        //Dados para os menus
+        $to_view['controller'] = $this->router->class;
+        $to_view['secoes'] = $this->get_secoes();
     }
 
     /*
@@ -40,7 +44,7 @@ class Relator extends MY_Controller {
 
             // mostra todos
             $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
-            // $os_status_array = $this->relator_model->get_os_status();
+
         endif;
 
 
@@ -48,7 +52,8 @@ class Relator extends MY_Controller {
         //Dados para os menus
         $to_view['controller'] = $this->router->class;
         $to_view['secoes'] = $this->get_secoes();
-        // $to_view['status_menu'] = $os_status_array;
+        
+
         $to_view['lista_os'] = $lista_os;
 
         // Monta dados na view para passar ao parser
@@ -65,12 +70,39 @@ class Relator extends MY_Controller {
     
     
     public function ver_os($id_os) {
-        
-        
+
+
     }
 
 
+    /*
+    Mostra ordens de serviços agrupadas por status
+    */
 
+    public function os_status($id_status_os = NULL){
+        $status_exists = $this->_check_status($id_status_os);
+
+        // Se status não existe, redireciona para a página inicial
+        if(!$status_exists){
+            $this->redirection($this->router->class);
+        }
+        
+        $to_view['header'] = 'Todos';
+        $to_view['header_icon'] = 'fa-tasks';
+        
+        //Dados para os menus
+        $to_view['controller'] = $this->router->class;
+        $to_view['secoes'] = $this->get_secoes();
+
+        $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario'], $id_status_os);
+
+        $to_view['lista_os'] = $lista_os;
+
+    // Monta dados na view para passar ao parser
+        $to_parser['conteudo'] = $this->load->view('chamados', $to_view, TRUE);
+
+        $this->parser->parse('templates/principal', $to_parser);
+    }
 
 
 
@@ -90,8 +122,24 @@ class Relator extends MY_Controller {
         return false;
     }
 
+    /*
+        Checa se um status existe no array de configuração
+    */
+
+    private function _check_status($id_status_os){
+        $os_status_array = $this->relator_model->get_os_status();
+
+        foreach ($os_status_array as $status) {
+            if ($status['id_status'] == $id_status_os) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // ======== Serão substituídos por AJAX ==============
-    
+
     /*
      * Agrupa as Ordem de serviço por status
      * colocando no container gerado no outro método
@@ -99,12 +147,12 @@ class Relator extends MY_Controller {
      */
 
     private function _group_by_status($result_array,$container) {
-        
+
         foreach ($result_array as $indice => $os){
 
             array_push($container[$os['status_alias']], $os);
             unset($result_array[$indice]); //Limpando memória
-                 
+
         }        
         
         return $container;

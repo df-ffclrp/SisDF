@@ -93,6 +93,8 @@ endif;
                                 <td> <?= $os['nome_secao']?> </td>
                                 <td>
                                     <span class="label label-<?= $os['bs_label']?>">
+                                        <i class="fa fa-exclamation-triangle fa-fw"></i>
+
                                         <?= $os ['nome_status'] ?>
                                     </span>
 
