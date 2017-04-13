@@ -84,9 +84,24 @@
                         <ul class="nav" id="side-menu">
                             <li>
                                 <a href="<?= base_url() . $_SESSION['logged_in']; ?>"><i class="fa fa-tasks fa-fw"></i> 
-                                    Chamados 
+                                    Chamados
+                                    <span class="fa arrow"></span>
                                 </a>
+                                <!-- Listar por status -->
+                                <ul class="nav nav-second-level">
+                                <?php foreach ($os_status as $st): ?>
+                                    <li>
+                                        <a href="<?= base_url() . $controller .'/os_status/'. $st['id_status'] ?>/ ">
+                                            <i class="fa fa-<?= $st['icone']; ?> fa-fw"></i> 
+                                            <?= $st['nome_status'];?>
+                                        </a>
+                                    </li>
+
+                                <?php endforeach; ?>
+                                    
+                                </ul>
                             </li>
+                            <!-- Abrir Chamado -->
                             <li>
                                 <a href="#"><i class="fa fa-file-text-o fa-fw"></i> 
                                     Abrir Chamado
@@ -133,7 +148,7 @@
 
             <!--Conteudo-->
             <div id="page-wrapper">
-
+               
                 {conteudo}
 
             </div>

@@ -39,13 +39,17 @@ endif;
                     <!--Menu de seleção de seções a mostrar-->
                     <ul class="dropdown-menu pull-right" role="menu">
 
-                        <?php foreach ($secoes as $secao): ?>
+                        <?php
+                            // reset($secoes);
+                            foreach ($secoes as $secao): 
+                        ?>
                             <li>
                                 <a href="<?= base_url() . $controller ?>/index/1">
                                     <i class="fa <?= $secao['icone'] ?> fa-fw"></i> 
                                     <?= $secao['nome_secao'] ?>
                                 </a>
                             </li>
+                            
                         <?php endforeach; ?>
                         <li class="divider"></li>
                         <li>
