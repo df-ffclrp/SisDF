@@ -14,7 +14,8 @@ class Relator extends MY_Controller {
      * - Lista chamados abertos por ele
      */
 
-    private $user;
+    private $to_view = [];
+    private $to_parser = [];
 
     public function __construct() {
         parent::__construct();
@@ -24,6 +25,15 @@ class Relator extends MY_Controller {
         $this->load->helper('alert_box'); //custom
         $this->load->model('relator_model');
 
+        // Monta dados na view para passar ao parser
+        $this->to_view['secoes'] = $this->get_secoes();
+        $this->to_view['controller'] = $this->router->class;
+
+        //Dados para os menus
+        $this->to_parser['secoes'] = $this->get_secoes();
+        $this->to_parser['os_status'] = $this->get_os_status();
+
+        var_dump($this->to_view);
     }
 
     /*
@@ -36,28 +46,21 @@ class Relator extends MY_Controller {
 
         // Se a seção não existir, mostra todas
         if (!$secao_exists):
-            $to_view['header'] = 'Todos';
-            $to_view['header_icon'] = 'fa-tasks';
+            $this->to_view['header'] = 'Todos';
+            $this->to_view['header_icon'] = 'fa-tasks';
 
             // mostra todos
             $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
 
-            var_dump($lista_os);
+            //var_dump($lista_os);
         endif;
 
 
+        $this->to_view['lista_os'] = $lista_os;
 
-        //Dados para os menus
-        $to_view['controller'] = $this->router->class;
-        $to_view['secoes'] = $this->get_secoes();
-        
+        $this->to_parser['conteudo'] = $this->load->view('chamados', $this->to_view, TRUE);
 
-        $to_view['lista_os'] = $lista_os;
-
-        // Monta dados na view para passar ao parser
-        $to_parser['conteudo'] = $this->load->view('chamados', $to_view, TRUE);
-
-        $this->parser->parse('templates/principal', $to_parser);
+        $this->parser->parse('templates/principal', $this->to_parser);
     }
 
     /*
@@ -127,6 +130,7 @@ class Relator extends MY_Controller {
     private function _check_status($id_status_os){
         $os_status_array = $this->relator_model->get_os_status();
 
+        // var_dump($os_status_array);
         foreach ($os_status_array as $status) {
             if ($status['id_status'] == $id_status_os) {
                 return true;
@@ -135,6 +139,8 @@ class Relator extends MY_Controller {
 
         return false;
     }
+
+
 
     // ======== Serão substituídos por AJAX ==============
 
