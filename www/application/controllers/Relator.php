@@ -25,15 +25,9 @@ class Relator extends MY_Controller {
         $this->load->helper('alert_box'); //custom
         $this->load->model('relator_model');
 
-        // Monta dados na view para passar ao parser
-        $this->to_view['secoes'] = $this->get_secoes();
-        $this->to_view['controller'] = $this->router->class;
+        $this->_set_ui_data();
 
-        //Dados para os menus
-        $this->to_parser['secoes'] = $this->get_secoes();
-        $this->to_parser['os_status'] = $this->get_os_status();
-
-        var_dump($this->to_view);
+        //var_dump($this->to_view);
     }
 
     /*
@@ -46,13 +40,9 @@ class Relator extends MY_Controller {
 
         // Se a seção não existir, mostra todas
         if (!$secao_exists):
-            $this->to_view['header'] = 'Todos';
-            $this->to_view['header_icon'] = 'fa-tasks';
-
             // mostra todos
             $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
 
-            //var_dump($lista_os);
         endif;
 
 
@@ -140,6 +130,22 @@ class Relator extends MY_Controller {
         return false;
     }
 
+    /*
+
+    Monta dados na view para passar ao parser
+    */ 
+
+    private function _set_ui_data(){
+
+        //Dados para os menus
+        $this->to_parser['secoes'] = $this->get_secoes();
+        $this->to_parser['os_status'] = $this->get_os_status();
+
+        $this->to_view['header'] = 'Todos';
+        $this->to_view['header_icon'] = 'fa-tasks';
+        $this->to_view['secoes'] = $this->get_secoes();
+        $this->to_view['controller'] = $this->router->class;
+    }
 
 
     // ======== Serão substituídos por AJAX ==============
