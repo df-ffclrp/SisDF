@@ -41,7 +41,7 @@ class MY_Controller extends CI_Controller {
     * 
     */
 
-    function redirection($sublocation = '') {
+    protected function redirection($sublocation = '') {
         $uri = base_url() . $sublocation;
         redirect($uri, 'location', 301);
     }
