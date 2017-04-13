@@ -12,17 +12,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class MY_Controller extends CI_Controller {
 
-
-    /* Deixando seção pré montada para debugs */
-//    protected $secoes = array(
-//        array(
-//            'id_secao' => 'all',
-//            'nome_secao' => 'Todas as Áreas',
-//            'icone' => 'fa-tasks'
-//        )
-//    );
-    
+   
     protected $secoes = [];
+    protected $os_status = [];
 
     public function __construct() {
         parent::__construct();
@@ -32,7 +24,7 @@ class MY_Controller extends CI_Controller {
         $this->load->library('session');
         $this->load->helper('login'); // Helper desenvolvido para a aplicação
 
-        $this->set_secoes();
+        $this->set_common();
 
         // Habilita debugger para ambiente de desenvolvimento
         if (ENVIRONMENT == 'development'):
@@ -54,23 +46,32 @@ class MY_Controller extends CI_Controller {
         redirect($uri, 'location', 301);
     }
 
-    /*
+    /* 
+    ========================
      * Gets and Sets
+    ======================== 
      */
 
-    protected function set_secoes() {
+    /*
+    * Configura arrays comuns a toda aplicação
+    */
+
+    private function set_common(){
         $this->load->model('system_model');
         
-        $result = $this->system_model->get_secoes();
+        // Configura seções
+        $this->secoes = $this->system_model->get_secoes();
+        $this->os_status = $this->system_model->get_os_status();
 
-        foreach ($result as $secao):
-
-            array_push($this->secoes, $secao);
-        endforeach;
     }
-    
+
+   
     protected function get_secoes(){
         return $this->secoes;
+    }
+
+    protected function get_os_status(){
+        return $this->os_status;
     }
 
 }

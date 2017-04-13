@@ -42,14 +42,5 @@ class Relator_model extends CI_Model {
         
     }
     
-    /*
-     * Busca todos os status
-     * cadastrados no sistema
-     */
-    
-    public function get_os_status(){
-        $result = $this->db->get('os_status');
-        
-        return $result->result_array();
-    }
+
 }

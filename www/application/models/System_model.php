@@ -28,4 +28,15 @@ class System_model extends CI_Model {
         return $areas->result_array();
     }
 
+    /*
+     * Busca todos os status
+     * cadastrados no sistema
+     */
+    
+    public function get_os_status(){
+        $result = $this->db->get('os_status');
+        
+        return $result->result_array();
+    }
+
 }
