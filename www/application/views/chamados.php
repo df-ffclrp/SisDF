@@ -23,49 +23,9 @@ endif;
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-primary">
+        
 
-
-            <div class="panel-heading">
-
-
-                <div class="btn-group">
-                    <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true">-->
-                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                        Escolha uma Seção: 
-                        <span class="caret"></span>
-                    </button>
-
-                    <!--Menu de seleção de seções a mostrar-->
-                    <ul class="dropdown-menu pull-right" role="menu">
-
-                        <?php
-                            // reset($secoes);
-                            foreach ($secoes as $secao): 
-                        ?>
-                            <li>
-                                <a href="<?= base_url() . $controller ?>/index/1">
-                                    <i class="fa <?= $secao['icone'] ?> fa-fw"></i> 
-                                    <?= $secao['nome_secao'] ?>
-                                </a>
-                            </li>
-                            
-                        <?php endforeach; ?>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="<?= base_url() . $controller ?>">
-                                <i class="fa fa-tasks fa-fw"></i> 
-                                Todas as Seções
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-
-        </div>
-        <!-- /.panel-heading -->
-        <div class="panel-body">
+        
             <div class="table-responsive">
                 <table class="table table-hover">
 
@@ -116,10 +76,7 @@ endif;
                     </tbody>
                 </table>
             </div>
-        </div>
-        <!-- /.panel-body -->
-    </div>
-    <!-- /.panel -->
+            <!-- table responsive -->
 </div>
 <!-- /.row -->
 
