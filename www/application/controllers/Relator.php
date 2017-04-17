@@ -66,6 +66,8 @@ class Relator extends MY_Controller {
             $this->redirection($this->router->class);
         }
         
+        $this->_set_page_header($status_exists);
+
         $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario'], $id_status_os);
 
         $this->to_view['lista_os'] = $lista_os;
@@ -101,10 +103,12 @@ class Relator extends MY_Controller {
     private function _check_status($id_status_os){
         $os_status_array = $this->get_os_status();
 
+
+
         // var_dump($os_status_array);
         foreach ($os_status_array as $status) {
             if ($status['id_status'] == $id_status_os) {
-                return true;
+                return $status;
             }
         }
 
@@ -123,14 +127,21 @@ class Relator extends MY_Controller {
         $this->to_parser['os_status'] = $this->get_os_status();
 
         $this->to_view['header'] = 'Todos';
-        $this->to_view['header_icon'] = 'fa-tasks';
+        $this->to_view['header_icon'] = 'tasks';
         $this->to_view['secoes'] = $this->get_secoes();
         $this->to_view['controller'] = $this->router->class;
 
     }
 
+    /*
+        Seta o header da página de chamados conforme o status recebido
+    */
 
-    
+
+    private function _set_page_header($status_info){
+        $this->to_view['header'] = $status_info['nome_status'];
+        $this->to_view['header_icon'] = $status_info['icone'];
+    }
 
 
 }
