@@ -47,7 +47,7 @@ class Relator extends MY_Controller {
 
         $this->to_view['lista_os'] = $lista_os;
 
-        $this->to_parser['conteudo'] = $this->load->view('chamados', $this->to_view, TRUE);
+        $this->to_parser['conteudo'] = $this->load->view('lista_chamados', $this->to_view, TRUE);
 
         $this->parser->parse('templates/principal', $this->to_parser);
     }
@@ -73,7 +73,7 @@ class Relator extends MY_Controller {
         $this->to_view['lista_os'] = $lista_os;
 
     // Monta dados na view para passar ao parser
-        $this->to_parser['conteudo'] = $this->load->view('chamados', $this->to_view, TRUE);
+        $this->to_parser['conteudo'] = $this->load->view('lista_chamados', $this->to_view, TRUE);
 
         $this->parser->parse('templates/principal', $this->to_parser);
     }
@@ -134,7 +134,7 @@ class Relator extends MY_Controller {
     }
 
     /*
-        Seta o header da página de chamados conforme o status recebido
+     Seta o header da página de chamados conforme o status recebido
     */
 
 
