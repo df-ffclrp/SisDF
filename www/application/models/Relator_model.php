@@ -27,7 +27,7 @@ class Relator_model extends CI_Model {
         $this->db->join('os_status', 'id_status = id_status_fk');
         $this->db->join('secao', 'id_secao = id_secao_fk');
 
-        $this->db->where('id_usuario_fk', $id_usuario);
+        $this->db->where('id_relator_fk', $id_usuario);
 
         if(isset($id_status)){
             $this->db->where('id_status_fk', $id_status);

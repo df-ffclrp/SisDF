@@ -47,7 +47,7 @@ class Chamados_model extends CI_Model {
         $this->db->join('secao', 'id_secao = id_secao_fk');
         $this->db->join('finalidade', 'id_finalidade = id_finalidade_fk');
         $this->db->join('sala', 'id_sala = id_sala_fk');
-        $this->db->join('usuario', 'id_usuario = id_usuario_fk');
+        $this->db->join('usuario', 'id_usuario = id_relator_fk');
 
         $this->db->where('id_os', $id_os);
 
