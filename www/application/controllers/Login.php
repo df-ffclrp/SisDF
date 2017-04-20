@@ -51,7 +51,7 @@ class Login extends CI_Controller {
                 $this->session->set_userdata($dados_usuario);
 
                 // Registra Role
-                $this->_check_user_rights($_SESSION['nivel_acesso']);
+                $this->_grant_user_rights($_SESSION['nivel_acesso']);
 
 
                 redirect($_SESSION['logged_in'], 'refresh');
@@ -92,7 +92,7 @@ class Login extends CI_Controller {
      * 
      */
 
-    public function _check_user_rights($user_level) {
+    private function _grant_user_rights($user_level) {
         switch ($user_level):
             case 1;
                 $_SESSION['logged_in'] = 'gestor';
