@@ -28,10 +28,12 @@ class Chamados extends MY_Controller {
 
      public function ver_os($id_os = null){
      	$os_info = $this->chamados_model->get_os_by_id($id_os);
-     	var_dump($os_info);
+     	// var_dump($os_info);
 
      	$to_view['os'] = $os_info;
-     	$to_parser['conteudo'] = $this->load->view('info_chamado', $to_view, TRUE);
+        $to_view['os_menu'] = $this->get_os_status();
+        $to_view['controller'] = $this->get_base_controller();
+        $to_parser['conteudo'] = $this->load->view('info_chamado', $to_view, TRUE);
      	$this->parser->parse('templates/principal', $to_parser);
      }
 }

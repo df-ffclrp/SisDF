@@ -55,6 +55,9 @@ class Relator extends MY_Controller {
 
     /*
         Mostra ordens de serviço agrupadas por status
+
+        Esse método mudará de acordo com a role, por isso
+        Não está no controller Chamados
     */
 
     public function os_status($id_status_os = NULL){
@@ -72,9 +75,9 @@ class Relator extends MY_Controller {
 
         $this->to_view['lista_os'] = $lista_os;
 
-    // Monta dados na view para passar ao parser
-        $this->to_parser['conteudo'] = $this->load->view('lista_chamados', $this->to_view, TRUE);
 
+        // Monta dados na view para passar ao parser
+        $this->to_parser['conteudo'] = $this->load->view('lista_chamados', $this->to_view, TRUE);
         $this->parser->parse('templates/principal', $this->to_parser);
     }
 
@@ -103,8 +106,6 @@ class Relator extends MY_Controller {
     private function _check_status($id_status_os){
         $os_status_array = $this->get_os_status();
 
-
-
         // var_dump($os_status_array);
         foreach ($os_status_array as $status) {
             if ($status['id_status'] == $id_status_os) {
@@ -124,17 +125,19 @@ class Relator extends MY_Controller {
 
         //Dados para os menus
         $this->to_parser['secoes'] = $this->get_secoes();
-        $this->to_parser['os_status'] = $this->get_os_status();
+        $this->to_parser['os_menu'] = $this->get_os_status();
 
         $this->to_view['header'] = 'Todos';
-        $this->to_view['header_icon'] = 'tasks';
+        $this->to_view['header_icon'] = 'fa-tasks';
         $this->to_view['secoes'] = $this->get_secoes();
-        $this->to_view['controller'] = $this->router->class;
+        $this->to_view['controller'] = $this->get_base_controller();
 
     }
 
     /*
      Seta o header da página de chamados conforme o status recebido
+
+     @param $status_info : array()
     */
 
 

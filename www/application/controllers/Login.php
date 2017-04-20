@@ -55,9 +55,6 @@ class Login extends CI_Controller {
 
 
                 redirect($_SESSION['logged_in'], 'refresh');
-//                var_dump($dados_usuario);
-//
-//                var_dump($_SESSION);
 
             else:
                 $data['erro'] = ('Email e/ou senha inválidos');

@@ -83,17 +83,17 @@
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li>
-                                    <a href="<?= base_url() . $_SESSION['logged_in']; ?>"><i class="fa fa-tasks fa-fw"></i> 
+                                    <a href="<?= base_url() . $controller; ?>"><i class="fa fa-tasks fa-fw"></i> 
                                         Chamados
                                         <span class="fa arrow"></span>
                                     </a>
                                     <!-- Listar por status -->
                                     <ul class="nav nav-second-level">
-                                        <?php foreach ($os_status as $st): ?>
+                                        <?php foreach ($os_menu as $item): ?>
                                             <li>
-                                                <a href="<?= base_url() . $controller .'/os_status/'. $st['id_status'] ?> ">
-                                                    <i class="fa fa-<?= $st['icone']; ?> fa-fw"></i> 
-                                                    <?= $st['nome_status'];?>
+                                                <a href="<?= base_url() . $controller .'/os_status/'. $item['id_status'] ?> ">
+                                                    <i class="fa <?= $item['icone']; ?> fa-fw"></i> 
+                                                    <?= $item['nome_status'];?>
                                                 </a>
                                             </li>
 
@@ -101,7 +101,7 @@
                                         <li class="divider"></li>
 
                                         <li>
-                                            <a href="<?= base_url() . $controller ?>">
+                                            <a href="<?= base_url() . $controller ?>/">
                                                 <i class="fa fa-tasks fa-fw"></i> 
                                                 Todos
                                             </a>

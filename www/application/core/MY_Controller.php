@@ -13,8 +13,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class MY_Controller extends CI_Controller {
 
    
-    protected $secoes = [];
-    protected $os_status = [];
+    private $secoes = [];
+    private $os_status = [];
+    private $base_controller = '';
 
     public function __construct() {
         parent::__construct();
@@ -59,12 +60,16 @@ class MY_Controller extends CI_Controller {
     private function set_common(){
         $this->load->model('system_model');
         
-        // Configura seções
+        // Configura seções e status
         $this->secoes = $this->system_model->get_secoes();
         $this->os_status = $this->system_model->get_os_status();
 
+        if(isset($_SESSION)){
+            $this->base_controller = $_SESSION['logged_in'];
+        }
     }
 
+    // ========= GETS ===============
    
     protected function get_secoes(){
         return $this->secoes;
@@ -72,6 +77,10 @@ class MY_Controller extends CI_Controller {
 
     protected function get_os_status(){
         return $this->os_status;
+    }
+
+    protected function get_base_controller(){
+        return $this->base_controller;
     }
 
 }
