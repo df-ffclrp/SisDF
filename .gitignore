@@ -11,3 +11,5 @@
 /www/application/config/config.php
 /www/application/config/database.php
 
+# Database rebuild
+SQL/sample_data/config.sh
