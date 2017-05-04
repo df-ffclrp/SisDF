@@ -19,17 +19,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `sisdf`
 --
-
+USE `sisdf`;
 --
 -- Dumping data for table `ordem_servico`
 --
 
-INSERT INTO `ordem_servico` (`id_os`, `resumo`, `descricao`, `data_abertura`, `data_fechamento`, `last_update`, `id_status_fk`, `id_sala_fk`, `id_usuario_fk`, `id_secao_fk`, `id_finalidade_fk`) VALUES
-(1, 'Troca de Lâmpada', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ', '2017-02-09 17:24:21', NULL, '2017-02-09 17:24:21', 1, 1, 1, 1, 1),
-(2, 'Troca de Reator', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ', '2017-02-11 12:01:21', NULL, '2017-02-11 12:01:21', 2, 1, 1, 1, 1),
-(3, 'Troca de Tomada', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ', '2017-02-22 08:01:01', NULL, '2017-02-22 08:01:01', 3, 1, 1, 1, 1),
-(4, 'Refazer Reboco', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ', '2017-03-19 14:29:21', NULL, '2017-03-19 14:29:21', 5, 1, 1, 1, 1),
-(5, 'Instalação de Disjuntor', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ', '2017-03-20 11:32:00', NULL, '2017-03-20 11:32:00', 1, 1, 1, 1, 1);
+INSERT INTO `ordem_servico` (
+	`id_os`, 
+	`id_relator_fk`, 
+	`resumo`, 
+	`descricao`, 
+	`data_abertura`, 
+	`data_fechamento`, 
+	`last_update`, 
+	`id_atendente_fk`, 
+	`id_resp_secao_fk`, 
+	`id_resp_sala_fk`, 
+	`id_status_fk`, 
+	`id_sala_fk`, 
+	`id_secao_fk`, 
+	`id_finalidade_fk`) VALUES 
+
+(NULL, '3', 'Troca de Lâmpada', 'Trocar lâmpada próxima à porta', '2017-04-04 08:21:47', NULL, '2017-04-04 08:21:47', '5', '4', '1', '1', '2', '1', '4');
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -19,16 +19,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `sisdf`
 --
+USE `sisdf`;
+
+--
+-- Dumping data for table `cargo`
+--
+
+INSERT INTO `cargo` (`id_cargo`, `nome_cargo`) VALUES
+(1, 'Docente'),
+(2, 'Funcionário');
 
 --
 -- Dumping data for table `usuario`
 --
 
-USE `sisdf`;
-
-
-INSERT INTO `usuario` (`id_usuario`, `num_usp`, `senha`, `nome`, `email`, `ramal`, `nivel_acesso`, `ativo`) VALUES 
-(NULL, '123456', MD5('123'), 'André Luiz Girol', 'tester@email.local', '9988', '3', '1');
+INSERT INTO `usuario` (`id_usuario`, `num_usp`, `senha`, `nome`, `email`, `ramal`, `nivel_acesso`, `id_cargo_fk`, `ativo`) VALUES 
+(1, '123456', MD5('123'), 'André Luiz Girol', 'tester@email.local', '9988', '3', '2', '1'),
+(2, '654312', MD5('123'), 'Docente Carlos', 'dc@email.local', '1122', '3', '1', '1'),
+(3, '111111', MD5('123'), 'Relator Fernandes', 'rf@email.local', '1111', '3', '2', '1'),
+(4, '999999', MD5('123'), 'Responsável Manutenção', 'dmanut@email.local', '9999', '3', '1', '1'),
+(5, '222222', MD5('123'), 'Técnico Manutenção', 'tec_manut@email.local', '2222', '3', '2', '1'),
+(6, '889944', MD5('123'), 'Docente Las Neves', 'dn@email.local', '3322', '3', '1', '1');
 
 --
 -- Dumping data for table `sala`
@@ -69,16 +80,40 @@ INSERT INTO `os_status` (`id_status`, `nome_status`, `alias`, `bs_label` , `icon
 (3, 'Atendido', 'atendido', 'success' , 'fa-check-circle'),
 (4, 'Retorno', 'retorno', 'danger' , 'fa-exclamation-circle');
 
+
+-- SOMENTE ADICIONAR APÓS OS ANTERIORES
+
+--
+-- Dumping data for table `responsavel`
+--
+
+INSERT INTO `responsavel` (`id_resp_fk`, `id_sala_fk`) VALUES
+(2, 1),
+(3, 1);
+
+
 --
 -- Dumping data for table `ordem_servico`
 --
 
-INSERT INTO `ordem_servico` (`id_os`, `resumo`, `descricao`, `material`, `data_abertura`, `data_fechamento`, `last_update`, `atendente`, `id_status_fk`, `id_sala_fk`, `id_relator_fk`, `id_secao_fk`, `id_finalidade_fk`) VALUES
-(1, 'Troca de Lâmpada', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ',  'Material da Ordem de Serviço', '2017-02-09 17:24:21', NULL, '2017-02-09 17:24:21', NULL, 1, 1, 1, 1, 1),
-(2, 'Troca de Reator', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ', 'Material da Ordem de Serviço', '2017-02-11 12:01:21', NULL, '2017-02-11 12:01:21', NULL, 2, 1, 1, 1, 1),
-(3, 'Troca de Tomada', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ', 'Material da Ordem de Serviço', '2017-02-22 08:01:01', NULL, '2017-02-22 08:01:01', NULL, 3, 1, 1, 1, 1),
-(4, 'Refazer Reboco', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ', 'Material da Ordem de Serviço', '2017-03-19 14:29:21', NULL, '2017-03-19 14:29:21', NULL, 4, 1, 1, 1, 1),
-(5, 'Instalação de Disjuntor', 'Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantiss. Em pé sem cair, deitado sem dormir, sentado sem cochilar e fazendo pose. Leite de capivaris, leite de mula manquis. Si u mundo tá muito paradis? Toma um mé que o mundo vai girarzis! ', 'Material da Ordem de Serviço', '2017-03-20 11:32:00', NULL, '2017-03-20 11:32:00', NULL, 1, 1, 1, 1, 1);
+INSERT INTO `ordem_servico` (
+	`id_os`, 
+	`id_relator_fk`, 
+	`resumo`, 
+	`descricao`, 
+	`data_abertura`, 
+	`data_fechamento`, 
+	`last_update`, 
+	`id_atendente_fk`, 
+	`id_resp_secao_fk`, 
+	`id_resp_sala_fk`, 
+	`id_status_fk`, 
+	`id_sala_fk`, 
+	`id_secao_fk`, 
+	`id_finalidade_fk`) VALUES 
+
+(NULL, '3', 'Troca de Lâmpada', 'Trocar lâmpada próxima à porta', '2017-04-04 08:21:47', NULL, '2017-04-04 08:21:47', '5', '4', '1', '1', '2', '1', '4');
+
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
