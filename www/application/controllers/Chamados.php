@@ -12,6 +12,7 @@ class Chamados extends MY_Controller {
         parent::__construct();
 
         $this->load->model('chamados_model');
+       
         // Implementar nível de acesso
 
      }
@@ -28,7 +29,7 @@ class Chamados extends MY_Controller {
 
      public function ver_os($id_os = null){
      	$os_info = $this->chamados_model->get_os_by_id($id_os);
-     	// var_dump($os_info);
+     	var_dump($os_info);
 
      	$to_view['os'] = $os_info;
         $to_view['os_menu'] = $this->get_os_status();

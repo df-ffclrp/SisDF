@@ -24,30 +24,42 @@ class Chamados_model extends CI_Model {
         $this->db->select('
             id_os, 
             resumo,
-            usuario.nome as relator,
-            num_usp,
-            ramal,
-            email,
             ordem_servico.descricao as os_descricao,
+
+            rel.nome as relator,
+            rel.num_usp as num_usp,
+            rel.ramal,
+            rel.email,
             data_abertura,
             data_fechamento,
             last_update,
+            atd.nome as atendente,
+            sec_resp.nome as resp_secao,
+            sala_resp.nome as resp_sala,
+
             nome_status, 
             nome_secao,
             secao.icone as secao_icone,
             num_sala,
             sala.nome as nome_sala,
-            finalidade.descricao as finalidade
-
-
+            finalidade.descricao as finalidade,
+            descricao_mat,
+            fornecimento
 
             ');
+
         $this->db->from('ordem_servico');
+
+        $this->db->join('usuario as rel', 'rel.id_usuario = id_relator_fk');
+        $this->db->join('usuario as atd', 'atd.id_usuario = id_atendente_fk');
+        $this->db->join('usuario as sec_resp', 'sec_resp.id_usuario = id_resp_secao_fk');
+        $this->db->join('usuario as sala_resp', 'sala_resp.id_usuario = id_resp_sala_fk');
+
         $this->db->join('os_status', 'id_status = id_status_fk');
         $this->db->join('secao', 'id_secao = id_secao_fk');
         $this->db->join('finalidade', 'id_finalidade = id_finalidade_fk');
         $this->db->join('sala', 'id_sala = id_sala_fk');
-        $this->db->join('usuario', 'id_usuario = id_relator_fk');
+        $this->db->join('material', 'id_os = id_os_fk', 'left');
 
         $this->db->where('id_os', $id_os);
 

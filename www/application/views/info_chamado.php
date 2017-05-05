@@ -40,10 +40,10 @@
                     <strong>Data de Abertura:</strong> <?= $os['data_abertura'] ?> <br>
                     <strong>Finalidade:</strong> <?= $os['finalidade'] ?> <br>
                     <strong>Local:</strong> <?= $os['num_sala'].' - ' .$os['nome_sala'] ?> <br>
-                    <strong>Responsável:</strong>  Prof. Belmiro Rosa
+                    <strong>Responsável:</strong>  <?= $os['resp_sala'] ?>
 
                 </p>
-                <p> <strong>Resumo:</strong> Troca de Lâmpada </p>
+                <p> <strong>Resumo:</strong> <?= $os['resumo'] ?></p>
 
                 <p> <strong>Descrição do Pedido:</strong> </p>
                 <p>
@@ -60,19 +60,23 @@
             </div>
 
             <div class="panel-body">
+            
+            <?php  if($os['descricao_mat'] == null): ?>
                     <div class="alert alert-info">
                        <i class="fa fa-info-circle" aria-hidden="true"></i>
                         Não há material cadastrado para este chamado
                     </div>
+
+            <?php else: ?>
+
+                <p> <strong>Fornecimento: </strong> <?= $os['fornecimento'] ?> </p> 
                 <p> <strong>Descrição do Material:</strong> </p>
-                <p> <strong>Fornecimento: </strong> Solicitante</p> 
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                    irure dolor in reprehenderit in voluptate velit esse cillum 
+                    <?= $os['descricao_mat'] ?>
                 </p>
+
+            <?php endif; ?>
+            
             </div>
         </div>
 
