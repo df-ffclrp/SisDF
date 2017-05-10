@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class MY_Controller extends CI_Controller {
 
-   
+    public $ui = [];
     private $secoes = [];
     private $os_status = [];
     private $base_controller = '';
@@ -67,6 +67,11 @@ class MY_Controller extends CI_Controller {
         if(isset($_SESSION)){
             $this->base_controller = $_SESSION['logged_in'];
         }
+
+        // Configura User Interface
+        $this->ui['controller'] = $this->base_controller;
+        $this->ui['os_menu'] = $this->os_status;
+        
     }
 
     // ========= GETS ===============
@@ -81,6 +86,10 @@ class MY_Controller extends CI_Controller {
 
     protected function get_base_controller(){
         return $this->base_controller;
+    }
+
+    protected function get_ui_data(){
+        return $this->ui;
     }
 
 }
