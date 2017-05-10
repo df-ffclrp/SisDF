@@ -39,7 +39,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     public function novo(){
 
-        $this->load->view('forms/manutencao');
+        $data['salas'] = $this->chamados_model->get_salas();
 
+        //var_dump($data);
+        $this->load->view('forms/manutencao',$data);
+
+    }
+
+    /*
+    ==== MÉTODOS AJAX ====
+    */
+    public function aj_get_nome_sala() {
+        $this->output->enable_profiler(FALSE);
+
+        
+        $id_sala = $this->input->post('sala');
+        $res = $this->chamados_model->get_nome_sala($id_sala);
+        
+        echo $res['nome_sala'];
     }
 }

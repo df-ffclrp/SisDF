@@ -23,19 +23,23 @@
                     <div class="form-group">
                         <label>Resumo:</label>
                         <input class="form-control" placeholder="Exemplo: Troca de Lâmpada">
-                        <p class="help-block"></p>
+                        
                     </div>
 
                     <div class="form-group">
                         <label>Local do Atendimento:</label>
-                        <select class="form-control">
-                            <option> Sala X</option>
-                            <option> Sala X</option>
-                            <option> Sala X</option>
-                            <option> Sala X</option>
-                            <option> Sala X</option>
+                        <select class="form-control" name="sala" id="sala">
+                            <option value="" selected>Selecione uma sala </option>
+
+                        <?php foreach ($salas as $sala): ?>
+
+                            <option value="<?= $sala['id_sala'] ?>"> Sala Nº <?= $sala['num_sala'] ?></option>
+
+                        <?php endforeach; ?>
+                            
+                            
                         </select>
-                        <p class="help-block">Sala X</p>
+                        <p id="nome_sala" class="help-block"></p>
                     </div>
 
                     <div class="form-group">
@@ -74,7 +78,5 @@
         </div>
     </div>
 </div>
-
-
 
 <?php $this->load->view('common/footer'); ?>
