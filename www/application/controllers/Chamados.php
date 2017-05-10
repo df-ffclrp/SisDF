@@ -6,20 +6,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 Controller para manipular chamados
 	*/
 
-class Chamados extends MY_Controller {
+    class Chamados extends MY_Controller {
 
-	 public function __construct() {
+    //public $menus = $this->ui;
+
+    public function __construct() {
         parent::__construct();
 
         $this->load->model('chamados_model');
-       
+
         // Implementar nível de acesso
 
-     }
+    }
 
-     public function index(){
-     	echo "chamados index";
-     }
+    public function index(){
+        var_dump($this->ui);
+    }
 
      /*
 		Mostra uma única ordem de serviço
@@ -27,14 +29,17 @@ class Chamados extends MY_Controller {
 		Mostra OS que o usuário abriu apenas
      */
 
-     public function ver_os($id_os = null){
-     	$os_info = $this->chamados_model->get_os_by_id($id_os);
-     	var_dump($os_info);
+    public function ver_os($id_os = null){
+        $data['os'] = $this->chamados_model->get_os_by_id($id_os);
+        //var_dump($os_info);
 
-     	$to_view['os'] = $os_info;
-        $to_view['os_menu'] = $this->get_os_status();
-        $to_view['controller'] = $this->get_base_controller();
-        $to_parser['conteudo'] = $this->load->view('info_chamado', $to_view, TRUE);
-     	$this->parser->parse('templates/principal', $to_parser);
-     }
+        $this->load->view('info_chamado', $data);
+
+    }
+
+    public function novo(){
+
+        $this->load->view('forms/manutencao');
+
+    }
 }

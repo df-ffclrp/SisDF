@@ -1,0 +1,112 @@
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+            Serviço de Atendimento Técnico - Departamento de Física
+        </a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+
+        <li> <?= $_SESSION['nome'] ?> </li>
+        <!-- .dropdown -->
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+            </a>
+            <!-- .dropdown-user -->
+            <ul class="dropdown-menu dropdown-user">
+                <li><a href="#"><i class="fa fa-user fa-fw"></i> Meus Dados</a>
+                </li>
+                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
+                </li>
+                <li class="divider"></li>
+
+                <li><a href="<?= base_url();?>sair"><i class="fa fa-sign-out fa-fw"></i> Sair</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <!--SIDEBAR-->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="<?= base_url() . $controller; ?>"><i class="fa fa-tasks fa-fw"></i> 
+                        Chamados
+                        <span class="fa arrow"></span>
+                    </a>
+                    <!-- Listar por status -->
+                    <ul class="nav nav-second-level">
+                        <?php foreach ($os_menu as $item): ?>
+                            <li>
+                                <a href="<?= base_url() . $controller .'/os_status/'. $item['id_status'] ?> ">
+                                    <i class="fa <?= $item['icone']; ?> fa-fw"></i> 
+                                    <?= $item['nome_status'];?>
+                                </a>
+                            </li>
+
+                        <?php endforeach; ?>
+                        <li class="divider"></li>
+
+                        <li>
+                            <a href="<?= base_url() . $controller ?>/">
+                                <i class="fa fa-tasks fa-fw"></i> 
+                                Todos
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Abrir Chamado -->
+                <li>
+                    <a href="#"><i class="fa fa-file-text-o fa-fw"></i> 
+                        Abrir Chamado
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-building fa-fw"></i> 
+                                Manutenção Predial
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-cog fa-fw"></i> 
+                                Mecânica
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-microchip fa-fw"></i> 
+                                Eletrônica</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-desktop fa-fw"></i> 
+                                    Informática
+                                </a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+
+
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+</nav>
