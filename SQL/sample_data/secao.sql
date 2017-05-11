@@ -27,10 +27,10 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `secao` (`id_secao`, `nome_secao`, `icone`) VALUES
-(1, 'Manutenção Predial', 'fa-building'),
-(2, 'Eletrônica', 'fa-microchip'),
-(3, 'Oficina Mecânica', 'fa-cog'),
-(4, 'Informática', 'fa-microchip');
+(1, 'Manutenção Predial', 'fa-building', 'manutencao'),
+(2, 'Eletrônica', 'fa-microchip', 'eletronica'),
+(3, 'Oficina Mecânica', 'fa-cog', 'mecanica'),
+(4, 'Informática', 'fa-desktop', 'informatica');
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
