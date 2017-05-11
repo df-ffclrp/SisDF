@@ -47,6 +47,40 @@ class MY_Controller extends CI_Controller {
         redirect($uri, 'location', 301);
     }
 
+
+    /*
+     * Checa se uma seção solicitada no index existe no array de configuração
+     */
+
+    protected function _check_secao($id_secao) {
+        $secoes = $this->get_secoes();
+
+        foreach ($secoes as $secao) {
+            if ($secao['id_secao'] == $id_secao) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /*
+        Checa se um status existe no array de configuração
+    */
+
+    protected function _check_status($id_status_os){
+        $os_status_array = $this->get_os_status();
+
+        // var_dump($os_status_array);
+        foreach ($os_status_array as $status) {
+            if ($status['id_status'] == $id_status_os) {
+                return $status;
+            }
+        }
+
+        return false;
+    }
+
     /* 
     ========================
      * Gets and Sets

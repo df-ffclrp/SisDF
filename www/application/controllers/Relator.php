@@ -13,9 +13,7 @@ class Relator extends MY_Controller {
      * - Abre chamados
      * - Lista chamados abertos por ele
      */
-
-    private $to_view = [];
-    private $to_parser = [];
+    private $data = [];
 
     public function __construct() {
         parent::__construct();
@@ -27,6 +25,7 @@ class Relator extends MY_Controller {
 
         $this->_set_ui_data();
 
+
     }
 
     /*
@@ -34,22 +33,23 @@ class Relator extends MY_Controller {
      */
 
     public function index($secao = NULL) {
+       
 
         $secao_exists = $this->_check_secao($secao);
 
         // Se a seção não existir, mostra todas
         if (!$secao_exists):
             // mostra todos
-            $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
+            $this->data['lista_os'] = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
 
         endif;
 
 
-        $this->to_view['lista_os'] = $lista_os;
-
-        $this->to_parser['conteudo'] = $this->load->view('lista_chamados', $this->to_view, TRUE);
-
-        $this->parser->parse('templates/principal', $this->to_parser);
+        $this->load->view('common/header');
+        $this->load->view('common/menus',$this->ui);
+        $this->load->view('lista_chamados', $this->data);
+        $this->load->view('common/footer');
+        
     }
 
 
@@ -61,7 +61,6 @@ class Relator extends MY_Controller {
     */
 
     public function os_status($id_status_os = NULL){
-
         $status_exists = $this->_check_status($id_status_os);
 
         // Se status não existe, redireciona para a página inicial
@@ -71,66 +70,25 @@ class Relator extends MY_Controller {
         
         $this->_set_page_header($status_exists);
 
-        $lista_os = $this->relator_model->get_os_by_user($_SESSION['id_usuario'], $id_status_os);
 
-        $this->to_view['lista_os'] = $lista_os;
+        $this->data['lista_os'] = $this->relator_model->get_os_by_user($_SESSION['id_usuario'], $id_status_os);
 
-
-        // Monta dados na view para passar ao parser
-        $this->to_parser['conteudo'] = $this->load->view('lista_chamados', $this->to_view, TRUE);
-        $this->parser->parse('templates/principal', $this->to_parser);
-    }
-
-
-
-    /*
-     * Checa se uma seção solicitada no index existe no array de configuração
-     */
-
-    private function _check_secao($id_secao) {
-        $secoes = $this->get_secoes();
-
-        foreach ($secoes as $secao) {
-            if ($secao['id_secao'] == $id_secao) {
-                return true;
-            }
-        }
-
-        return false;
+        $this->load->view('common/header');
+        $this->load->view('common/menus',$this->ui);
+        $this->load->view('lista_chamados', $this->data);
+        $this->load->view('common/footer');
+        
+        
     }
 
     /*
-        Checa se um status existe no array de configuração
-    */
-
-    private function _check_status($id_status_os){
-        $os_status_array = $this->get_os_status();
-
-        // var_dump($os_status_array);
-        foreach ($os_status_array as $status) {
-            if ($status['id_status'] == $id_status_os) {
-                return $status;
-            }
-        }
-
-        return false;
-    }
-
-    /*
-
-    Monta dados na view para passar ao parser
+        Monta dados na view para passar ao parser
     */ 
 
     private function _set_ui_data(){
 
-        //Dados para os menus
-        $this->to_parser['secoes'] = $this->get_secoes();
-        $this->to_parser['os_menu'] = $this->get_os_status();
-
-        $this->to_view['header'] = 'Todos';
-        $this->to_view['header_icon'] = 'fa-tasks';
-        $this->to_view['secoes'] = $this->get_secoes();
-        $this->to_view['controller'] = $this->get_base_controller();
+        $this->data['header'] = 'Todos';
+        $this->data['header_icon'] = 'fa-tasks';
 
     }
 
@@ -142,8 +100,8 @@ class Relator extends MY_Controller {
 
 
     private function _set_page_header($status_info){
-        $this->to_view['header'] = $status_info['nome_status'];
-        $this->to_view['header_icon'] = $status_info['icone'];
+        $this->data['header'] = $status_info['nome_status'];
+        $this->data['header_icon'] = $status_info['icone'];
     }
 
 
