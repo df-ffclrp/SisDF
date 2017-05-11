@@ -71,6 +71,7 @@ class MY_Controller extends CI_Controller {
         // Configura User Interface
         $this->ui['controller'] = $this->base_controller;
         $this->ui['os_menu'] = $this->os_status;
+        $this->ui['secoes_menu'] = $this->secoes;
         
     }
 

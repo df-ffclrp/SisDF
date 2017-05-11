@@ -75,34 +75,21 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-building fa-fw"></i> 
-                                Manutenção Predial
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-cog fa-fw"></i> 
-                                Mecânica
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-microchip fa-fw"></i> 
-                                Eletrônica</a>
-                            </li>
+
+                        <?php foreach ($secoes_menu as $secao): ?>
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-desktop fa-fw"></i> 
-                                    Informática
+                                <a href="<?= base_url() .'chamados/novo/'. $secao['id_secao'] ?> ">
+                                    <i class="fa <?= $secao['icone']; ?> fa-fw"></i> 
+                                    <?= $secao['nome_secao'];?>
                                 </a>
                             </li>
-                        </ul>
-
-                    </li>
 
 
+                        <?php endforeach; ?>
+                        
+                    </ul>
+
+                </li>
 
                 </ul>
             </div>
