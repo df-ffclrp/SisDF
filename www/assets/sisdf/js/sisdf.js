@@ -5,7 +5,9 @@
 function get_controller_url(){
 	var url = window.location.href;
 
+	// Remove as duas partes finais do controller
 	parts = url.split('/');
+	parts.pop();
 	parts.pop();
 	url = parts.join('/') + '/';
 
@@ -16,11 +18,13 @@ function get_controller_url(){
 $(document).ready(function(){
 	console.log('Rodando...');
 
-	var controller = get_controller_url();
 
-	console.log("O controller é: "+controller)
-
+	// Busca via ajax o nome da sala
 	$('#sala').bind('change', function(){
+
+		var controller = get_controller_url();
+		console.log("O controller é: "+controller)
+		
 		//var id_sala = $(this).find(':selected').serialize().val();
 		var id_sala = $(this).serialize();
 		
@@ -34,6 +38,24 @@ $(document).ready(function(){
 				$('#nome_sala').html(results);
 			}
 
+		});
+
+	});
+
+	// Adiciona ou remove o painel de materiais
+	$('#add_material').bind('click', function(){
+		
+		$('#material').slideToggle('400', function(){
+
+			var botao = $('#add_material');
+			
+			if(botao.hasClass('btn-warning')){
+				botao.toggleClass('btn-warning btn-danger');
+				botao.text("Remover Material");
+			} else {
+				botao.toggleClass('btn-danger btn-warning');
+				botao.text("Adicionar Material");
+			}
 		});
 
 	});
