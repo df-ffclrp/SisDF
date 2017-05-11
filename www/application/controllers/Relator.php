@@ -44,7 +44,6 @@ class Relator extends MY_Controller {
 
         endif;
 
-
         $this->load->view('common/header');
         $this->load->view('common/menus',$this->ui);
         $this->load->view('lista_chamados', $this->data);
