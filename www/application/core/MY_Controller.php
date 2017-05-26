@@ -42,7 +42,7 @@ class MY_Controller extends CI_Controller {
     * 
     */
 
-    protected function redirection($sublocation = '') {
+      protected function redirection($sublocation = '') {
         $uri = base_url() . $sublocation;
         redirect($uri, 'location', 301);
     }
@@ -68,18 +68,18 @@ class MY_Controller extends CI_Controller {
         Checa se um status existe no array de configuração
     */
 
-    protected function _check_status($id_status_os){
-        $os_status_array = $this->get_os_status();
+        protected function _check_status($id_status_os){
+            $os_status_array = $this->get_os_status();
 
         // var_dump($os_status_array);
-        foreach ($os_status_array as $status) {
-            if ($status['id_status'] == $id_status_os) {
-                return $status;
+            foreach ($os_status_array as $status) {
+                if ($status['id_status'] == $id_status_os) {
+                    return $status;
+                }
             }
-        }
 
-        return false;
-    }
+            return false;
+        }
 
     /* 
     ========================
@@ -110,7 +110,28 @@ class MY_Controller extends CI_Controller {
     }
 
     // ========= GETS ===============
-   
+
+    
+    /*
+      Busca seção baseado no seu id
+    */
+
+    protected function get_secao($id_secao){
+
+    $secoes = $this->get_secoes();
+
+        foreach ($secoes as $secao) {
+            if ($secao['id_secao'] == $id_secao) {
+                return $secao;
+            }
+        }
+
+        return false;
+    }
+
+
+
+
     protected function get_secoes(){
         return $this->secoes;
     }
