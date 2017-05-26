@@ -53,8 +53,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $form = $this->_get_alias_secao($id_secao);
 
         $data['salas'] = $this->chamados_model->get_salas();
+        $data['custom_js'] = 'nova_os.js';
 
-        //var_dump($data);
+        var_dump($data);
         $this->load->view('common/header');
         $this->load->view('common/menus',$this->ui);
         $this->load->view('forms/'.$form , $data);

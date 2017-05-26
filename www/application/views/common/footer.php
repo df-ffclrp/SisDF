@@ -8,13 +8,14 @@
     <!-- Metis Menu Plugin JavaScript -->
     <script src="<?= base_url() ?>assets/vendor/metisMenu/metisMenu.min.js"></script>
 
-
-
     <!-- Custom Theme JavaScript -->
     <script src="<?= base_url() ?>assets/dist/js/sb-admin-2.js"></script>
 
-    <!-- SisDF JS -->
-    <script src="<?= base_url() ?>assets/sisdf/js/sisdf.js"></script>
+	<?php if(isset($custom_js)): ?>
+	<!-- JS específico desta página-->
+    <script src="<?= base_url() ?>assets/sisdf/js/<?= $custom_js ?>"> </script>
+
+	<?php endif; ?>
 
 </body>
 
