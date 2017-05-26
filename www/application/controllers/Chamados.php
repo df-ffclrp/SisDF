@@ -50,34 +50,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->redirection($this->get_base_controller());
         }
 
-        $form = $this->_get_alias_secao($id_secao);
+        
 
         $data['salas'] = $this->chamados_model->get_salas();
         $data['custom_js'] = 'nova_os.js';
+        $data['secao_dest'] = $this->get_secao($id_secao);
 
-        var_dump($data);
+        //var_dump($data);
+        //var_dump($this->ui);
         $this->load->view('common/header');
         $this->load->view('common/menus',$this->ui);
-        $this->load->view('forms/'.$form , $data);
+        $this->load->view('forms/nova_os' , $data);
         $this->load->view('common/footer');
 
     }
 
+// ======== testing area =======
+
+
+
+    public function test_injection($id_secao){
+        
+        var_dump($this->_check_secao($id_secao));
+    }
+
     /*
-        Busca formulário baseado na seção de abertura
+    Busca placeholders e nomes para o formulário
     */
 
-    private function _get_alias_secao($id_secao){
-    //public function get_alias_secao($id_secao = NULL){
-        $secoes = $this->get_secoes();
+    private function _get_form_placeholders($id_secao) {
 
-        foreach ($secoes as $secao) {
-            if ($secao['id_secao'] == $id_secao) {
-                return $secao['alias'];
-            }
-        }
 
-        return false;
     }
 
 

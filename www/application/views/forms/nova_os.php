@@ -3,8 +3,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">
-                    <i class="fa fa-building fa-fw"></i> 
-                    Novo Chamado - Manutenção
+                    <i class="fa <?= $secao_dest['icone'] ?> fa-fw"></i> 
+                    Novo Chamado - <?= $secao_dest['nome_secao'] ?>
                 </h2>
             </div>
             <!-- /.col-lg-12 -->
@@ -53,6 +53,8 @@
 
                     <!-- Detalhes do Material -->
                     <div id="material" class="panel panel-primary" style="display: none;">
+
+                        <input id="has_material" type="hidden" value="false">
                         <div class="panel-heading">
                             <i class="fa fa-cubes fa-fw"></i> 
                             <strong>Detalhes do Material</strong>
