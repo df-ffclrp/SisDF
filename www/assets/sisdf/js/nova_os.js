@@ -52,9 +52,11 @@ $(document).ready(function(){
 			if(botao.hasClass('btn-warning')){
 				botao.toggleClass('btn-warning btn-danger');
 				botao.text("Remover Material");
+				$('#has_material').val('true');
 			} else {
 				botao.toggleClass('btn-danger btn-warning');
 				botao.text("Adicionar Material");
+				$('#has_material').val('false');
 			}
 		});
 

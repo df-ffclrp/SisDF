@@ -17,7 +17,7 @@
                 <form role="form">
                     <div class="form-group">
                         <label>Resumo:</label>
-                        <input class="form-control" placeholder="Exemplo: Troca de Lâmpada">
+                        <input class="form-control" placeholder="<?= $ph['resumo'] ?>">
                         
                     </div>
 
@@ -41,7 +41,7 @@
 
                     <div class="form-group">
                         <label>Descrição:</label>
-                        <textarea class="form-control" rows="3" placeholder="Exemplo: Lâmpada localizada próxima ao bebedouro do bloco 5."></textarea>
+                        <textarea class="form-control" rows="3" placeholder="<?= $ph['descricao'] ?>"></textarea>
                     </div>
 
                     <button id="add_material" type="button" class="btn btn-warning">
@@ -52,7 +52,7 @@
                     <br>
 
                     <!-- Detalhes do Material -->
-                    <div id="material" class="panel panel-primary" style="display: none;">
+                    <div id="material" class="panel panel-primary" style="display: none;" >
 
                         <input id="has_material" type="hidden" value="false">
                         <div class="panel-heading">
@@ -81,7 +81,7 @@
 
                             <div class="form-group">
                                 <label>Descrição do material:</label>
-                                <textarea class="form-control" rows="3" placeholder="Exemplo: Conjunto de 3 reatores."></textarea>
+                                <textarea class="form-control" rows="3" placeholder="<?= $ph['desc_material'] ?>"></textarea>
                             </div>
                         </div>
                     </div>

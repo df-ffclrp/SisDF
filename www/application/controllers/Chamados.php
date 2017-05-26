@@ -41,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
     public function novo($id_secao = NULL){
+        $this->config->load('placeholders',TRUE);
 
         // always filter!
         $secao_exists = $this->_check_secao($id_secao);
@@ -54,7 +55,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         $data['salas'] = $this->chamados_model->get_salas();
         $data['custom_js'] = 'nova_os.js';
-        $data['secao_dest'] = $this->get_secao($id_secao);
+        // Busca informações do form
+        $data = array_merge($data, $this->_set_form_info($id_secao));
+        //var_dump($this->_set_form_info($id_secao));
 
         //var_dump($data);
         //var_dump($this->ui);
@@ -74,13 +77,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         var_dump($this->_check_secao($id_secao));
     }
 
+// ======== testing area =======
+
     /*
     Busca placeholders e nomes para o formulário
     */
 
-    private function _get_form_placeholders($id_secao) {
+    private function _set_form_info($id_secao) {
+        
+        $secao = $this->get_secao($id_secao);
 
-
+        $form_info['secao_dest'] = $secao;
+        //recupera placeholder específico da seção
+        $alias = $secao['alias'];
+        $form_info['ph'] = $this->config->item($alias,'placeholders');
+    
+        return $form_info;
     }
 
 
