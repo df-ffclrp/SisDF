@@ -21,7 +21,7 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
 
         $this->load->helper('url_helper');
-        $this->load->library('parser');
+        
         $this->load->library('session');
         $this->load->helper('login'); // Helper desenvolvido para a aplicação
 
@@ -95,8 +95,11 @@ class MY_Controller extends CI_Controller {
         $this->load->model('system_model');
         
         // Configura seções e status
-        $this->secoes = $this->system_model->get_secoes();
-        $this->os_status = $this->system_model->get_os_status();
+        //if(empty($this->secoes || empty($this->os_status))){
+            $this->secoes = $this->system_model->get_secoes();
+            $this->os_status = $this->system_model->get_os_status();
+            
+        //}
 
         if(isset($_SESSION)){
             $this->base_controller = $_SESSION['logged_in'];
@@ -116,9 +119,9 @@ class MY_Controller extends CI_Controller {
       Busca seção baseado no seu id
     */
 
-    protected function get_secao($id_secao){
+      protected function get_secao($id_secao){
 
-    $secoes = $this->get_secoes();
+        $secoes = $this->get_secoes();
 
         foreach ($secoes as $secao) {
             if ($secao['id_secao'] == $id_secao) {

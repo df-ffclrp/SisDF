@@ -50,8 +50,9 @@ class Chamados_model extends CI_Model {
 
         $this->db->from('ordem_servico');
 
-        $this->db->join('usuario as rel', 'rel.id_usuario = id_relator_fk');
-        $this->db->join('usuario as atd', 'atd.id_usuario = id_atendente_fk');
+        $this->db->join('usuario as rel', 'rel.id_usuario = id_relator_fk' );
+        // Se não tiver atendente, a query buga.
+        $this->db->join('usuario as atd', 'atd.id_usuario = id_atendente_fk', 'left'); 
         $this->db->join('usuario as sec_resp', 'sec_resp.id_usuario = id_resp_secao_fk');
         $this->db->join('usuario as sala_resp', 'sala_resp.id_usuario = id_resp_sala_fk');
 
@@ -75,6 +76,37 @@ class Chamados_model extends CI_Model {
         return $result->result_array();
     }
 
+    public function get_finalidades(){
+        $result = $this->db->get('finalidade');
+        return $result->result_array();
+    }
+
+    // Busca responsável pela seção do atendimento
+    public function get_resp_secao($id_secao){
+        $this->db->select('id_usuario_fk as id_responsavel');
+        $this->db->from('membro_secao');
+
+        $this->db->where('responsabilidade','responsavel');
+
+        $query = $this->db->get();
+        
+        $row_result = $query->row();
+        return $row_result->id_responsavel;
+    }
+
+    // Busca responsável pela sala do atendimento
+    public function get_resp_sala($id_sala){
+        $this->db->select('id_resp_fk as responsavel');
+        $this->db->from('resp_sala');
+
+        $this->db->where('id_sala_fk',$id_sala);
+
+        $query = $this->db->get();
+        $row_result = $query->row();
+        //var_dump($row_result);
+        return $row_result->responsavel;
+    }
+
     public function get_nome_sala($id_sala){
         $this->db->select('nome as nome_sala');
         $this->db->where('id_sala', $id_sala);
@@ -82,5 +114,13 @@ class Chamados_model extends CI_Model {
         $result = $this->db->get('sala');
 
         return $result->row_array();
+    }
+
+    public function grava_os($dados_os){
+        $query =  $this->db->insert('ordem_servico',$dados_os);
+        if($query){
+            // Retorna o último ID inserido
+            return $this->db->insert_id();
+        }
     }
 }

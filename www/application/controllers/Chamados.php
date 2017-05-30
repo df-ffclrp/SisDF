@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      Este controller é comum a todos os usuários
 	*/
 
-    class Chamados extends MY_Controller {
+     class Chamados extends MY_Controller {
 
     //public $menus = $this->ui;
 
@@ -32,13 +32,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		Mostra OS que o usuário abriu apenas
      */
 
-    public function ver_os($id_os = NULL){
+        public function ver_os($id_os = NULL){
         // Implementar controle de acesso
 
-        $data['os'] = $this->chamados_model->get_os_by_id($id_os);
-        $this->load->view('info_chamado', $data);
+            $data['os'] = $this->chamados_model->get_os_by_id($id_os);
+            $this->load->view('info_chamado', $data);
 
-    }
+        }
 
     /*
     Abre novo Chamado
@@ -58,16 +58,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         $data['salas'] = $this->chamados_model->get_salas();
+        $data['fin'] = $this->chamados_model->get_finalidades();
+        
         $data['custom_js'] = 'nova_os.js';
 
-        // Busca informações do form
+        // Busca informações do form baseadas no arquivo de configuração
         $data = array_merge($data, $this->_set_form_info($id_secao));
-        //var_dump($data);
+        //var_dump($data); // DEBUG
 
         // Basic form validation
         $this->form_validation->set_rules('resumo', 'Resumo do Chamado', 'trim|required');
         $this->form_validation->set_rules('descricao', 'Descrição do Chamado', 'trim|required');
         $this->form_validation->set_rules('sala', 'Sala', 'required');
+        $this->form_validation->set_rules('finalidade', 'Finalidade', 'required');
 
         if($this->input->post('has_material') == 'true'){
             $this->form_validation->set_rules('forn_material', 'Fornecimento do Material', 'required');
@@ -79,29 +82,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $this->load->view('common/menus',$this->ui);
             $this->load->view('forms/nova_os' , $data);
             $this->load->view('common/footer');
-        
+
         } else {
-            $this->_grava_os();
+            $this->_processa_os($id_secao);
         }
 
     }
+    /*
+    Processa o formulário enviado
+    */
 
-    private function _grava_os(){
+    private function _processa_os($id_secao){
+        // Entra aqui apenas se foi pressionado o botão
+        if(!isset($_POST['abrir_os'])){
+            echo "Não foi enviado formulário...";
+            exit();
+        }
 
-        var_dump($_POST);
 
+        //Monta dados do formulário para o banco
+        $dados_os['id_os'] = NULL;
+        $dados_os['id_relator_fk'] = $_SESSION['id_usuario'];
+        $dados_os['resumo'] = $this->input->post('resumo');
+        $dados_os['descricao'] = $this->input->post('descricao');
+        $dados_os['data_abertura'] = date("Y-m-d H:i:s");
+        $dados_os['data_fechamento'] = NULL;
+        $dados_os['last_update'] = $dados_os['data_abertura'];
+        $dados_os['id_atendente_fk'] = NULL;
+        $dados_os['id_resp_secao_fk'] = $this->chamados_model->get_resp_secao($id_secao);
+        $id_sala_dest = $this->input->post('sala');
+        $dados_os['id_resp_sala_fk'] = $this->chamados_model->get_resp_sala($id_sala_dest);
+        $dados_os['id_status_fk'] = '1'; // Sempre 1 para aberto!
+        $dados_os['id_sala_fk'] = $id_sala_dest;
+        $dados_os['id_secao_fk'] = $id_secao;
+        $dados_os['id_finalidade_fk'] = $this->input->post('finalidade');
+        
+        $last_id = $this->chamados_model->grava_os($dados_os);
+
+        echo 'O último ID foi: ' . $last_id;
     }
 
-// ======== testing area =======
 
 
 
-     public function test_injection($id_secao){
-
-        var_dump($this->_check_secao($id_secao));
-    }
-
-// ======== testing area =======
 
     /*
     Busca placeholders e nomes para o formulário
