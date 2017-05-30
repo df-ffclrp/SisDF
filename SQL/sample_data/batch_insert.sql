@@ -87,7 +87,7 @@ INSERT INTO `os_status` (`id_status`, `nome_status`, `alias`, `bs_label` , `icon
 -- Dumping data for table `responsavel`
 --
 
-INSERT INTO `responsavel` (`id_resp_fk`, `id_sala_fk`) VALUES
+INSERT INTO `resp_sala` (`id_resp_fk`, `id_sala_fk`) VALUES
 (2, 1),
 (3, 1);
 
