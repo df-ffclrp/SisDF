@@ -120,6 +120,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $last_os_id = $this->chamados_model->grava_os($dados_os);
         echo 'O último ID foi: ' . $last_os_id;
 
+        if(!empty($last_os_id)){
+            $msg = "Ordem de Serviço <strong>cadastrada</strong> com sucesso.";
+            $this->session->set_flashdata('message',$msg);
+        }
+
         if($this->input->post('has_material') == 'true'){
             $dados_mat['id_material'] = NULL;
             $dados_mat['descricao_mat'] = $this->input->post('desc_material');
@@ -127,9 +132,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             $dados_mat['id_os_fk'] = $last_os_id;
 
             $result = $this->chamados_model->grava_mat_os($dados_mat);
-            echo "O resultado foi: " . $result;
-            
         }
+        // Ação default é redirecionar para controller base
+        $this->redirection($this->get_base_controller());
     }
 
 

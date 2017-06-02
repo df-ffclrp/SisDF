@@ -6,15 +6,18 @@
  */
 
 function show_alert_box() {
-    ?>
+?>
     <div class="row">
         <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                 <i class="fa fa-times-rectangle fa-fw"></i> 
             </button>
-
-            Dentro do Helper <a href="#" class="alert-link">Alert Link</a>.
+            <?php
+            $CI =& get_instance();
+            echo $CI->session->flashdata('message');
+            ?>
+            
         </div>
     </div>
-    <?php
-}
+
+<?php }
