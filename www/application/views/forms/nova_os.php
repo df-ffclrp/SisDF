@@ -89,7 +89,7 @@
 
                             <div  class="form-group">
                                 <label>Fornecimento do Material:</label>
-                                <select id="forn_material" class="form-control" name="forn_material" disabled>
+                                <select id="forn_material" class="form-control" name="forn_material" disabled="true">
                                     <option value="" selected>Selecione uma opção...</option>
                                     <option value="Departamento">Fornecido pelo Departamento </option>
                                     <option value="Solicitante">Fornecido pelo Solicitante </option>
@@ -98,7 +98,7 @@
 
                             <div class="form-group">
                                 <label>Descrição do material:</label>
-                                <textarea id="desc_material" name="desc_material" class="form-control" rows="3" placeholder="<?= $ph['desc_material'] ?>"></textarea>
+                                <textarea id="desc_material" name="desc_material" class="form-control" rows="3" placeholder="<?= $ph['desc_material'] ?>" disabled="true"></textarea>
                             </div>
                         </div>
                     </div>

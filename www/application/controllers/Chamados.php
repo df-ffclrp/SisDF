@@ -117,9 +117,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $dados_os['id_secao_fk'] = $id_secao;
         $dados_os['id_finalidade_fk'] = $this->input->post('finalidade');
         
-        $last_id = $this->chamados_model->grava_os($dados_os);
+        $last_os_id = $this->chamados_model->grava_os($dados_os);
+        echo 'O último ID foi: ' . $last_os_id;
 
-        echo 'O último ID foi: ' . $last_id;
+        if($this->input->post('has_material') == 'true'){
+            $dados_mat['id_material'] = NULL;
+            $dados_mat['descricao_mat'] = $this->input->post('desc_material');
+            $dados_mat['fornecimento'] = $this->input->post('forn_material');
+            $dados_mat['id_os_fk'] = $last_os_id;
+
+            $result = $this->chamados_model->grava_mat_os($dados_mat);
+            echo "O resultado foi: " . $result;
+            
+        }
     }
 
 

@@ -50,13 +50,20 @@ $(document).ready(function(){
 			var botao = $('#add_material');
 			
 			if(botao.hasClass('btn-warning')){
+
 				botao.toggleClass('btn-warning btn-danger');
 				botao.text("Remover Material");
 				$('#has_material').val('true');
-			} else {
+				$('#forn_material').prop('disabled', false)
+				$('#desc_material').prop('disabled', false)
+			
+				} else {
+					
 				botao.toggleClass('btn-danger btn-warning');
 				botao.text("Adicionar Material");
 				$('#has_material').val('false');
+				$('#forn_material').prop('disabled', true)
+				$('#desc_material').prop('disabled', true)
 			}
 		});
 

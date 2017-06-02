@@ -123,4 +123,8 @@ class Chamados_model extends CI_Model {
             return $this->db->insert_id();
         }
     }
+
+    public function grava_mat_os($dados_material) {
+        return $this->db->insert('material', $dados_material);
+    }
 }
