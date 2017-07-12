@@ -33,13 +33,13 @@ INSERT INTO `cargo` (`id_cargo`, `nome_cargo`) VALUES
 -- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `num_usp`, `senha`, `nome`, `email`, `ramal`, `nivel_acesso`, `id_cargo_fk`, `ativo`) VALUES 
-(1, '123456', MD5('123'), 'André Luiz Girol', 'tester@email.local', '9988', '3', '2', '1'),
-(2, '654312', MD5('123'), 'Docente Carlos', 'dc@email.local', '1122', '3', '1', '1'),
-(3, '111111', MD5('123'), 'Relator Fernandes', 'rf@email.local', '1111', '3', '2', '1'),
-(4, '999999', MD5('123'), 'Responsável Manutenção', 'dmanut@email.local', '9999', '3', '1', '1'),
-(5, '222222', MD5('123'), 'Técnico Manutenção', 'tec_manut@email.local', '2222', '3', '2', '1'),
-(6, '889944', MD5('123'), 'Docente Las Neves', 'dn@email.local', '3322', '3', '1', '1');
+INSERT INTO `usuario` (`id_usuario`, `num_usp`, `senha`, `nome`, `email`, `ramal`, `id_cargo_fk`, `ativo`) VALUES
+(1, '123456', MD5('123'), 'André Luiz Girol', 'tester@email.local', '9988',  '2', '1'),
+(2, '654312', MD5('123'), 'Docente Carlos', 'dc@email.local', '1122', '1', '1'),
+(3, '111111', MD5('123'), 'Relator Fernandes', 'rf@email.local', '1111',  '2', '1'),
+(4, '999999', MD5('123'), 'Responsável Manutenção', 'dmanut@email.local', '9999', '1', '1'),
+(5, '222222', MD5('123'), 'Técnico Manutenção', 'tec_manut@email.local', '2222', '2', '1'),
+(6, '889944', MD5('123'), 'Docente Las Neves', 'dn@email.local', '3322', '1', '1');
 
 --
 -- Dumping data for table `sala`
@@ -80,37 +80,57 @@ INSERT INTO `os_status` (`id_status`, `nome_status`, `alias`, `bs_label` , `icon
 (3, 'Atendido', 'atendido', 'success' , 'fa-check-circle'),
 (4, 'Retorno', 'retorno', 'danger' , 'fa-exclamation-circle');
 
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id_role`, `nome`, `role_desc`) VALUES
+(1, 'relator', 'Usuário comum. Abre chamados.'),
+(2, 'tecnico', 'Abre e Gerencia Chamados'),
+(3, 'gestor_secao', 'Responsável pelo setor técnico de atendimento'),
+(4, 'gestor_unidade', 'Monitora chamados de todas as seções de atendimento'),
+(5, 'site_admin', 'Gerencia dados do back-end, como roles, salas, funções e novos usuários');
+
+
 
 -- SOMENTE ADICIONAR APÓS OS ANTERIORES
 
 --
--- Dumping data for table `responsavel`
+-- Dumping data for table `resp_sala`
 --
 
 INSERT INTO `resp_sala` (`id_resp_fk`, `id_sala_fk`) VALUES
 (2, 1),
 (3, 1);
 
+--
+-- Dumping data for table `user_role`
+--
+
+INSERT INTO `user_role` (`usuario_id`, `role_id`) VALUES
+(3, 1),
+(1, 2),
+(1, 5);
 
 --
 -- Dumping data for table `ordem_servico`
 --
 
 INSERT INTO `ordem_servico` (
-	`id_os`, 
-	`id_relator_fk`, 
-	`resumo`, 
-	`descricao`, 
-	`data_abertura`, 
-	`data_fechamento`, 
-	`last_update`, 
-	`id_atendente_fk`, 
-	`id_resp_secao_fk`, 
-	`id_resp_sala_fk`, 
-	`id_status_fk`, 
-	`id_sala_fk`, 
-	`id_secao_fk`, 
-	`id_finalidade_fk`) VALUES 
+	`id_os`,
+	`id_relator_fk`,
+	`resumo`,
+	`descricao`,
+	`data_abertura`,
+	`data_fechamento`,
+	`last_update`,
+	`id_atendente_fk`,
+	`id_resp_secao_fk`,
+	`id_resp_sala_fk`,
+	`id_status_fk`,
+	`id_sala_fk`,
+	`id_secao_fk`,
+	`id_finalidade_fk`) VALUES
 
 (NULL, '3', 'Troca de Lâmpada', 'Trocar lâmpada próxima à porta', '2017-04-04 08:21:47', NULL, '2017-04-04 08:21:47', '5', '4', '1', '1', '2', '1', '4');
 
