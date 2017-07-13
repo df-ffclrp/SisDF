@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Controller base para carregar funções gerais do sistema
- * 
+ *
  * Alimenta variáveis como:
  * - Profiler loader para ambiente dev
- * 
+ *
  * @author André Luiz Girol
  */
 class MY_Controller extends CI_Controller {
@@ -21,7 +21,7 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
 
         $this->load->helper('url_helper');
-        
+
         $this->load->library('session');
         $this->load->helper('login'); // Helper desenvolvido para a aplicação
 
@@ -37,9 +37,9 @@ class MY_Controller extends CI_Controller {
     /*
       Helper para redirecionamento
     * Função que monta uma URL a partir da base_url e redireciona com refresh para outro local
-    * 
+    *
     * Para ser usado com a técnica POST - REDIRECT -GET
-    * 
+    *
     */
 
       protected function redirection($sublocation = '') {
@@ -81,10 +81,10 @@ class MY_Controller extends CI_Controller {
             return false;
         }
 
-    /* 
+    /*
     ========================
      * Gets and Sets
-    ======================== 
+    ========================
      */
 
     /*
@@ -93,28 +93,28 @@ class MY_Controller extends CI_Controller {
 
     private function set_common(){
         $this->load->model('system_model');
-        
+
         // Configura seções e status
         //if(empty($this->secoes || empty($this->os_status))){
             $this->secoes = $this->system_model->get_secoes();
             $this->os_status = $this->system_model->get_os_status();
-            
+
         //}
 
         if(isset($_SESSION)){
-            $this->base_controller = $_SESSION['logged_in'];
+            $this->base_controller = $_SESSION['nivel_acesso'];
         }
 
         // Configura User Interface
         $this->ui['controller'] = $this->base_controller;
         $this->ui['os_menu'] = $this->os_status;
         $this->ui['secoes_menu'] = $this->secoes;
-        
+
     }
 
     // ========= GETS ===============
 
-    
+
     /*
       Busca seção baseado no seu id
     */

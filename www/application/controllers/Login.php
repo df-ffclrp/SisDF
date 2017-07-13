@@ -4,10 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  * Controller Login
- * 
+ *
  * Descricao: Verifica os usuários cadastrados no sistema
  * e os redireciona para a página correta.
- * 
+ *
  * @copyright (c) 2017, André Girol / FFCLRP - USP
  */
 class Login extends CI_Controller {
@@ -19,11 +19,17 @@ class Login extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->model('login_model');
         $this->load->library('session');
-        
+
         // Habilita debugger para ambiente de desenvolvimento
         if (ENVIRONMENT == 'development'):
             $this->output->enable_profiler(TRUE);
         endif;
+    }
+
+    # TESTING
+
+    public function test_roles(){
+        $this->load->library('auth');
     }
 
     public function index() {
@@ -43,18 +49,14 @@ class Login extends CI_Controller {
 
             $dados_usuario = $this->login_model->check_user($num_usp, $senha);
 
-
+            
             if ($dados_usuario):
 
 
                 // Registra Sessão
                 $this->session->set_userdata($dados_usuario);
 
-                // Registra Role
-                $this->_grant_user_rights($_SESSION['nivel_acesso']);
-
-
-                redirect($_SESSION['logged_in'], 'refresh');
+                redirect($_SESSION['nivel_acesso'], 'refresh');
 
             else:
                 $data['erro'] = ('Email e/ou senha inválidos');
@@ -82,30 +84,6 @@ class Login extends CI_Controller {
     //Métodos Privados
     //===================================
 
-    /*
-     * Checa nível de acesso do usuário e seta estado de conexão
-     * 
-     * Esse método será melhorado ao longo das versões do software
-     * 
-     */
 
-    private function _grant_user_rights($user_level) {
-        switch ($user_level):
-            case 1;
-                $_SESSION['logged_in'] = 'gestor';
-                break;
-            case 2;
-                $_SESSION['logged_in'] = 'tecnico';
-                break;
-            case 3;
-                $_SESSION['logged_in'] = 'relator';
-                break;
-            case 4;
-                $_SESSION['logged_in'] = 'admin';
-                break;
-            default:
-                session_destroy();
-        endswitch;
-    }
 
 }
