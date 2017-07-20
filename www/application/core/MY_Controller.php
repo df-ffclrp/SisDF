@@ -24,8 +24,6 @@ class MY_Controller extends CI_Controller {
 
         $this->load->library('session');
         $this->load->library('auth');
-        $this->load->helper('login'); // Helper desenvolvido para a aplicação
-
         $this->set_common();
 
         // Habilita debugger para ambiente de desenvolvimento
@@ -102,7 +100,7 @@ class MY_Controller extends CI_Controller {
 
         //}
 
-        if(isset($_SESSION)){
+        if(isset($_SESSION['nivel_acesso'])){
             $this->base_controller = $_SESSION['nivel_acesso'];
         }
 
