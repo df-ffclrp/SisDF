@@ -7,9 +7,9 @@ class Relator extends MY_Controller {
     /**
      * Controller para nível de acesso de
      * Relator.
-     * 
+     *
      * Painel de controle com os acessos:
-     * 
+     *
      * - Abre chamados
      * - Lista chamados abertos por ele
      */
@@ -18,7 +18,7 @@ class Relator extends MY_Controller {
     public function __construct() {
         parent::__construct();
 
-        check_login('relator'); //custom
+        //check_login('relator'); //custom
 
         $this->load->helper('alert_box'); //custom
         $this->load->model('relator_model');
@@ -33,7 +33,7 @@ class Relator extends MY_Controller {
      */
 
     public function index($secao = NULL) {
-       
+
 
         $secao_exists = $this->_check_secao($secao);
 
@@ -48,7 +48,7 @@ class Relator extends MY_Controller {
         $this->load->view('common/menus',$this->ui);
         $this->load->view('lista_chamados', $this->data);
         $this->load->view('common/footer');
-        
+
     }
 
 
@@ -66,7 +66,7 @@ class Relator extends MY_Controller {
         if(!$status_exists){
             $this->redirection($this->router->class);
         }
-        
+
         $this->_set_page_header($status_exists);
 
 
@@ -76,13 +76,13 @@ class Relator extends MY_Controller {
         $this->load->view('common/menus',$this->ui);
         $this->load->view('lista_chamados', $this->data);
         $this->load->view('common/footer');
-        
-        
+
+
     }
 
     /*
         Monta dados na view para passar ao parser
-    */ 
+    */
 
     private function _set_ui_data(){
 
