@@ -32,6 +32,30 @@ class MY_Controller extends CI_Controller {
         endif;
     }
 
+    /*
+    * Configura arrays comuns a toda aplicação
+    */
+
+    private function set_common(){
+        $this->load->model('system_model');
+
+        // Configura seções e status
+        //if(empty($this->secoes || empty($this->os_status))){
+            $this->secoes = $this->system_model->get_secoes();
+            $this->os_status = $this->system_model->get_os_status();
+
+        //}
+
+        if(isset($_SESSION['nivel_acesso'])){
+            $this->base_controller = $_SESSION['nivel_acesso'];
+        }
+
+        // Configura User Interface
+        $this->ui['controller'] = $this->base_controller;
+        $this->ui['os_menu'] = $this->os_status;
+        $this->ui['secoes_menu'] = $this->secoes;
+
+    }
 
     /*
       Helper para redirecionamento
@@ -86,30 +110,7 @@ class MY_Controller extends CI_Controller {
     ========================
      */
 
-    /*
-    * Configura arrays comuns a toda aplicação
-    */
 
-    private function set_common(){
-        $this->load->model('system_model');
-
-        // Configura seções e status
-        //if(empty($this->secoes || empty($this->os_status))){
-            $this->secoes = $this->system_model->get_secoes();
-            $this->os_status = $this->system_model->get_os_status();
-
-        //}
-
-        if(isset($_SESSION['nivel_acesso'])){
-            $this->base_controller = $_SESSION['nivel_acesso'];
-        }
-
-        // Configura User Interface
-        $this->ui['controller'] = $this->base_controller;
-        $this->ui['os_menu'] = $this->os_status;
-        $this->ui['secoes_menu'] = $this->secoes;
-
-    }
 
     // ========= GETS ===============
 
