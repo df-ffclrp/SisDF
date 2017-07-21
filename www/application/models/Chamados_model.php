@@ -13,16 +13,34 @@ class Chamados_model extends CI_Model {
         parent::__construct();
         $this->load->database();
     }
-    
+
+    /*
+    * Busca dados de autorização da OS (metadados):
+    * - id_os
+    * - id_relator
+    * - secao que foi aberta
+    */
+    public function get_os_meta($id_os){
+        $this->db->select('id_os, id_relator_fk as id_relator, alias as secao');
+        $this->db->from('ordem_servico');
+        $this->db->join('secao', 'id_secao = id_secao_fk');
+        $this->db->where('id_os', $id_os);
+
+        $result = $this->db->get();
+        return $result->row_array();
+    }
+
+
+
     /*
      * Busca um único chamado e todas as suas informações
      * determinado usuário
-     * 
+     *
      */
-    
+
     public function get_os_by_id($id_os){
         $this->db->select('
-            id_os, 
+            id_os,
             resumo,
             ordem_servico.descricao as os_descricao,
 
@@ -37,7 +55,7 @@ class Chamados_model extends CI_Model {
             sec_resp.nome as resp_secao,
             sala_resp.nome as resp_sala,
 
-            nome_status, 
+            nome_status,
             nome_secao,
             secao.icone as secao_icone,
             num_sala,
@@ -52,7 +70,7 @@ class Chamados_model extends CI_Model {
 
         $this->db->join('usuario as rel', 'rel.id_usuario = id_relator_fk' );
         // Se não tiver atendente, a query buga.
-        $this->db->join('usuario as atd', 'atd.id_usuario = id_atendente_fk', 'left'); 
+        $this->db->join('usuario as atd', 'atd.id_usuario = id_atendente_fk', 'left');
         $this->db->join('usuario as sec_resp', 'sec_resp.id_usuario = id_resp_secao_fk');
         $this->db->join('usuario as sala_resp', 'sala_resp.id_usuario = id_resp_sala_fk');
 
@@ -65,11 +83,11 @@ class Chamados_model extends CI_Model {
         $this->db->where('id_os', $id_os);
 
         $result = $this->db->get();
-        
+
         return $result->row_array();
-        
+
     }
-    
+
     public function get_salas(){
         $result = $this->db->get('sala');
 
@@ -89,7 +107,7 @@ class Chamados_model extends CI_Model {
         $this->db->where('responsabilidade','responsavel');
 
         $query = $this->db->get();
-        
+
         $row_result = $query->row();
         return $row_result->id_responsavel;
     }

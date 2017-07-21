@@ -51,21 +51,37 @@ class Auth {
         Por enquanto apenas verifica donos de OS
     */
 
-    public function is_owner($id_os){
+    public function os_owner($os_meta){
 
         $id_usuario = $_SESSION['id_usuario'];
 
-        return $this->CI->auth_model->is_os_owner($id_usuario,$id_os);
+        if($os_meta['id_relator'] == $id_usuario){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
 
     }
+    /*
+    Checa se o usuário está em determinada seção
+    de atendimento
+    */
+
+    public function in_secao(){
+
+    }
+
     /*
         Checa quais roles estão autorzadas a ver aquele Recurso
 
         Não checa se o usuário é dono
+
+        @param $roles = array()
     */
 
     public function in_roles($roles = NULL){
 
     }
+
 
 }

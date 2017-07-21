@@ -29,15 +29,19 @@ Auth->is_owner
     public function owner($id_os = NULL){
         $this->load->model('chamados_model');
 
-        if($this->auth->is_owner($id_os)){
+        $os_meta = $this->chamados_model->get_os_meta($id_os);
+
+        //var_dump($os_meta);
+
+        var_dump($this->auth->os_owner($os_meta));
+
+        if($this->auth->os_owner($os_meta)){
             echo "é minha";
             $data['os'] = $this->chamados_model->get_os_by_id($id_os);
             var_dump($data);
         } else {
             echo "num pode...";
         }
-
-
     }
 
 }
