@@ -4,7 +4,7 @@ Arquivo de testes de sql antes de implementar no código
  
 -- Testes com usuários que possuem roles mas não estão em nenhuma seção
 
-SELECT `id_usuario`, `num_usp`, `usuario`.`nome`, `email`, `ramal`, `role`.`nome` as `nivel_acesso`, `nome_secao`
+SELECT `id_usuario`, `num_usp`, `usuario`.`nome`, `email`, `ramal`, `role`.`nome` as `nivel_acesso`, `nome_secao` as `membro_secao`
 FROM `usuario`
 JOIN `user_role` ON `usuario_id` = `id_usuario`
 JOIN `role` ON `id_role` = `role_id`

@@ -26,12 +26,6 @@ class Login extends CI_Controller {
         endif;
     }
 
-    # TESTING
-
-    public function test_roles(){
-        $this->load->library('auth');
-    }
-
     public function index() {
 
         $this->form_validation->set_rules('num_usp', 'Número USP', 'is_numeric|trim|required');
@@ -49,13 +43,12 @@ class Login extends CI_Controller {
 
             $dados_usuario = $this->login_model->check_user($num_usp, $senha);
 
-            
+
             if ($dados_usuario):
 
 
                 // Registra Sessão
                 $this->session->set_userdata($dados_usuario);
-
                 redirect($_SESSION['nivel_acesso'], 'refresh');
 
             else:

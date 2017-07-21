@@ -22,18 +22,27 @@ class Login_model extends CI_Model {
 
     public function check_user($num_usp, $password) {
 
-        $this->db->select('id_usuario, num_usp, usuario.nome, email, ramal, role.nome as nivel_acesso');
+        $this->db->select('id_usuario, num_usp, usuario.nome, email, ramal, role.nome as nivel_acesso, nome_secao as membro_secao');
         $this->db->from('usuario');
+
+        // Que nível de acesso?
         $this->db->join('user_role', 'usuario_id = id_usuario');
         $this->db->join('role', 'role_id = id_role');
 
+        // Membro de qual seção?
+        $this->db->join('membro_secao', 'id_usuario = id_usuario_fk', 'left');
+        $this->db->join('secao', 'id_secao_fk = id_secao','left');
+
+        // Dados específicos para autenticação
+
+        ## IMPLEMENTAR HASHING ##
         $this->db->where('usuario.num_usp', $num_usp);
         $this->db->where('usuario.senha', md5($password));
         $this->db->where('usuario.ativo', 1);
 
         $result = $this->db->get();
 
-
+        ## IMPLEMENTAR MULTI ROLES ##
         if ($result->num_rows() === 1):
 
             return $result->row_array();
