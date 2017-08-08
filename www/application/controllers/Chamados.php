@@ -99,7 +99,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             exit();
         }
 
-
         //Monta dados do formulário para o banco
         $dados_os['id_os'] = NULL;
         $dados_os['id_relator_fk'] = $_SESSION['id_usuario'];
@@ -109,7 +108,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $dados_os['data_fechamento'] = NULL;
         $dados_os['last_update'] = $dados_os['data_abertura'];
         $dados_os['id_atendente_fk'] = NULL;
-        $dados_os['id_resp_secao_fk'] = $this->chamados_model->get_resp_secao($id_secao);
+
+        $id_responsavel_secao = $this->chamados_model->get_resp_secao($id_secao);
+
+        if(!$id_responsavel_secao){
+            $msg = "<strong> Erro: </strong> Não há um gestor da seção cadastrado";
+            $this->session->set_flashdata('message',$msg);
+            $this->redirection($this->get_base_controller());
+            exit();
+        }
+
+        $dados_os['id_resp_secao_fk'] = $id_responsavel_secao;
         $id_sala_dest = $this->input->post('sala');
         $dados_os['id_resp_sala_fk'] = $this->chamados_model->get_resp_sala($id_sala_dest);
         $dados_os['id_status_fk'] = '1'; // Sempre 1 para aberto!
@@ -118,7 +127,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $dados_os['id_finalidade_fk'] = $this->input->post('finalidade');
 
         $last_os_id = $this->chamados_model->grava_os($dados_os);
-        echo 'O último ID foi: ' . $last_os_id;
 
         if(!empty($last_os_id)){
             $msg = "Ordem de Serviço <strong>cadastrada</strong> com sucesso.";

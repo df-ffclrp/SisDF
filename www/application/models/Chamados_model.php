@@ -113,7 +113,11 @@ class Chamados_model extends CI_Model {
         $query = $this->db->get();
 
         $row_result = $query->row();
-        return $row_result->id_responsavel_secao;
+        if(isset($row_result)){
+            return $row_result->id_responsavel_secao;
+        } else {
+            return FALSE;
+        }
     }
 
     // Busca responsável pela sala do atendimento
