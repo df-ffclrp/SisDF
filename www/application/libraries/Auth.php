@@ -51,11 +51,11 @@ class Auth {
         Por enquanto apenas verifica donos de OS
     */
 
-    public function os_owner($os_meta){
+    public function is_owner($os_metadata){
 
         $id_usuario = $_SESSION['id_usuario'];
 
-        if($os_meta['id_relator'] == $id_usuario){
+        if($os_metadata['id_relator'] == $id_usuario){
             return TRUE;
         } else {
             return FALSE;
@@ -67,8 +67,13 @@ class Auth {
     de atendimento
     */
 
-    public function in_secao(){
+    public function in_secao($secao = ''){
 
+        if($secao === $_SESSION['membro_secao']){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
     /*
@@ -83,5 +88,17 @@ class Auth {
 
     }
 
+    /*
+        Checa se um usuário é gestor da unidade
+
+        Nível Chuck Norris
+    */
+    public function is_gestor_unidade(){
+        if($_SESSION['nivel_acesso'] === 'gestor_unidade'){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 
 }
