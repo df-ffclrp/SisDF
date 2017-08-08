@@ -41,4 +41,14 @@ SELECT 1
 FROM `role`
 WHERE `nome` = 'relweator' ; 
 
+-- Busca responsável por uma seção
+
+SELECT id_usuario_fk as id_responsavel
+FROM membro_secao
+JOIN usuario on id_usuario_fk = id_usuario
+JOIN user_role on id_usuario = usuario_id
+JOIN role on id_role = role_id
+WHERE role.nome = 'gestor_secao'
+AND id_secao_fk = 1;
+
 
