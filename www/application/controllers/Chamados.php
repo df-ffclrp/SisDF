@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         $data['salas'] = $this->chamados_model->get_salas();
         $data['fin'] = $this->chamados_model->get_finalidades();
-        
+
         $data['custom_js'] = 'nova_os.js';
 
         // Busca informações do form baseadas no arquivo de configuração
@@ -116,7 +116,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $dados_os['id_sala_fk'] = $id_sala_dest;
         $dados_os['id_secao_fk'] = $id_secao;
         $dados_os['id_finalidade_fk'] = $this->input->post('finalidade');
-        
+
         $last_os_id = $this->chamados_model->grava_os($dados_os);
         echo 'O último ID foi: ' . $last_os_id;
 
@@ -166,10 +166,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     public function aj_get_nome_sala() {
         $this->output->enable_profiler(FALSE);
 
-        
+
         $id_sala = $this->input->post('sala');
         $res = $this->chamados_model->get_nome_sala($id_sala);
-        
+
         echo $res['nome_sala'];
     }
 }

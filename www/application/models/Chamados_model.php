@@ -101,15 +101,19 @@ class Chamados_model extends CI_Model {
 
     // Busca responsável pela seção do atendimento
     public function get_resp_secao($id_secao){
-        $this->db->select('id_usuario_fk as id_responsavel');
+        $this->db->select('id_usuario_fk as id_responsavel_secao');
         $this->db->from('membro_secao');
+        $this->db->join('usuario','id_usuario_fk = id_usuario');
+        $this->db->join('user_role','id_usuario = usuario_id');
+        $this->db->join('role','id_role = role_id');
 
-        $this->db->where('responsabilidade','responsavel');
+        $this->db->where('role.nome','gestor_secao');
+        $this->db->where('id_secao_fk', $id_secao);
 
         $query = $this->db->get();
 
         $row_result = $query->row();
-        return $row_result->id_responsavel;
+        return $row_result->id_responsavel_secao;
     }
 
     // Busca responsável pela sala do atendimento
