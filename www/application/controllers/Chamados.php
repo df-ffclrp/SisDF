@@ -32,13 +32,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		Mostra OS que o usuário abriu apenas
      */
 
-        public function ver_os($id_os = NULL){
-        // Implementar controle de acesso
+    public function ver_os($id_os = NULL){
 
-            $data['os'] = $this->chamados_model->get_os_by_id($id_os);
-            $this->load->view('info_chamado', $data);
+        //Busca metadados da ordem de serviço
+        $os_metadata = $this->chamados_model->get_os_meta($id_os);
 
+        // Se não tem metadados, redireciona...
+        if(!$os_metadata){
+            $this->redirection($this->get_base_controller());
         }
+        var_dump($os_metadata);
+
+        // Se não é gestor da unidade (Nível Chuck Norris), verifica se é autorizado
+        if(!$this->auth->is_gestor_unidade()){
+            if(!$this->_authorized_user($os_metadata)){
+                echo "<br>não pode ninguém!!";
+                exit();
+            }
+        }
+
+        // Show OS data:
+        $data['os'] = $this->chamados_model->get_os_by_id($id_os);
+        $this->load->view('info_chamado', $data);
+
+    }
+
+    /*
+        Checa se um usuário pode ver a ordem de serviço ou não,
+        Baseado na sua seção, se é dono ou se é gestor da unidade.
+
+        Utiliza os recursos da biblioteca de autenticação
+    */
+
+    private function _authorized_user($os_metadata){
+
+        // Se não é dono, vê se está na seção que a OS foi aberta
+        if(!$this->auth->is_owner($os_metadata)){
+            if(!$this->auth->in_secao($os_metadata['secao'])){
+                echo "não é dono e não está na seção, então não pode!";
+                return FALSE;
+            }
+        }
+        echo "é dono ou está na seção, então pode...";
+        return TRUE;
+    }
 
     /*
     Abre novo Chamado
