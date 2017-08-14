@@ -24,6 +24,7 @@ class MY_Controller extends CI_Controller {
 
         $this->load->library('session');
         $this->load->library('auth');
+        $this->auth->check_login();
         $this->set_common();
 
         // Habilita debugger para ambiente de desenvolvimento
