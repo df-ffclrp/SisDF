@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Relator extends MY_Controller {
+class Painel extends MY_Controller {
 
     /**
      * Controller para nível de acesso de
@@ -18,9 +18,9 @@ class Relator extends MY_Controller {
     public function __construct() {
         parent::__construct();
 
-        //check_login('relator'); //custom
+        $this->auth->check_login();//Vê se o usuário está logado
 
-        $this->load->helper('alert_box'); //custom
+        $this->load->helper('alert_box');
         $this->load->model('relator_model');
 
         $this->_set_ui_data();

@@ -49,7 +49,7 @@ class Login extends CI_Controller {
 
                 // Registra Sessão
                 $this->session->set_userdata($dados_usuario);
-                redirect($_SESSION['nivel_acesso'], 'refresh');
+                redirect('painel', 'refresh');
 
             else:
                 $data['erro'] = ('Email e/ou senha inválidos');

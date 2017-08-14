@@ -15,7 +15,7 @@ class MY_Controller extends CI_Controller {
     public $ui = [];
     private $secoes = [];
     private $os_status = [];
-    private $base_controller = '';
+    private $base_controller = 'painel';
 
     public function __construct() {
         parent::__construct();
@@ -24,7 +24,7 @@ class MY_Controller extends CI_Controller {
         $this->load->helper('user_level');
         $this->load->library('session');
         $this->load->library('auth');
-        //$this->auth->check_login();
+        
         $this->set_common();
 
         // Habilita debugger para ambiente de desenvolvimento
@@ -40,16 +40,12 @@ class MY_Controller extends CI_Controller {
     private function set_common(){
         $this->load->model('system_model');
 
-        // Configura seções e status
-        //if(empty($this->secoes || empty($this->os_status))){
-            $this->secoes = $this->system_model->get_secoes();
-            $this->os_status = $this->system_model->get_os_status();
+        $this->secoes = $this->system_model->get_secoes();
+        $this->os_status = $this->system_model->get_os_status();
 
-        //}
-
-        if(isset($_SESSION['nivel_acesso'])){
-            $this->base_controller = $_SESSION['nivel_acesso'];
-        }
+        // if(isset($_SESSION['nivel_acesso'])){
+        //     $this->base_controller = $_SESSION['nivel_acesso'];
+        // }
 
         // Configura User Interface
         $this->ui['controller'] = $this->base_controller;

@@ -43,7 +43,13 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="<?= base_url() . $controller; ?>"><i class="fa fa-tasks fa-fw"></i> 
+                    <a href="<?= base_url() . $controller; ?>"><i class="fa fa-home fa-fw"></i>
+                        Início
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?= base_url() . 'chamados'; ?>"><i class="fa fa-tasks fa-fw"></i>
                         Chamados
                         <span class="fa arrow"></span>
                     </a>
@@ -52,7 +58,7 @@
                         <?php foreach ($os_menu as $item): ?>
                             <li>
                                 <a href="<?= base_url() . $controller .'/os_status/'. $item['id_status'] ?> ">
-                                    <i class="fa <?= $item['icone']; ?> fa-fw"></i> 
+                                    <i class="fa <?= $item['icone']; ?> fa-fw"></i>
                                     <?= $item['nome_status'];?>
                                 </a>
                             </li>
@@ -62,7 +68,7 @@
 
                         <li>
                             <a href="<?= base_url() . $controller ?>/">
-                                <i class="fa fa-tasks fa-fw"></i> 
+                                <i class="fa fa-tasks fa-fw"></i>
                                 Todos
                             </a>
                         </li>
@@ -70,7 +76,7 @@
                 </li>
                 <!-- Abrir Chamado -->
                 <li>
-                    <a href="#"><i class="fa fa-file-text-o fa-fw"></i> 
+                    <a href="#"><i class="fa fa-file-text-o fa-fw"></i>
                         Abrir Chamado
                         <span class="fa arrow"></span>
                     </a>
@@ -79,14 +85,14 @@
                         <?php foreach ($secoes_menu as $secao): ?>
                             <li>
                                 <a href="<?= base_url() .'chamados/novo/'. $secao['id_secao'] ?> ">
-                                    <i class="fa <?= $secao['icone']; ?> fa-fw"></i> 
+                                    <i class="fa <?= $secao['icone']; ?> fa-fw"></i>
                                     <?= $secao['nome_secao'];?>
                                 </a>
                             </li>
 
 
                         <?php endforeach; ?>
-                        
+
                     </ul>
 
                 </li>
