@@ -16,7 +16,7 @@ class Tests extends MY_Controller {
 
     public function index() {
 
-        echo "indexando";
+        echo "Controler para escrita de testes";
 
     }
 
@@ -42,6 +42,26 @@ Auth->is_owner
         } else {
             echo "num pode...";
         }
+    }
+
+    public function make_login(){
+
+        
+        $this->load->library('session');
+        $this->load->model('login_model');
+
+        $num_usp = '333333';
+        $senha = '123';
+        // Gera um login automatico para testar permissões
+        $user_data = $this->login_model->check_user($num_usp, $senha);
+
+        if($user_data):
+            $this->session->set_userdata($user_data);
+            var_dump($_SESSION);
+        else:
+            echo "não tem usuário com esses dados";
+        endif;
+
     }
 
 }
