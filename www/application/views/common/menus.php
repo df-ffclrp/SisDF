@@ -1,4 +1,4 @@
-<!-- Navigation -->
+<!-- Top Menu-->
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -47,7 +47,7 @@
                         Início
                     </a>
                 </li>
-
+                <!-- DROPDOWN CHAMADOS -->
                 <li>
                     <a href="<?= base_url() . 'chamados'; ?>"><i class="fa fa-tasks fa-fw"></i>
                         Chamados
@@ -65,7 +65,6 @@
 
                         <?php endforeach; ?>
                         <li class="divider"></li>
-
                         <li>
                             <a href="<?= base_url() . $controller ?>/">
                                 <i class="fa fa-tasks fa-fw"></i>
@@ -81,7 +80,6 @@
                         <span class="fa arrow"></span>
                     </a>
                     <ul class="nav nav-second-level">
-
                         <?php foreach ($secoes_menu as $secao): ?>
                             <li>
                                 <a href="<?= base_url() .'chamados/novo/'. $secao['id_secao'] ?> ">
@@ -89,17 +87,12 @@
                                     <?= $secao['nome_secao'];?>
                                 </a>
                             </li>
-
-
                         <?php endforeach; ?>
-
                     </ul>
-
-                </li>
-
-                </ul>
-            </div>
-            <!-- /.sidebar-collapse -->
+                 </li><!-- fim de abrir chamado -->
+            </ul>
         </div>
+            <!-- /.sidebar-collapse -->
+    </div>
         <!-- /.navbar-static-side -->
 </nav>
