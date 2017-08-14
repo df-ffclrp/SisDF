@@ -16,14 +16,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             parent::__construct();
 
             $this->load->model('chamados_model');
+            
 
         // Implementar nível de acesso
 
         }
 
         public function index(){
+
             echo "<h1> propriedade UI </h1>";
             var_dump($this->ui);
+            echo "<hr>";
+            var_dump($this->auth->roles);
         }
 
      /*

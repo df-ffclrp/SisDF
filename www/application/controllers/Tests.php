@@ -8,7 +8,7 @@ class Tests extends MY_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->library('auth');
+        
         $this->output->enable_profiler(TRUE);
     }
 
@@ -46,7 +46,7 @@ Auth->is_owner
 
     public function make_login(){
 
-        
+
         $this->load->library('session');
         $this->load->model('login_model');
 

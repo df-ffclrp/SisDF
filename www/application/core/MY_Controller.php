@@ -21,10 +21,10 @@ class MY_Controller extends CI_Controller {
         parent::__construct();
 
         $this->load->helper('url_helper');
-
+        $this->load->helper('user_level');
         $this->load->library('session');
         $this->load->library('auth');
-        $this->auth->check_login();
+        //$this->auth->check_login();
         $this->set_common();
 
         // Habilita debugger para ambiente de desenvolvimento
