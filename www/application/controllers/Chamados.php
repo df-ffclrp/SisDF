@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             parent::__construct();
 
             $this->load->model('chamados_model');
-            
+
 
         // Implementar nível de acesso
 
@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             echo "<h1> propriedade UI </h1>";
             var_dump($this->ui);
             echo "<hr>";
-            var_dump($this->auth->roles);
+
         }
 
      /*
@@ -37,6 +37,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      */
 
     public function ver_os($id_os = NULL){
+        if ($id_os === NULL || !is_numeric($id_os)){
+            show_404();
+        }
 
         //Busca metadados da ordem de serviço
         $os_metadata = $this->chamados_model->get_os_meta($id_os);
@@ -45,12 +48,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if(!$os_metadata){
             $this->redirection($this->get_base_controller());
         }
-        var_dump($os_metadata);
+
 
         // Se não é gestor da unidade (Nível Chuck Norris), verifica se é autorizado
         if(!$this->auth->is_gestor_unidade()){
             if(!$this->_authorized_user($os_metadata)){
-                echo "<br>não pode ninguém!!";
+                $this->redirection($this->get_base_controller());
                 exit();
             }
         }
@@ -73,11 +76,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         // Se não é dono, vê se está na seção que a OS foi aberta
         if(!$this->auth->is_owner($os_metadata)){
             if(!$this->auth->in_secao($os_metadata['secao'])){
-                echo "não é dono e não está na seção, então não pode!";
+                //echo "não é dono e não está na seção, então não pode!";
                 return FALSE;
             }
         }
-        echo "é dono ou está na seção, então pode...";
+        //echo "é dono ou está na seção, então pode...";
         return TRUE;
     }
 
@@ -86,6 +89,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     */
 
     public function novo($id_secao = NULL){
+        if ($id_secao === NULL || !is_numeric($id_secao)){
+            show_404();
+        }
 
         $this->load->library('form_validation');
         $this->config->load('placeholders',TRUE);
@@ -99,6 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         $data['salas'] = $this->chamados_model->get_salas();
+        // fin = finalidade
         $data['fin'] = $this->chamados_model->get_finalidades();
 
         $data['custom_js'] = 'nova_os.js';
