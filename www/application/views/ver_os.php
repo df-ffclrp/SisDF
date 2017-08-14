@@ -90,36 +90,15 @@
 
             <!-- Andamento do Chamado -->
             <div class="col-lg-6">
-                <div class="panel panel-info">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <strong> <i class="fa fa-sticky-note fa-fw"></i> Andamento do Chamado</strong>
+                        <strong> <i class="fa fa-sticky-note-o fa-fw"></i> Andamento do Chamado</strong>
+                        <button class="btn btn-default btn-xs pull-right">
+                            <i class="fa fa-pencil-square-o fa-fw"></i> adicionar anotação
+                        </button>
                     </div>
 
-                    <!-- Box para enviar anotação -->
 
-                    <!-- com text area -->
-                    <div class="panel-footer">
-                        <div class="input-group">
-                            <textarea class="form-control" placeholder="Adicionar anotação" rows="4"></textarea>
-                            <span class="input-group-addon ">
-                                <button class="btn btn-warning">
-                                    Enviar
-                                </button>
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- input text de anotação -->
-                    <div class="panel-footer">
-                        <div class="input-group">
-                            <input id="btn-input" class="form-control input-sm" placeholder="Adicionar anotação" type="text">
-                            <span class="input-group-btn">
-                                <button class="btn btn-warning btn-sm" id="btn-chat">
-                                    Enviar
-                                </button>
-                            </span>
-                        </div>
-                    </div>
 
                     <!-- Anotações já realizadas -->
                     <div class="panel-body">
