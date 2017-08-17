@@ -40,6 +40,11 @@ class Painel extends MY_Controller {
             $this->data['header'] = "Painel de Atendimento";
             $this->data['header_icon'] = "fa-inbox";
             $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], NULL , $is_index = TRUE);
+
+        } elseif($this->auth->is_gestor_unidade()) {
+            $this->data['header'] = "Chamados em Andamento";
+            $this->data['lista_os'] = $this->painel_model->get_all_os();
+
         } else {
             $this->data['header'] = "Chamados Ativos";
             $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario']);
@@ -62,22 +67,27 @@ class Painel extends MY_Controller {
     */
 
     public function os_status($id_status_os = NULL){
-        if ($id_status_os === NULL || !is_numeric($id_os)){
+        if ($id_status_os === NULL || !is_numeric($id_status_os)){
             show_404();
         }
 
-        $status_exists = $this->_check_status($id_status_os);
+        $status_os = $this->_check_status($id_status_os);
 
         // Se status não existe, redireciona para a página inicial
-        if(!$status_exists){
+        if(!$status_os){
             $this->redirection($this->router->class);
         }
 
-        $this->_set_page_header($status_exists);
+        $this->_set_page_header($status_os);
 
 
         if($this->auth->in_role('tecnico')){
             $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], $id_status_os);
+
+        } elseif($this->auth->is_gestor_unidade()) {
+
+            $this->data['lista_os'] = $this->painel_model->get_all_os($id_status_os);
+
         } else {
             $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario'], $id_status_os);
         }

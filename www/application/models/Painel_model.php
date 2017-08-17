@@ -53,10 +53,34 @@ class Painel_model extends CI_Model {
             $this->db->where_in('id_status',array(1,2,4));
         }
 
-        if(isset($id_status)){
+        if(!empty($id_status)){
             $this->db->where('id_status_fk', $id_status);
         }
 
+
+        $this->db->order_by('data_abertura','ASC');
+
+        $result = $this->db->get();
+
+        return $result->result_array();
+
+    }
+    /*
+        Busca todas as OS.
+        Usado no painel do gestor da unidade
+    */
+    public function get_all_os($id_status = NULL){
+        $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao');
+        $this->db->from('ordem_servico');
+        $this->db->join('os_status', 'id_status = id_status_fk');
+        $this->db->join('secao', 'id_secao = id_secao_fk');
+
+
+        if(!empty($id_status)){
+            $this->db->where('id_status_fk', $id_status);
+        } else {
+            $this->db->where_in('id_status',array(1,2,4));
+        }
 
         $this->db->order_by('data_abertura','ASC');
 
