@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    <i class="fa <?= $header_icon ?> fa-fw"></i> 
+                    <i class="fa <?= $header_icon ?> fa-fw"></i>
                     Lista de Chamados - <?= $header ?>
                 </h1>
             </div>
@@ -31,8 +31,8 @@
                     <thead>
                         <tr>
                             <th>Nº OS</th>
-                            <th>Resumo</th>
                             <th>Data de Abertura</th>
+                            <th>Resumo</th>
                             <th>Seção</th>
                             <th>Status</th>
                             <th>Ação</th>
@@ -44,14 +44,13 @@
                         <?php foreach ($lista_os as $os): ?>
                             <tr>
                                 <td><?= $os['id_os']?></td>
-                                <td><?= $os['resumo']?></td>
                                 <td>
                                     <?php
                                     // Formata data de datetime para data amigável
                                     $data = date_create($os['data_abertura']);
                                     echo date_format($data, 'd/m/Y');
-
                                     ?>
+                                <td><?= $os['resumo']?></td>
                                 </td>
                                 <td> <?= $os['nome_secao']?> </td>
                                 <td>
@@ -80,4 +79,3 @@
         <!-- /.row -->
     </div>
 </div>
-
