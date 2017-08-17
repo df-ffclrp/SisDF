@@ -37,6 +37,7 @@
         <!-- /.dropdown -->
     </ul>
     <!-- /.navbar-top-links -->
+</nav>
 
     <!--SIDEBAR-->
     <div class="navbar-default sidebar" role="navigation">
@@ -50,7 +51,7 @@
                 <!-- DROPDOWN CHAMADOS -->
                 <li>
                     <a href="<?= base_url() . 'chamados'; ?>"><i class="fa fa-tasks fa-fw"></i>
-                        Chamados
+                        Filtrar Chamados
                         <span class="fa arrow"></span>
                     </a>
                     <!-- Listar por status -->
@@ -64,13 +65,8 @@
                             </li>
 
                         <?php endforeach; ?>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="<?= base_url() . $controller ?>/">
-                                <i class="fa fa-tasks fa-fw"></i>
-                                Todos
-                            </a>
-                        </li>
+
+
                     </ul>
                 </li>
                 <!-- Abrir Chamado -->
@@ -95,4 +91,3 @@
             <!-- /.sidebar-collapse -->
     </div>
         <!-- /.navbar-static-side -->
-</nav>
