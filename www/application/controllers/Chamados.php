@@ -14,6 +14,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function __construct() {
             parent::__construct();
+            
+            $this->auth->check_login();//Vê se o usuário está logado
 
             $this->load->model('chamados_model');
 
@@ -61,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         // Show OS data:
         $data['os'] = $this->chamados_model->get_os_by_id($id_os);
         $data['notes'] = $this->chamados_model->get_notes($id_os);
-        
+
         $this->load->view('ver_os', $data);
 
     }
