@@ -58,6 +58,7 @@ class Chamados_model extends CI_Model {
             nome_status,
             nome_secao,
             secao.icone as secao_icone,
+            secao.alias as secao_os,
             num_sala,
             sala.nome as nome_sala,
             finalidade.descricao as finalidade,

@@ -62,6 +62,10 @@ class Painel extends MY_Controller {
     */
 
     public function os_status($id_status_os = NULL){
+        if ($id_status_os === NULL || !is_numeric($id_os)){
+            show_404();
+        }
+
         $status_exists = $this->_check_status($id_status_os);
 
         // Se status não existe, redireciona para a página inicial
@@ -73,25 +77,33 @@ class Painel extends MY_Controller {
 
 
         if($this->auth->in_role('tecnico')){
-            $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'],$id_status_os);
+            $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], $id_status_os);
         } else {
             $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario'], $id_status_os);
         }
-
-
 
         $this->load->view('common/header');
         $this->load->view('common/menus',$this->ui);
         $this->load->view('lista_chamados', $this->data);
         $this->load->view('common/footer');
 
-
     }
 
-    private function _set_ui_data(){
+    /*
+        Lista chamados abertos pelo usuário.
 
-        $this->data['header'] = 'Todos';
-        $this->data['header_icon'] = 'fa-tasks';
+        Estará presente nos painéis do gestor, técnico e gestor da unidade
+    */
+    public function meus_chamados(){
+
+
+        $this->data['header'] = "Meus Chamados";
+        $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario']);
+
+        $this->load->view('common/header');
+        $this->load->view('common/menus',$this->ui);
+        $this->load->view('lista_chamados', $this->data);
+        $this->load->view('common/footer');
 
     }
 

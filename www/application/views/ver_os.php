@@ -89,9 +89,14 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <strong> <i class="fa fa-sticky-note-o fa-fw"></i> Andamento do Chamado</strong>
+
+                <?php if($this->auth->in_secao($os['secao_os']) && $this->auth->in_role('tecnico')): ?>
+
                 <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#addNote">
                     <i class="fa fa-pencil-square-o fa-fw"></i> adicionar anotação
                 </button>
+
+                <?php endif; ?>
             </div>
             <!-- Recuperando resultados do banco: -->
 

@@ -67,7 +67,7 @@ class Auth {
     de atendimento
     */
 
-    public function in_secao($secao = ''){
+    public function in_secao($secao = FALSE){
 
         if($secao === $_SESSION['membro_secao']){
             return TRUE;
@@ -75,6 +75,7 @@ class Auth {
             return FALSE;
         }
     }
+
 
     /*
         Checa quais roles estão autorzadas a ver aquele Recurso
@@ -84,7 +85,7 @@ class Auth {
         @param $roles = string
     */
 
-    public function in_role($role = NULL){
+    public function in_role($role = FALSE){
         if($role === $_SESSION['nivel_acesso']){
             return TRUE;
         } else {
