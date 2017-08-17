@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         public function __construct() {
             parent::__construct();
-            
+
             $this->auth->check_login();//Vê se o usuário está logado
 
             $this->load->model('chamados_model');
@@ -166,6 +166,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if(!$id_responsavel_secao){
             $msg = "<strong> Erro: </strong> Não há um gestor da seção cadastrado";
             $this->session->set_flashdata('message',$msg);
+            $this->session->set_flashdata('warn_level','danger');
             $this->redirection($this->get_base_controller());
             exit();
         }
