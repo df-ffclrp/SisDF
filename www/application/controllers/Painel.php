@@ -13,7 +13,9 @@ class Painel extends MY_Controller {
      * - Abre chamados
      * - Lista chamados abertos por ele
      */
-    private $data = [];
+    private $data = array(
+        'header_icon' => 'fa-tasks'
+    );
 
     public function __construct() {
         parent::__construct();
@@ -23,7 +25,7 @@ class Painel extends MY_Controller {
         $this->load->helper('alert_box');
         $this->load->model('painel_model');
 
-        $this->_set_ui_data();
+        //$this->_set_ui_data();
 
 
     }
@@ -35,8 +37,11 @@ class Painel extends MY_Controller {
     public function index() {
 
         if($this->auth->in_role('tecnico')){
+            $this->data['header'] = "Painel de Atendimento";
+            $this->data['header_icon'] = "fa-inbox";
             $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], NULL , $is_index = TRUE);
         } else {
+            $this->data['header'] = "Chamados Ativos";
             $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario']);
         }
 
@@ -82,10 +87,6 @@ class Painel extends MY_Controller {
 
 
     }
-
-    /*
-        Monta dados na view para passar ao parser
-    */
 
     private function _set_ui_data(){
 

@@ -50,7 +50,7 @@
                 </li>
                 <!-- DROPDOWN CHAMADOS -->
                 <li>
-                    <a href="<?= base_url() . 'chamados'; ?>"><i class="fa fa-tasks fa-fw"></i>
+                    <a href="<?= base_url() . 'chamados'; ?>"><i class="fa fa-filter fa-fw"></i>
                         Filtrar Chamados
                         <span class="fa arrow"></span>
                     </a>
@@ -65,16 +65,17 @@
                             </li>
 
                         <?php endforeach; ?>
-
-
                     </ul>
                 </li>
+
+
                 <!-- Abrir Chamado -->
                 <li>
                     <a href="#"><i class="fa fa-file-text-o fa-fw"></i>
                         Abrir Chamado
                         <span class="fa arrow"></span>
                     </a>
+                    <!-- Submenu com seções -->
                     <ul class="nav nav-second-level">
                         <?php foreach ($secoes_menu as $secao): ?>
                             <li>
@@ -85,7 +86,17 @@
                             </li>
                         <?php endforeach; ?>
                     </ul>
-                 </li><!-- fim de abrir chamado -->
+                 </li>
+                 <!-- fim de abrir chamado -->
+
+                 <?php if(!$this->auth->in_role('relator')): ?>
+                     <li>
+                         <a href="<?= base_url() . $controller.'/meus_chamados'; ?>"><i class="fa fa-tasks fa-fw"></i>
+                             Meus Chamados
+                         </a>
+                     </li>
+
+                 <?php endif;?>
             </ul>
         </div>
             <!-- /.sidebar-collapse -->
