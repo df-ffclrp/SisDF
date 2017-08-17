@@ -22,7 +22,7 @@ class Login_model extends CI_Model {
 
     public function check_user($num_usp, $password) {
 
-        $this->db->select('id_usuario, num_usp, usuario.nome, email, ramal, role.nome as nivel_acesso, nome_secao as membro_secao');
+        $this->db->select('id_usuario, num_usp, usuario.nome, email, ramal, role.nome as nivel_acesso, secao.alias as membro_secao');
         $this->db->from('usuario');
 
         // Que nível de acesso?

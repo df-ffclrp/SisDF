@@ -43,16 +43,14 @@ class Login extends CI_Controller {
 
             $dados_usuario = $this->login_model->check_user($num_usp, $senha);
 
-
             if ($dados_usuario):
-
 
                 // Registra Sessão
                 $this->session->set_userdata($dados_usuario);
                 redirect('painel', 'refresh');
 
             else:
-                $data['erro'] = ('Email e/ou senha inválidos');
+                $data['erro'] = ('Número USP ou senha inválidos');
                 $this->load->view('login', $data);
             endif;
 
