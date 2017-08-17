@@ -50,7 +50,7 @@ class Painel_model extends CI_Model {
 
         $this->db->where('id_secao', $id_secao);
         if ($is_index){
-            $this->db->where_in('id_status',array(1,2));
+            $this->db->where_in('id_status',array(1,2,4));
         }
 
         if(isset($id_status)){
