@@ -7,20 +7,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @author André Luiz Girol - Departamento de Física - FFCLRP
  */
-class Relator_model extends CI_Model {
+class Painel_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
         $this->load->database();
     }
-    
+
     /*
      * Busca todos os chamados abertos por um
      * determinado usuário
-     * 
+     *
      * Busca chamados de todas as seções
      */
-    
+
     public function get_os_by_user($id_usuario , $id_status = NULL){
         $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao');
         $this->db->from('ordem_servico');
@@ -35,12 +35,34 @@ class Relator_model extends CI_Model {
 
 
         $this->db->order_by('id_status','ASC');
-        
-        $result = $this->db->get();
-        
-        return $result->result_array();
-        
-    }
-    
 
+        $result = $this->db->get();
+
+        return $result->result_array();
+
+    }
+
+    public function get_os_by_secao($id_secao , $id_status = NULL, $is_index = FALSE){
+        $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao');
+        $this->db->from('ordem_servico');
+        $this->db->join('os_status', 'id_status = id_status_fk');
+        $this->db->join('secao', 'id_secao = id_secao_fk');
+
+        $this->db->where('id_secao', $id_secao);
+        if ($is_index){
+            $this->db->where_in('id_status',array(1,2));
+        }
+
+        if(isset($id_status)){
+            $this->db->where('id_status_fk', $id_status);
+        }
+
+
+        $this->db->order_by('data_abertura','ASC');
+
+        $result = $this->db->get();
+
+        return $result->result_array();
+
+    }
 }
