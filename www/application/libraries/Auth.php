@@ -81,10 +81,15 @@ class Auth {
 
         Não checa se o usuário é dono
 
-        @param $roles = array()
+        @param $roles = string
     */
 
-    public function in_roles($roles = NULL){
+    public function in_role($role = NULL){
+        if($role === $_SESSION['nivel_acesso']){
+            return TRUE;
+        } else {
+            return FALSE;
+        }
 
     }
 
