@@ -21,7 +21,7 @@ class Painel extends MY_Controller {
         $this->auth->check_login();//Vê se o usuário está logado
 
         $this->load->helper('alert_box');
-        $this->load->model('relator_model');
+        $this->load->model('painel_model');
 
         $this->_set_ui_data();
 
@@ -29,20 +29,17 @@ class Painel extends MY_Controller {
     }
 
     /*
-     * Painel do relator. Lista chamados
+     * Painel de controle Geral
      */
 
-    public function index($secao = NULL) {
+    public function index() {
 
+        if($this->auth->in_role('tecnico')){
+            $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], NULL , $is_index = TRUE);
+        } else {
+            $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario']);
+        }
 
-        $secao_exists = $this->_check_secao($secao);
-
-        // Se a seção não existir, mostra todas
-        if (!$secao_exists):
-            // mostra todos
-            $this->data['lista_os'] = $this->relator_model->get_os_by_user($_SESSION['id_usuario']);
-
-        endif;
 
         $this->load->view('common/header');
         $this->load->view('common/menus',$this->ui);
@@ -70,7 +67,13 @@ class Painel extends MY_Controller {
         $this->_set_page_header($status_exists);
 
 
-        $this->data['lista_os'] = $this->relator_model->get_os_by_user($_SESSION['id_usuario'], $id_status_os);
+        if($this->auth->in_role('tecnico')){
+            $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'],$id_status_os);
+        } else {
+            $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario'], $id_status_os);
+        }
+
+
 
         $this->load->view('common/header');
         $this->load->view('common/menus',$this->ui);
