@@ -142,6 +142,17 @@ class Chamados_model extends CI_Model {
         return $result->row_array();
     }
 
+    public function get_notes($id_os){
+        $this->db->select('data_anotacao as data_anot, texto, nome as autor');
+        $this->db->join('usuario','id_usuario_fk = id_usuario');
+        $this->db->where('id_os_fk', $id_os);
+        $this->db->order_by('data_anotacao', 'DESC');
+
+        $result = $this->db->get('anotacao');
+
+        return $result->result_array();
+    }
+
     public function grava_os($dados_os){
         $query =  $this->db->insert('ordem_servico',$dados_os);
         if($query){

@@ -93,49 +93,36 @@
                     <i class="fa fa-pencil-square-o fa-fw"></i> adicionar anotação
                 </button>
             </div>
+            <!-- Recuperando resultados do banco: -->
 
-
-
-
-                <!-- Anotações já realizadas -->
-                <div class="panel-body">
-                    <ul class="chat">
+            <div class="panel-body">
+                <ul class="chat">
+                    <?php
+                    if(empty($notes)):
+                        echo "<p> Não há anotações para este chamado. </p>";
+                    else:
+                        foreach($notes as $note):
+                    ?>
                         <li class="left clearfix">
                             <div class="clearfix">
                                 <div class="header">
-                                    <strong class="primary-font">Técnico da Silva</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i>
-                                        <?= date('l jS \of F Y h:i:s A'); ?>
-                                    </small>
-                                        <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
+                                <strong class="primary-font"><?= $note['autor']?></strong>
+                                <small class="pull-right text-muted">
+                                    <i class="fa fa-clock-o fa-fw"></i>
+                                    <?=  $note['data_anot'] ?>
+                                </small>
+                                <p>
+                                    <?= $note['texto'] ?>
+                                </p>
                                 </div>
                             </div>
                         </li>
-
-                        <!-- Another one... -->
-                        <li class="left clearfix">
-                            <div class="clearfix">
-                                <div class="header">
-                                    <strong class="primary-font">Técnico da Silva</strong>
-                                    <small class="pull-right text-muted">
-                                        <i class="fa fa-clock-o fa-fw"></i>
-                                        <?= date('l jS \of F Y h:i:s A'); ?>
-                                    </small>
-                                        <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                </div>
-                            </div>
-
-                        </li>
-                    </ul>
-                </div>
-
+                    <?php
+                        endforeach;
+                    endif;
+                    ?>
+                </ul>
+            </div>
             </div>
         </div>
     </div>
