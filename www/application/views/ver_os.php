@@ -11,7 +11,13 @@
                 <i class="fa fa-file-text-o fa-fw"></i>
                 OS Nº <?= $os['id_os'] . ' - ' . $os['nome_secao'] ?>
             </h2>
+
         </div>
+    </div>
+
+    <!-- Mensagem para o usuário -->
+    <div class="row">
+        <div id="message"></div>
     </div>
 
     <div class="row">
@@ -102,6 +108,7 @@
 
             <div class="panel-body">
                 <ul class="chat">
+
                     <?php
                     if(empty($notes)):
                         echo "<p> Não há anotações para este chamado. </p>";
@@ -126,6 +133,7 @@
                         endforeach;
                     endif;
                     ?>
+
                 </ul>
             </div>
             </div>
@@ -142,31 +150,40 @@
             </button>
         </div>
 
-
+<form>
     <!-- Modal Add anotações -->
     <div id="addNote" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNoteLabel"
         aria-hidden="true">
+        <!-- Envio AJAX -->
+        <input type="hidden" name="id_os" value="<?= $os['id_os'] ?>">
+        <input type="hidden" name="id_usuario" value="<?= $_SESSION['id_usuario'] ?>">
 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
-                    <h4 class="modal-title" id="addNoteLabel">Adicionar Anotação</h4>
+                    <h4 class="modal-title" id="addNoteLabel">
+                        <i class="fa fa-pencil fa-fw"></i>
+                        Adicionar Anotação
+                    </h4>
+
                 </div>
                 <div class="modal-body">
-                    <textarea class="form-control" rows="5"></textarea>
+                    <div id="notify"></div>
+                    <textarea id="note" class="form-control" rows="5" name="anotacao"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         <i class="fa fa-times fa-fw"></i> Fechar
                     </button>
-                    <button type="button" class="btn btn-primary">
+                    <button id="add_note" type="button" class="btn btn-primary">
                         <i class="fa fa-save fa-fw"></i> Salvar
                     </button>
                 </div>
             </div> <!-- /.modal-content -->
         </div>
     </div>
+</form>
     <!-- FIM do Modal -->
 
 </div><!-- fim de row -->
