@@ -1,13 +1,27 @@
 --
 -- Dumping data for table `usuario`
 --
+-- Cargos:
+--      1 - Docente
+--      2 - Funcionário
+
 USE `sisdf`;
 
 
 INSERT INTO `usuario` (`id_usuario`, `num_usp`, `senha`, `nome`, `email`, `ramal`, `id_cargo_fk`, `ativo`) VALUES
-(1, '123456', MD5('123'), 'André Luiz Girol', 'tester@email.local', '9988', '2', '1'),
-(2, '654312', MD5('123'), 'Docente Carlos', 'dc@email.local', '1122', '1', '1'),
-(3, '111111', MD5('123'), 'Relator Fernandes', 'rf@email.local', '1111', '2', '1'),
-(4, '999999', MD5('123'), 'Responsável Manutenção', 'dmanut@email.local', '9999', '1', '1'),
-(5, '222222', MD5('123'), 'Técnico Manutenção', 'tec_manut@email.local', '2222', '2', '1'),
-(6, '889944', MD5('123'), 'Docente Las Neves', 'dn@email.local', '3322', '1', '1');
+(1, '500', MD5('123'), 'Relator Simples', 'relator@dev.local', '5005', '2', '1'),
+-- Manutenção Predial
+(2, '100', MD5('123'), 'Técnico Manutenção', 'manut@dev.local', '1000', '2', '1'),
+(3, '101', MD5('123'), 'Gestor Manutenção', 'gestor_manut@dev.local', '1001', '1', '1'),
+-- Eletrônica
+(4, '200', MD5('123'), 'Técnico Eletrônica', 'eletronica@dev.local', '2000', '2', '1'),
+(5, '201', MD5('123'), 'Gestor Eletrônica', 'gestor_elet@dev.local', '2001', '1', '1'),
+-- Oficina Mecânica
+(6, '300', MD5('123'), 'Técnico Mecânica', 'mecanica@dev.local', '3000', '2', '1'),
+(7, '301', MD5('123'), 'Gestor Mecânica', 'gestor_mecanica@dev.local', '3001', '1', '1'),
+-- Informática
+(8, '400', MD5('123'), 'Técnico Informática', 'informatica@dev.local', '4000', '2', '1'),
+(9, '401', MD5('123'), 'Gestor Informática', 'gestor_inf@dev.local', '4001', '1', '1'),
+
+-- Gestor da Unidade e outros para teste, adicionar abaixo deste
+(10, '1000', MD5('123'), 'Gestor da Unidade', 'gestor_unidade@dev.local', '9999', '2', '1');
