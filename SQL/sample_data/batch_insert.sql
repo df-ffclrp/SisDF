@@ -116,7 +116,7 @@ INSERT INTO `resp_sala` (`id_resp_fk`, `id_sala_fk`) VALUES
 --
 -- Dumping data for table `user_role`
 --
-
+-- Tabela de autorização dos usuários
 INSERT INTO `user_role` (`usuario_id`, `role_id`) VALUES
 (1, 1),
 -- Manutenção
@@ -133,6 +133,24 @@ INSERT INTO `user_role` (`usuario_id`, `role_id`) VALUES
 (9, 3),
 -- Gestor Unidade
 (10, 4);
+
+--
+-- Dumping data for table `membro_secao`
+--
+
+INSERT INTO `membro_secao` (`id_usuario_fk` , `id_secao_fk`) VALUES
+-- Manutenção
+(2, 1),
+(3, 1),
+-- Eletronica
+(4, 2),
+(5, 2),
+-- Mecânica
+(6, 3),
+(7, 3),
+-- Informática
+(8, 4),
+(9, 4);
 
 
 
