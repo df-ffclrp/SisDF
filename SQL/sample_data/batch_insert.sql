@@ -118,9 +118,21 @@ INSERT INTO `resp_sala` (`id_resp_fk`, `id_sala_fk`) VALUES
 --
 
 INSERT INTO `user_role` (`usuario_id`, `role_id`) VALUES
-(3, 1),
-(1, 2),
-(1, 5);
+(1, 1),
+-- Manutenção
+(2, 2),
+(3, 3),
+-- Eletronica
+(4, 2),
+(5, 3),
+-- Mecânica
+(6, 2),
+(7, 3),
+-- Informática
+(8, 2),
+(9, 3),
+-- Gestor Unidade
+(10, 4);
 
 
 
