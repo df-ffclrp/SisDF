@@ -174,7 +174,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         $dados_os['id_resp_secao_fk'] = $id_responsavel_secao;
         $id_sala_dest = $this->input->post('sala');
-        $dados_os['id_resp_sala_fk'] = $this->chamados_model->get_resp_sala($id_sala_dest);
+
+        $id_responsavel_sala = $this->chamados_model->get_resp_sala($id_sala_dest);
+
+        if(!$id_responsavel_sala){
+            $msg = "<strong> Erro: </strong> Não há um responsável pela sala. Contacte o Administrador do sistema";
+            $this->session->set_flashdata('message',$msg);
+            $this->session->set_flashdata('warn_level','danger');
+            $this->redirection($this->get_base_controller());
+            exit();
+        }
+
+        $dados_os['id_resp_sala_fk'] = $id_responsavel_sala;
         $dados_os['id_status_fk'] = '1'; // Sempre 1 para aberto!
         $dados_os['id_sala_fk'] = $id_sala_dest;
         $dados_os['id_secao_fk'] = $id_secao;

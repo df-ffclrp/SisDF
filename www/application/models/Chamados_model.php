@@ -129,9 +129,14 @@ class Chamados_model extends CI_Model {
         $this->db->where('id_sala_fk',$id_sala);
 
         $query = $this->db->get();
+
         $row_result = $query->row();
-        //var_dump($row_result);
-        return $row_result->responsavel;
+        if(!empty($row_result)){
+            return $row_result->responsavel;
+        } else {
+            return FALSE;
+
+        }
     }
 
     public function get_nome_sala($id_sala){
