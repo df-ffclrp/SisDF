@@ -176,7 +176,7 @@
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
                         <i class="fa fa-times fa-fw"></i> Fechar
                     </button>
-                    <button id="add_note" type="button" class="btn btn-primary">
+                    <button id="save_note" type="button" class="btn btn-primary">
                         <i class="fa fa-save fa-fw"></i> Salvar
                     </button>
                 </div>
@@ -188,5 +188,8 @@
 
 </div><!-- fim de row -->
 </div><!-- fim de page-wrapper -->
+<script>
+    var base_url = "<?php echo base_url() ?>";
+</script>
 
 <?php $this->load->view('common/footer'); ?>

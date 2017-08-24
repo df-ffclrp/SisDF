@@ -1,33 +1,27 @@
-function get_controller_url(){
-	var url = window.location.href;
-
-	// Remove as duas partes finais do controller
-	parts = url.split('/');
-	parts.pop();
-	parts.pop();
-	url = parts.join('/') + '/';
-
-	return url;
-}
-
-
-
 $(document).ready(function(){
+
     // Ao fechar o modal, limpa a caixa de texto
     $('#addNote').on('hidden.bs.modal', function () {
         $('#note').val('');
-        //alert('fechou modal');
+        $('#notify').removeClass();
+        $('#notify').text('');
+        if(reload_notes){
+            //alert('teve ajax...');
+            location.reload();
+        }
+
     })
 
-    set_system_message = function( message, warn_level){
-        $('#message').addClass('alert alert-'+ warn_level);
-        $('#message').text(message);
+    // Seta mensagem dentro da modal
+    set_notification = function( message, warn_level){
+        $('#notify').removeClass();
+        $('#notify').addClass('alert alert-'+ warn_level);
+        $('#notify').text(message);
     }
 
 
-    var controller = get_controller_url();
-
-    $('#add_note').bind('click', function(){
+    // Botão para salvar a nota...
+    $('#save_note').bind('click', function(){
         var note = $('#note');
 
         if(!note.val()){
@@ -37,7 +31,8 @@ $(document).ready(function(){
         } else {
 
             dados = $('form').serialize();
-            test_ajax = "http://localhost/SisDF/www/ajax/add_note"
+            // base_url inicializada na view - escopo global
+            test_ajax = base_url+"ajax/add_note";
 
 
             $.ajax({
@@ -46,13 +41,25 @@ $(document).ready(function(){
     			data: dados,
     			success: function (results){
     				if(results == 'success'){
-                        msg = "Anotação Cadastrada com Sucesso!"
-                        // Jquery pra fechar a modal
-                        $('#addNote').modal('toggle');
-                        set_system_message(msg,'success');
-                        //alert(msg);
+                        msg = "Anotação Cadastrada com Sucesso!";
+                        set_notification(msg,'success');
+                        // Limpa User Interface
+                        $('#note').val('');
+                        $('#save_note').removeClass();
+                        $('#save_note').addClass('btn btn-warning');
+                        $('#save_note').html('Adicionar Outra');
 
+                        // Fecha a caixa de notificação
+                        setTimeout(function(){
+                            $('#notify').removeClass();
+                            $('#notify').text('');
+                        }, 2000);
+
+                    } else {
+                        msg = "Ocorreu um erro. Contacte o administrador do sistema";
+                        set_notification(msg,'danger');
                     }
+                    reload_notes = true;
     			}
 
     		});// Fim de Ajax
