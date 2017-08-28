@@ -49,6 +49,8 @@ class Painel_model extends CI_Model {
         $this->db->join('secao', 'id_secao = id_secao_fk');
 
         $this->db->where('id_secao', $id_secao);
+
+        // Se é o index, mostra apenas os que estão abertos e em andamento
         if ($is_index){
             $this->db->where_in('id_status',array(1,2,4));
         }

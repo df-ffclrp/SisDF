@@ -36,7 +36,7 @@ class Painel extends MY_Controller {
 
     public function index() {
 
-        if($this->auth->in_role('tecnico')){
+        if($this->auth->in_role('tecnico') || $this->auth->in_role('gestor_secao')){
             $this->data['header'] = "Painel de Atendimento";
             $this->data['header_icon'] = "fa-inbox";
             $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], NULL , $is_index = TRUE);
