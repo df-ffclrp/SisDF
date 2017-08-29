@@ -16,12 +16,13 @@ class Painel_model extends CI_Model {
 
     /*
      * Busca todos os chamados abertos por um
-     * determinado usuário
+     * determinado usuário (dono)
      *
-     * Busca chamados de todas as seções
+     * - Busca chamados de todas as seções
+     * - Filtra chamados por Status
      */
 
-    public function get_os_by_user($id_usuario , $id_status = NULL){
+    public function get_os_by_owner($id_usuario , $id_status = NULL){
         $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao');
         $this->db->from('ordem_servico');
         $this->db->join('os_status', 'id_status = id_status_fk');

@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class MY_Controller extends CI_Controller {
 
-    public $ui = [];
+    public $menu_info = [];
     private $secoes = [];
     private $os_status = [];
     private $base_controller = 'painel';
@@ -24,7 +24,7 @@ class MY_Controller extends CI_Controller {
         $this->load->helper('user_level');
         $this->load->library('session');
         $this->load->library('auth');
-        
+
         $this->set_common();
 
         // Habilita debugger para ambiente de desenvolvimento
@@ -43,14 +43,10 @@ class MY_Controller extends CI_Controller {
         $this->secoes = $this->system_model->get_secoes();
         $this->os_status = $this->system_model->get_os_status();
 
-        // if(isset($_SESSION['nivel_acesso'])){
-        //     $this->base_controller = $_SESSION['nivel_acesso'];
-        // }
-
         // Configura User Interface
-        $this->ui['controller'] = $this->base_controller;
-        $this->ui['os_menu'] = $this->os_status;
-        $this->ui['secoes_menu'] = $this->secoes;
+        $this->menu_info['controller'] = $this->base_controller;
+        $this->menu_info['status_menu'] = $this->os_status;
+        $this->menu_info['secoes_menu'] = $this->secoes;
 
     }
 
@@ -85,21 +81,20 @@ class MY_Controller extends CI_Controller {
     }
 
     /*
-        Checa se um status existe no array de configuração
-    */
+     * Checa se um status existe no array de configuração
+     */
 
-        protected function _check_status($id_status_os){
-            $os_status_array = $this->get_os_status();
+    protected function _check_status($id_status_os){
+        $os_status_array = $this->get_os_status();
 
-        // var_dump($os_status_array);
-            foreach ($os_status_array as $status) {
-                if ($status['id_status'] == $id_status_os) {
-                    return $status;
-                }
+        foreach ($os_status_array as $status) {
+            if ($status['id_status'] == $id_status_os) {
+                return $status;
             }
-
-            return false;
         }
+
+        return false;
+    }
 
     /*
     ========================
@@ -125,12 +120,8 @@ class MY_Controller extends CI_Controller {
                 return $secao;
             }
         }
-
         return false;
     }
-
-
-
 
     protected function get_secoes(){
         return $this->secoes;
@@ -145,7 +136,7 @@ class MY_Controller extends CI_Controller {
     }
 
     protected function get_ui_data(){
-        return $this->ui;
+        return $this->menu_info;
     }
 
 }

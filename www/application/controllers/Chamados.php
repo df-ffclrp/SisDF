@@ -10,7 +10,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
      class Chamados extends MY_Controller {
 
-    //public $menus = $this->ui;
 
         public function __construct() {
             parent::__construct();
@@ -27,8 +26,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function index(){
 
             echo "<h1> propriedade UI </h1>";
-            var_dump($this->ui);
+            var_dump($this->menu_info);
             echo "<hr>";
+            var_dump($this->get_secoes());
 
         }
 
@@ -91,16 +91,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     /*
     Abre novo Chamado
+
+    @param $id_secao = int()
     */
 
     public function novo($id_secao = NULL){
         if ($id_secao === NULL || !is_numeric($id_secao)){
             show_404();
         }
-
-        $this->load->library('form_validation');
-        $this->config->load('placeholders',TRUE);
-
         // always filter!
         $secao_exists = $this->_check_secao($id_secao);
 
@@ -108,6 +106,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if(!$secao_exists){
             $this->redirection($this->get_base_controller());
         }
+
+        $this->load->library('form_validation');
+        $this->config->load('placeholders',TRUE);
 
         $data['salas'] = $this->chamados_model->get_salas();
         // fin = finalidade
@@ -132,8 +133,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         if ($this->form_validation->run() === FALSE){
             $this->load->view('common/header');
-            $this->load->view('common/menus',$this->ui);
-            $this->load->view('forms/nova_os' , $data);
+            $this->load->view('common/menus', $this->menu_info);
+            $this->load->view('forms/nova_os', $data);
             $this->load->view('common/footer');
 
         } else {
@@ -178,7 +179,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $id_responsavel_sala = $this->chamados_model->get_resp_sala($id_sala_dest);
 
         if(!$id_responsavel_sala){
-            $msg = "<strong> Erro: </strong> Não há um responsável pela sala. Contacte o Administrador do sistema";
+            $msg = "<strong> Erro: </strong> Não há um responsável pela sala. Contacte o Administrador do sistema.";
             $this->session->set_flashdata('message',$msg);
             $this->session->set_flashdata('warn_level','danger');
             $this->redirection($this->get_base_controller());
@@ -191,6 +192,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $dados_os['id_secao_fk'] = $id_secao;
         $dados_os['id_finalidade_fk'] = $this->input->post('finalidade');
 
+        // Se gravou corretamente, manda de volta o último ID cadastrado
         $last_os_id = $this->chamados_model->grava_os($dados_os);
 
         if(!empty($last_os_id)){
@@ -211,9 +213,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
 
 
-
-
-
     /*
     Busca placeholders e nomes para o formulário
     */
@@ -223,8 +222,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $secao = $this->get_secao($id_secao);
 
         $form_info['secao_dest'] = $secao;
+
         //recupera placeholder específico da seção
         $alias = $secao['alias'];
+
+        // ph = placeholer - usado nos inputs!
         $form_info['ph'] = $this->config->item($alias,'placeholders');
 
         return $form_info;
@@ -235,6 +237,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     /*
     ==== MÉTODOS AJAX ====
+
+    REFATORAR!!!
     */
     public function aj_get_nome_sala() {
         $this->output->enable_profiler(FALSE);

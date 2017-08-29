@@ -56,9 +56,9 @@
                     </a>
                     <!-- Listar por status -->
                     <ul class="nav nav-second-level">
-                        <?php foreach ($os_menu as $item): ?>
+                        <?php foreach ($status_menu as $item): ?>
                             <li>
-                                <a href="<?= base_url() . $controller .'/os_status/'. $item['id_status'] ?> ">
+                                <a href="<?= base_url() . $controller .'/os_status/'. $item['id_status'] ?>">
                                     <i class="fa <?= $item['icone']; ?> fa-fw"></i>
                                     <?= $item['nome_status'];?>
                                 </a>
@@ -87,6 +87,7 @@
                         <?php endforeach; ?>
                     </ul>
                  </li>
+                 
                  <!-- fim de abrir chamado -->
 
                  <?php if(!$this->auth->in_role('relator')): ?>

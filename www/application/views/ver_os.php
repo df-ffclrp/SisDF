@@ -2,7 +2,7 @@
 
 <div id="wrapper">
 
-<?php $this->load->view('common/menus',$this->ui); ?>
+<?php $this->load->view('common/menus',$this->menu_info); ?>
 
 <div id="page-wrapper">
     <div class="row">
@@ -143,7 +143,7 @@
     <div class="row">
         <div class="col-lg-6">
 
-            <a href="<?= base_url() . $this->ui['controller'];?>" class="btn btn-primary">Voltar</a>
+            <a href="<?= base_url() . $this->menu_info['controller'];?>" class="btn btn-primary">Voltar</a>
             <button class="btn btn-default pull-right">
                 <i class="fa fa-print fa-fw"></i>
                 Imprimir

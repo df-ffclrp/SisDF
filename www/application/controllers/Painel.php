@@ -47,12 +47,12 @@ class Painel extends MY_Controller {
 
         } else {
             $this->data['header'] = "Chamados Ativos";
-            $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario']);
+            $this->data['lista_os'] = $this->painel_model->get_os_by_owner($_SESSION['id_usuario']);
         }
 
 
         $this->load->view('common/header');
-        $this->load->view('common/menus',$this->ui);
+        $this->load->view('common/menus', $this->menu_info);
         $this->load->view('lista_chamados', $this->data);
         $this->load->view('common/footer');
 
@@ -71,14 +71,15 @@ class Painel extends MY_Controller {
             show_404();
         }
 
-        $status_os = $this->_check_status($id_status_os);
+        $status_info = $this->_check_status($id_status_os);
 
         // Se status não existe, redireciona para a página inicial
-        if(!$status_os){
+        if(!$status_info){
             $this->redirection($this->router->class);
         }
 
-        $this->_set_page_header($status_os);
+        // Monta dados da página de acordo com o status informado
+        $this->_set_page_header($status_info);
 
 
         if($this->auth->in_role('tecnico')){
@@ -89,11 +90,11 @@ class Painel extends MY_Controller {
             $this->data['lista_os'] = $this->painel_model->get_all_os($id_status_os);
 
         } else {
-            $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario'], $id_status_os);
+            $this->data['lista_os'] = $this->painel_model->get_os_by_owner($_SESSION['id_usuario'], $id_status_os);
         }
 
         $this->load->view('common/header');
-        $this->load->view('common/menus',$this->ui);
+        $this->load->view('common/menus',$this->menu_info);
         $this->load->view('lista_chamados', $this->data);
         $this->load->view('common/footer');
 
@@ -108,10 +109,10 @@ class Painel extends MY_Controller {
 
 
         $this->data['header'] = "Meus Chamados";
-        $this->data['lista_os'] = $this->painel_model->get_os_by_user($_SESSION['id_usuario']);
+        $this->data['lista_os'] = $this->painel_model->get_os_by_owner($_SESSION['id_usuario']);
 
         $this->load->view('common/header');
-        $this->load->view('common/menus',$this->ui);
+        $this->load->view('common/menus',$this->menu_info);
         $this->load->view('lista_chamados', $this->data);
         $this->load->view('common/footer');
 
