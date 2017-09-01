@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    // Checa se tem atendente. Se não tem, desativa as anotações
+
+    if(!$("#id_atendente").val()){
+        $('#btn_addNote').prop('disabled', true);
+    }
+
 
     // Ao fechar o modal, limpa a caixa de texto
     $('#addNote').on('hidden.bs.modal', function () {

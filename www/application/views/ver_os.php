@@ -2,7 +2,7 @@
 
 <?php
 
-//var_dump($os);
+// var_dump($os);
 ?>
 
 <div id="wrapper">
@@ -15,11 +15,7 @@
             <h2 class="page-header">
                 <i class="fa fa-file-text-o fa-fw"></i>
                 OS Nº <?= $os['id_os'] . ' - ' . $os['nome_secao'] ?>
-
             </h2>
-
-
-
         </div>
     </div>
 
@@ -37,6 +33,15 @@
                 <div class="panel-heading">
                     <strong> <i class="fa fa-list fa-fw"></i> Detalhes do Pedido</strong>
 
+                    <!-- botão para atender o chamado -->
+                    <?php if(!$os['id_atendente']): ?>
+
+                    <button id="btn_atender" class="btn btn-warning btn-xs pull-right" type="button" >
+                        <i class="fa fa-bomb fa-fw"></i> Atender
+                    </button>
+
+                    <?php else: ?>
+
                     <!-- Botões de ação -->
                     <div class="pull-right">
                         <div class="btn-group">
@@ -51,7 +56,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
+                </div><!-- fim do panel-heading -->
 
                 <div class="panel-body">
                     <p>
@@ -62,12 +68,9 @@
                         </span>
                         <br>
                         <br>
-                        <?php
-                        $data = date_create($os['data_abertura']);
-                        //echo ;
-                        ?>
+                        <?php $data_abert = date_create($os['data_abertura']); ?>
 
-                        <strong>Data de Abertura:</strong>  <?= date_format($data, ' d/m/Y à\s H:i') ?> <br>
+                        <strong>Data de Abertura:</strong>  <?= date_format($data_abert, ' d/m/Y à\s H:i') ?> <br>
                         <strong>Finalidade:</strong> <?= $os['finalidade'] ?> <br>
                         <strong>Local:</strong> <?= $os['num_sala'].' - ' .$os['nome_sala'] ?> <br>
                         <strong>Responsável:</strong>  <?= $os['resp_sala'] ?>
@@ -78,6 +81,13 @@
                         <div class="panel panel-info panel-body">
                             <?= $os['os_descricao'] ?>
                         </div>
+                        <?php
+                            if(!$os['atendente']):
+                                $os['atendente'] = "Não atribuído";
+                            endif;
+                        ?>
+                        <input id="id_atendente" type="hidden" value="<?= $os['id_atendente']?>">
+                        <strong>Atendente:</strong>  <?= $os['atendente'] ?> <br>
                 </div>
             </div>
 
@@ -132,7 +142,7 @@
 
                 <?php if($this->auth->in_secao($os['secao_os']) && $this->auth->in_role('tecnico')): ?>
 
-                <button class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#addNote">
+                <button id="btn_addNote" class="btn btn-default btn-xs pull-right" data-toggle="modal" data-target="#addNote">
                     <i class="fa fa-pencil-square-o fa-fw"></i> adicionar anotação
                 </button>
 
@@ -155,7 +165,10 @@
                                 <strong class="primary-font"><?= $note['autor']?></strong>
                                 <small class="pull-right text-muted">
                                     <i class="fa fa-clock-o fa-fw"></i>
-                                    <?=  $note['data_anot'] ?>
+                                    <?php
+                                        $data_anot = date_create($note['data_anot']);
+                                        echo date_format($data_abert, ' d/m/Y à\s H:i')
+                                    ?>
                                 </small>
                                 <p>
                                     <?= $note['texto'] ?>

@@ -51,6 +51,7 @@ class Chamados_model extends CI_Model {
             data_abertura,
             data_fechamento,
             last_update,
+            id_atendente_fk as id_atendente,
             atd.nome as atendente,
             sec_resp.nome as resp_secao,
             sala_resp.nome as resp_sala,
