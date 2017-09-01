@@ -15,6 +15,7 @@ class Ajax extends CI_Controller {
         //     echo "não é ajax...";
         //     exit();
         // }
+        $this->load->library('session');
     }
 
     public function index(){
@@ -40,6 +41,23 @@ class Ajax extends CI_Controller {
         } else {
             echo "error";
         }
+    }
 
+    // Adiciona um técnico ao atendimento
+    public function add_atendente_os(){
+        // if(empty($_POST['id_os'])){
+        //     echo 'error';
+        //     exit();
+        // }
+
+        // $insert['id_os'] = $this->input->post('id_os');
+        // $update['id_os'] = 7;
+        // $update['id_atendente_fk'] = $_SESSION['id_usuario'];
+
+
+        $this->load->model('ajax_model');
+        $query_ok = $this->ajax_model->add_atendente_os();
+        echo "Foi...";
+        var_dump($query_ok);
     }
 }

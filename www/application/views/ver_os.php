@@ -33,15 +33,18 @@
                 <div class="panel-heading">
                     <strong> <i class="fa fa-list fa-fw"></i> Detalhes do Pedido</strong>
 
-                    <!-- botão para atender o chamado -->
-                    <?php if(!$os['id_atendente']): ?>
+                <!-- botão para atender o chamado -->
+                <?php
+                if($this->auth->in_role('tecnico')):
+                    // Se não tem atendente, mostra o botão pra atender
+                    if(!$os['id_atendente']):
+                ?>
 
-                    <button id="btn_atender" class="btn btn-warning btn-xs pull-right" type="button" >
+                    <button id="btn_atender" class="btn btn-success btn-xs pull-right" type="button" >
                         <i class="fa fa-bomb fa-fw"></i> Atender
                     </button>
 
                     <?php else: ?>
-
                     <!-- Botões de ação -->
                     <div class="pull-right">
                         <div class="btn-group">
@@ -56,12 +59,15 @@
                             </ul>
                         </div>
                     </div>
+
+                    <?php endif; ?>
                 <?php endif; ?>
                 </div><!-- fim do panel-heading -->
 
                 <div class="panel-body">
                     <p>
 
+                        <strong>Atendente:</strong>  <?= $os['atendente'] ?> 
                         <strong>Status:</strong>
                         <span class="label label-<?= $os['bs_label']?>">
                             <i class="fa <?= $os['status_icone'] ?> fa-fw"></i><?= $os ['nome_status'] ?>
@@ -87,7 +93,6 @@
                             endif;
                         ?>
                         <input id="id_atendente" type="hidden" value="<?= $os['id_atendente']?>">
-                        <strong>Atendente:</strong>  <?= $os['atendente'] ?> <br>
                 </div>
             </div>
 

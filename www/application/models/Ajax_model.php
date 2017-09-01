@@ -30,4 +30,12 @@ class Ajax_model extends CI_Model {
         return FALSE;
     }
 
+    // Adiciona um atendente a uma OS aberta
+    public function add_atendente_os(){
+        // $data['id_os']  = $this->input->post('id_os');
+        $data['id_atendente_fk'] = $_SESSION['id_usuario'];
+        $this->db->where('id_os', 7);
+        return $this->db->update('ordem_servico', $data);
+    }
+
 }
