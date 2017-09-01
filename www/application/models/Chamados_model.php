@@ -55,6 +55,8 @@ class Chamados_model extends CI_Model {
             sec_resp.nome as resp_secao,
             sala_resp.nome as resp_sala,
 
+            os_status.icone as status_icone,
+            bs_label,
             nome_status,
             nome_secao,
             secao.icone as secao_icone,

@@ -1,5 +1,10 @@
 <?php $this->load->view('common/header'); ?>
 
+<?php
+
+//var_dump($os);
+?>
+
 <div id="wrapper">
 
 <?php $this->load->view('common/menus',$this->menu_info); ?>
@@ -10,7 +15,10 @@
             <h2 class="page-header">
                 <i class="fa fa-file-text-o fa-fw"></i>
                 OS Nº <?= $os['id_os'] . ' - ' . $os['nome_secao'] ?>
+
             </h2>
+
+
 
         </div>
     </div>
@@ -24,6 +32,54 @@
 
         <!-- Dados do Chamado -->
         <div class="col-lg-6">
+            <!--Detalhes do Pedido-->
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <strong> <i class="fa fa-list fa-fw"></i> Detalhes do Pedido</strong>
+
+                    <!-- Botões de ação -->
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                mudar status <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                 <li><a href="#">Status 1</a></li>
+                                 <li><a href="#">Status 1</a></li>
+                                 <li><a href="#">Status 1</a></li>
+                                 <li><a href="#">Status 1</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <p>
+
+                        <strong>Status:</strong>
+                        <span class="label label-<?= $os['bs_label']?>">
+                            <i class="fa <?= $os['status_icone'] ?> fa-fw"></i><?= $os ['nome_status'] ?>
+                        </span>
+                        <br>
+                        <br>
+                        <?php
+                        $data = date_create($os['data_abertura']);
+                        //echo ;
+                        ?>
+
+                        <strong>Data de Abertura:</strong>  <?= date_format($data, ' d/m/Y à\s H:i') ?> <br>
+                        <strong>Finalidade:</strong> <?= $os['finalidade'] ?> <br>
+                        <strong>Local:</strong> <?= $os['num_sala'].' - ' .$os['nome_sala'] ?> <br>
+                        <strong>Responsável:</strong>  <?= $os['resp_sala'] ?>
+                    </p>
+                    <p> <strong>Resumo:</strong> <?= $os['resumo'] ?> </p>
+
+                    <p> <strong>Descrição do Pedido:</strong> </p>
+                        <div class="panel panel-info panel-body">
+                            <?= $os['os_descricao'] ?>
+                        </div>
+                </div>
+            </div>
 
             <!--Dados do Solicitante-->
             <div class="panel panel-info">
@@ -39,28 +95,6 @@
                 </div>
             </div>
 
-            <!--Detalhes do Pedido-->
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <strong> <i class="fa fa-list fa-fw"></i> Detalhes do Pedido</strong>
-                </div>
-
-                <div class="panel-body">
-                    <p>
-                        <strong>Data de Abertura:</strong> <?= $os['data_abertura'] ?> <br>
-                        <strong>Finalidade:</strong> <?= $os['finalidade'] ?> <br>
-                        <strong>Local:</strong> <?= $os['num_sala'].' - ' .$os['nome_sala'] ?> <br>
-                        <strong>Responsável:</strong>  <?= $os['resp_sala'] ?>
-                    </p>
-                    <p> <strong>Resumo:</strong> <?= $os['resumo'] ?> </p>
-
-                    <p> <strong>Descrição do Pedido:</strong> </p>
-                    <p>
-                        <?= $os['os_descricao'] ?>
-                    </p>
-
-                </div>
-            </div>
 
             <!--Dados do Material-->
             <div class="panel panel-info">
