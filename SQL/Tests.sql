@@ -51,4 +51,7 @@ JOIN role on id_role = role_id
 WHERE role.nome = 'gestor_secao'
 AND id_secao_fk = 1;
 
+-- Update simples para remover atendente de uma OS para testar as funções
+UPDATE `ordem_servico` SET `id_atendente_fk` = NULL WHERE `ordem_servico`.`id_os` = 7;
+UPDATE `ordem_servico` SET `id_status_fk` = 1 WHERE `ordem_servico`.`id_os` = 7;
 
