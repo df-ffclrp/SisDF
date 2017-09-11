@@ -67,7 +67,12 @@
                 <div class="panel-body">
                     <p>
 
-                        <strong>Atendente:</strong>  <?= $os['atendente'] ?> 
+                        <?php
+                            if(!$os['atendente']):
+                                $os['atendente'] = "Não atribuído";
+                            endif;
+                        ?>
+                        <strong>Atendente:</strong>  <?= $os['atendente'] ?> <br>
                         <strong>Status:</strong>
                         <span class="label label-<?= $os['bs_label']?>">
                             <i class="fa <?= $os['status_icone'] ?> fa-fw"></i><?= $os ['nome_status'] ?>
@@ -87,11 +92,6 @@
                         <div class="panel panel-info panel-body">
                             <?= $os['os_descricao'] ?>
                         </div>
-                        <?php
-                            if(!$os['atendente']):
-                                $os['atendente'] = "Não atribuído";
-                            endif;
-                        ?>
                         <input id="id_atendente" type="hidden" value="<?= $os['id_atendente']?>">
                 </div>
             </div>

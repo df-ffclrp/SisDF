@@ -16,6 +16,8 @@ class Ajax extends CI_Controller {
         //     exit();
         // }
         $this->load->library('session');
+
+        $this->output->enable_profiler(TRUE);
     }
 
     public function index(){
@@ -36,28 +38,40 @@ class Ajax extends CI_Controller {
         $this->load->model('ajax_model');
         $query_ok = $this->ajax_model->add_note($insert);
 
-        if($query_ok){
-            echo "success";
-        } else {
-            echo "error";
-        }
+        $this->_check_query($query_ok);
     }
 
     // Adiciona um técnico ao atendimento
     public function add_atendente_os(){
-        // if(empty($_POST['id_os'])){
-        //     echo 'error';
-        //     exit();
-        // }
-
-        // $insert['id_os'] = $this->input->post('id_os');
-        // $update['id_os'] = 7;
-        // $update['id_atendente_fk'] = $_SESSION['id_usuario'];
-
+        // $this->output->enable_profiler(FALSE);
+        if(empty($_POST['id_os'])){
+            echo 'error';
+            exit();
+        }
 
         $this->load->model('ajax_model');
-        $query_ok = $this->ajax_model->add_atendente_os();
-        echo "Foi...";
-        var_dump($query_ok);
+        $id_os = $this->input->post('id_os');
+        // $id_os = 7;
+        $query_ok = $this->ajax_model->add_atendente_os($id_os);
+        $this->ajax_model->change_os_status( 2 , $id_os );
+        
+        $this->_check_query($query_ok);
+    }
+
+    // Muda Status da OS
+    public function change_os_status(){
+
+    }
+
+    // Pra não ter que reescrever over and over again
+    // @param $db_response = BOOLEAN
+    // Retornado do query builder
+    private function _check_query($db_response){
+        if($db_response){
+            echo 'success';
+        } else {
+            echo 'error';
+        }
+        exit();
     }
 }

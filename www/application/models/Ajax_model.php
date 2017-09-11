@@ -13,6 +13,7 @@ class Ajax_model extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->load->database();
+
     }
 
     /*
@@ -30,12 +31,27 @@ class Ajax_model extends CI_Model {
         return FALSE;
     }
 
-    // Adiciona um atendente a uma OS aberta
-    public function add_atendente_os(){
-        // $data['id_os']  = $this->input->post('id_os');
-        $data['id_atendente_fk'] = $_SESSION['id_usuario'];
-        $this->db->where('id_os', 7);
-        return $this->db->update('ordem_servico', $data);
+    //Adiciona um atendente a uma OS aberta
+    public function add_atendente_os($id_os){
+        
+        $this->db->set('id_atendente_fk', $_SESSION['id_usuario']);
+        $this->db->where('id_os', $id_os);
+
+        return $this->db->update('ordem_servico');
+    }
+
+    // Muda o status da ordem de serviço
+    public function change_os_status($id_status, $id_os = NULL){
+        
+        $this->db->set('id_status_fk', $id_status);
+        $this->db->where('id_os', $id_os );
+        
+        if(!$this->db->update('ordem_servico')){
+            $error = $this->db->error();
+            echo "Ocorreu um erro ao conectar ao banco de dados";
+            exit();
+        }
+
     }
 
 }

@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 exit();
             }
         }
-
+        
         // Show OS data:
         $data['os'] = $this->chamados_model->get_os_by_id($id_os);
         $data['notes'] = $this->chamados_model->get_notes($id_os);
