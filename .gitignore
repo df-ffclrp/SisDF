@@ -7,6 +7,9 @@
 # Sublime Text
 *sublime*
 
+# VS Code
+.vscode/
+
 # Configurações da aplicação 
 /www/application/config/config.php
 /www/application/config/database.php
