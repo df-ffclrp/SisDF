@@ -51,11 +51,16 @@
                             <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                 mudar status <span class="caret"></span>
                             </button>
+
                             <ul class="dropdown-menu" role="menu">
-                                 <li><a href="#">Status 1</a></li>
-                                 <li><a href="#">Status 1</a></li>
-                                 <li><a href="#">Status 1</a></li>
-                                 <li><a href="#">Status 1</a></li>
+                            <?php foreach($change_status_menu as $item): ?>
+                                 <li>
+                                    <a href="<?= base_url().'chamados/change_status/'.$item['id_status']?>">
+                                    <i class="fa <?= $item['icone'] ?> fa-fw"></i>
+                                        <?= $item['nome_status'] ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>     
                             </ul>
                         </div>
                     </div>

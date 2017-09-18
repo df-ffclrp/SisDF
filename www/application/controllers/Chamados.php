@@ -62,6 +62,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         
         // Show OS data:
         $data['os'] = $this->chamados_model->get_os_by_id($id_os);
+
+        $cur_status = $os_metadata['id_status']; // status atual
+        $data['change_status_menu'] = $this->chamados_model->get_other_status($cur_status);
+
+        //var_dump($data['change_status_menu']);
         $data['notes'] = $this->chamados_model->get_notes($id_os);
         $data['custom_js'] = 'ver_os.js';
 
@@ -85,8 +90,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 return FALSE;
             }
         }
-        //echo "é dono ou está na seção, então pode...";
+        //é dono ou está na seção, então pode...
         return TRUE;
+    }
+
+    /**
+    * Muda status da ordem de serviço
+    */
+    public function change_status($id_status = null){
+        
+        if(!$this->_check_status($id_status)){
+            echo "to aqio..";
+            show_404();
+        }
+
     }
 
     /*
@@ -94,7 +111,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     @param $id_secao = int()
     */
-
     public function novo($id_secao = NULL){
         if ($id_secao === NULL || !is_numeric($id_secao)){
             show_404();

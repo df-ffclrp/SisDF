@@ -21,7 +21,7 @@ class Chamados_model extends CI_Model {
     * - secao que foi aberta
     */
     public function get_os_meta($id_os){
-        $this->db->select('id_os, id_relator_fk as id_relator, alias as secao');
+        $this->db->select('id_os, id_relator_fk as id_relator, alias as secao, id_status_fk as id_status');
         $this->db->from('ordem_servico');
         $this->db->join('secao', 'id_secao = id_secao_fk');
         $this->db->where('id_os', $id_os);
@@ -30,8 +30,37 @@ class Chamados_model extends CI_Model {
         return $result->row_array();
     }
 
+    /**
 
+    * Busca todos os status menos o status ativo
 
+    */
+    public function get_other_status($not_in){
+        $this->db->select('id_status, alias, nome_status, icone');
+        $this->db->from('os_status');
+        $this->db->where_not_in('id_status', $not_in);
+
+        $result = $this->db->get();
+
+        return $result->result_array();
+
+    }
+
+    /**
+    * Muda o status da OS
+    *
+    *
+    */
+    public function change_status_os($new_status){
+        $data = array(
+            'id_status_fk' => $new_status,
+        );
+
+        $this->db->where('id_os', $id);
+
+        return $this->db->update('ordem_servico', $data);
+    
+    }
     /*
      * Busca um único chamado e todas as suas informações
      * determinado usuário

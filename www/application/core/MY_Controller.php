@@ -64,10 +64,11 @@ class MY_Controller extends CI_Controller {
     }
 
 
-    /*
+    /**
      * Checa se uma seção solicitada no index existe no array de configuração
+     *
+     * Retorna true ou false
      */
-
     protected function _check_secao($id_secao) {
         $secoes = $this->get_secoes();
 
@@ -80,10 +81,11 @@ class MY_Controller extends CI_Controller {
         return false;
     }
 
-    /*
-     * Checa se um status existe no array de configuração
-     */
-
+    /**
+    * Checa se um status existe no array de configuração (em memória)
+    *
+    *  Retorna o status completo
+    */
     protected function _check_status($id_status_os){
         $os_status_array = $this->get_os_status();
 
