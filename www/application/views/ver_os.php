@@ -52,7 +52,7 @@
                                 mudar status <span class="caret"></span>
                             </button>
 
-                            <ul class="dropdown-menu" role="menu">
+                            <ul id="change_status" class="dropdown-menu" role="menu">
                             <?php foreach($change_status_menu as $item): ?>
                                  <li>
                                     <a href="<?= base_url().'chamados/change_status/'.$item['id_status']?>">

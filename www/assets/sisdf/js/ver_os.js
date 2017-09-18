@@ -24,6 +24,15 @@ $(document).ready(function(){
         $('#btn_addNote').prop('disabled', true);
     }
 
+    // Menu dropdown de mudar o status ao lado dos detalhes do pedido
+    $('#change_status').find('a').on('click',function(e){
+        e.preventDefault();
+        
+        id_os = $('form [name="id_os"]').val();
+        url = $(this).attr('href');
+        alert("a url é: "+url);
+    });
+
     // Atribui um chamado a um técnico
     $("#btn_atender").bind('click',function(){
         id_os = $('form [name="id_os"]');
