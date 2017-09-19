@@ -35,16 +35,18 @@
 
                 <!-- botão para atender o chamado -->
                 <?php
-                if($this->auth->in_role('tecnico')):
+                if($this->auth->in_role('tecnico') && $this->auth->in_secao($os['secao_os'])):
+                    
                     // Se não tem atendente, mostra o botão pra atender
                     if(!$os['id_atendente']):
                 ?>
-
+                    <!-- Botão atender chamado -->
                     <button id="btn_atender" class="btn btn-success btn-xs pull-right" type="button" >
                         <i class="fa fa-bomb fa-fw"></i> Atender
                     </button>
 
                     <?php else: ?>
+
                     <!-- Botões de ação -->
                     <div class="pull-right">
                         <div class="btn-group">
@@ -144,8 +146,8 @@
             </div>
         </div>
 
-        <!-- Andamento do Chamado -->
-   <div class="col-lg-6">
+    <!-- Andamento do Chamado -->
+    <div class="col-lg-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <strong> <i class="fa fa-sticky-note-o fa-fw"></i> Andamento do Chamado</strong>
@@ -167,8 +169,9 @@
                     if(empty($notes)):
                         echo "<p> Não há anotações para este chamado. </p>";
                     else:
-                        foreach($notes as $note):
-                    ?>
+                        
+                        foreach($notes as $note): ?>
+                        
                         <li class="left clearfix">
                             <div class="clearfix">
                                 <div class="header">
