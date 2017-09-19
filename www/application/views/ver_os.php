@@ -47,25 +47,29 @@
 
                     <?php else: ?>
 
-                    <!-- Botões de ação -->
                     <div class="pull-right">
-                        <div class="btn-group">
-                            <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                mudar status <span class="caret"></span>
-                            </button>
+                    <div class="btn-group">
+                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                            mudar status <span class="caret"></span>
+                        </button>
 
-                            <ul id="change_status" class="dropdown-menu" role="menu">
-                            <?php foreach($change_status_menu as $item): ?>
-                                 <li>
-                                    <a href="<?= base_url().'chamados/change_status/'.$item['id_status']?>">
-                                    <i class="fa <?= $item['icone'] ?> fa-fw"></i>
-                                        <?= $item['nome_status'] ?>
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>     
-                            </ul>
-                        </div>
+                        <ul id="change_status" class="dropdown-menu" role="menu">
+                        <?php foreach($change_status_menu as $item): ?>
+                             <li>
+                                <a href="<?= base_url().'ajax/change_os_status/'.$item['id_status']?>">
+                                <i class="fa <?= $item['icone'] ?> fa-fw"></i>
+                                    <?= $item['nome_status'] ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>     
+                        </ul>
                     </div>
+                </div>
+
+
+
+
+                    
 
                     <?php endif; ?>
                 <?php endif; ?>
@@ -171,7 +175,7 @@
                     else:
                         
                         foreach($notes as $note): ?>
-                        
+
                         <li class="left clearfix">
                             <div class="clearfix">
                                 <div class="header">

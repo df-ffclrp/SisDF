@@ -94,17 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return TRUE;
     }
 
-    /**
-    * Muda status da ordem de serviço
-    */
-    public function change_status($id_status = null){
-        
-        if(!$this->_check_status($id_status)){
-            echo "to aqio..";
-            show_404();
-        }
 
-    }
 
     /*
     Abre novo Chamado

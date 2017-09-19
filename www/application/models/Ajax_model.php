@@ -46,11 +46,12 @@ class Ajax_model extends CI_Model {
         $this->db->set('id_status_fk', $id_status);
         $this->db->where('id_os', $id_os );
         
-        if(!$this->db->update('ordem_servico')){
-            $error = $this->db->error();
-            echo "Ocorreu um erro ao conectar ao banco de dados";
-            exit();
-        }
+        return $this->db->update('ordem_servico');
+        //{
+        //     $error = $this->db->error();
+        //     echo "Ocorreu um erro ao conectar ao banco de dados";
+        //     exit();
+        // }
 
     }
 

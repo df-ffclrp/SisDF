@@ -6,11 +6,15 @@ $(document).ready(function(){
         $('#notify').addClass('alert alert-'+ warn_level);
         $('#notify').text(message);
     }
+    // Recarrega a página
+    reload_page = function(tempo){
+        setTimeout(function(){
+            location.reload();
+        }, tempo);
+    }
     /*
     Seta mensagem de notificação no meio da página
-    
     Redundante, porém legível
-
     */
     set_main_notification = function( message, warn_level){
         $('#message').removeClass();
@@ -29,8 +33,33 @@ $(document).ready(function(){
         e.preventDefault();
         
         id_os = $('form [name="id_os"]').val();
-        url = $(this).attr('href');
-        alert("a url é: "+url);
+        link = $(this).attr('href');
+
+        url_ajax = link + '/' + id_os;
+
+        alert("a url é: "+url_ajax);
+
+        $.ajax({
+            type: 'GET',
+            url: url_ajax,
+            success: function (server_response){
+               
+                if(server_response != 'success'){
+                    msg = "Ocorreu um erro. Contacte o Administrador do Sistema." 
+                    warn_level = 'danger';
+                } else {
+                    msg = "Status alterado com sucesso! Recarregando Página...";
+                    warn_level = 'success';
+                    set_main_notification( msg , warn_level );
+                    reload_page(1500);
+                }
+                
+                set_main_notification( msg , warn_level );
+
+                
+
+            }
+        });
     });
 
     // Atribui um chamado a um técnico

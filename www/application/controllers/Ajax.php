@@ -6,18 +6,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 Manipula requisições Ajax
 	*/
 
-class Ajax extends CI_Controller {
+class Ajax extends MY_Controller {
 
     public function __construct(){
         parent::__construct();
 
         // if(!$this->input->is_ajax_request()){
-        //     echo "não é ajax...";
-        //     exit();
+        //     não é ajax...
+        //     show404();
         // }
-        $this->load->library('session');
+        $this->load->model('ajax_model');
+        
 
-        $this->output->enable_profiler(TRUE);
     }
 
     public function index(){
@@ -35,7 +35,6 @@ class Ajax extends CI_Controller {
         $insert['id_os_fk'] = $this->input->post('id_os');
         $insert['id_usuario_fk'] = $this->input->post('id_usuario');
 
-        $this->load->model('ajax_model');
         $query_ok = $this->ajax_model->add_note($insert);
 
         $this->_check_query($query_ok);
@@ -49,7 +48,6 @@ class Ajax extends CI_Controller {
             exit();
         }
 
-        $this->load->model('ajax_model');
         $id_os = $this->input->post('id_os');
         // $id_os = 7;
         $query_ok = $this->ajax_model->add_atendente_os($id_os);
@@ -58,10 +56,21 @@ class Ajax extends CI_Controller {
         $this->_check_query($query_ok);
     }
 
-    // Muda Status da OS
-    public function change_os_status(){
+    /**
+    * Muda status da ordem de serviço
+    */
+    public function change_os_status($id_status = null, $id_os = NULL){
+        
+        if(!$this->_check_status($id_status) || !$id_os){
+            echo "error";
+            exit();
+        }
+
+        $query = $this->ajax_model->change_os_status( $id_status , $id_os );
+        $this->_check_query($query);
 
     }
+   
 
     // Pra não ter que reescrever over and over again
     // @param $db_response = BOOLEAN
