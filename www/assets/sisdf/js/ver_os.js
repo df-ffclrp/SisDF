@@ -6,7 +6,7 @@ $(document).ready(function(){
         $('#notify').addClass('alert alert-'+ warn_level);
         $('#notify').text(message);
     }
-    // Recarrega a página
+    // Recarrega a página depois de um determinado TEMPO
     reload_page = function(tempo){
         setTimeout(function(){
             location.reload();
@@ -37,7 +37,7 @@ $(document).ready(function(){
 
         url_ajax = link + '/' + id_os;
 
-        alert("a url é: "+url_ajax);
+        //alert("a url é: "+url_ajax);
 
         $.ajax({
             type: 'GET',
