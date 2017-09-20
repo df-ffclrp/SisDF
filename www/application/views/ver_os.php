@@ -1,10 +1,5 @@
 <?php $this->load->view('common/header'); ?>
 
-<?php
-
-// var_dump($os);
-?>
-
 <div id="wrapper">
 
 <?php $this->load->view('common/menus',$this->menu_info); ?>
@@ -35,41 +30,35 @@
 
                 <!-- botão para atender o chamado -->
                 <?php
+                // Se é técnico e está na seção, mostra configurações
                 if($this->auth->in_role('tecnico') && $this->auth->in_secao($os['secao_os'])):
-                    
                     // Se não tem atendente, mostra o botão pra atender
                     if(!$os['id_atendente']):
                 ?>
-                    <!-- Botão atender chamado -->
                     <button id="btn_atender" class="btn btn-success btn-xs pull-right" type="button" >
                         <i class="fa fa-bomb fa-fw"></i> Atender
                     </button>
-
+                    
                     <?php else: ?>
 
                     <div class="pull-right">
-                    <div class="btn-group">
-                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                            mudar status <span class="caret"></span>
-                        </button>
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                mudar status <span class="caret"></span>
+                            </button>
 
-                        <ul id="change_status" class="dropdown-menu" role="menu">
-                        <?php foreach($change_status_menu as $item): ?>
-                             <li>
-                                <a href="<?= base_url().'ajax/change_os_status/'.$item['id_status']?>">
-                                <i class="fa <?= $item['icone'] ?> fa-fw"></i>
-                                    <?= $item['nome_status'] ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>     
-                        </ul>
+                            <ul id="change_status" class="dropdown-menu" role="menu">
+                            <?php foreach($change_status_menu as $status): ?>
+                                <li>
+                                    <a href="<?= base_url().'ajax/change_os_status/'.$status['id_status']?>">
+                                    <i class="fa <?= $status['icone'] ?> fa-fw"></i>
+                                        <?= $status['nome_status'] ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>     
+                            </ul>
+                        </div>
                     </div>
-                </div>
-
-
-
-
-                    
 
                     <?php endif; ?>
                 <?php endif; ?>
@@ -80,10 +69,10 @@
 
                         <?php
                             if(!$os['atendente']):
-                                $os['atendente'] = "Não atribuído";
+                                $os['atendente'] = '<span class="txt-red">Não atribuído</span>';
                             endif;
                         ?>
-                        <strong>Atendente:</strong>  <?= $os['atendente'] ?> <br>
+                        <strong>Atendente:</strong> <?= $os['atendente'] ?> <br>
                         <strong>Status:</strong>
                         <span class="label label-<?= $os['bs_label']?>">
                             <i class="fa <?= $os['status_icone'] ?> fa-fw"></i><?= $os ['nome_status'] ?>
@@ -174,25 +163,29 @@
                         echo "<p> Não há anotações para este chamado. </p>";
                     else:
                         
-                        foreach($notes as $note): ?>
+                        foreach($notes as $note): 
+                    ?>
 
                         <li class="left clearfix">
                             <div class="clearfix">
                                 <div class="header">
-                                <strong class="primary-font"><?= $note['autor']?></strong>
-                                <small class="pull-right text-muted">
-                                    <i class="fa fa-clock-o fa-fw"></i>
-                                    <?php
-                                        $data_anot = date_create($note['data_anot']);
-                                        echo date_format($data_abert, ' d/m/Y à\s H:i')
-                                    ?>
-                                </small>
-                                <p>
-                                    <?= $note['texto'] ?>
-                                </p>
+                                    <strong class="primary-font"><?= $note['autor']?></strong>
+                                    <small class="pull-right text-muted">
+                                        <i class="fa fa-clock-o fa-fw"></i>
+                                        <?php
+                                            $data_anot = date_create($note['data_anot']);
+                                            echo date_format($data_abert, ' d/m/Y à\s H:i')
+                                        ?>
+                                    </small>
+                                    
+                                    <p>
+                                        <?= $note['texto'] ?>
+                                    </p>
+                                
                                 </div>
                             </div>
                         </li>
+
                     <?php
                         endforeach;
                     endif;
@@ -214,8 +207,8 @@
             </button>
         </div>
 
+<!-- Modal Add anotações -->
 <form>
-    <!-- Modal Add anotações -->
     <div id="addNote" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addNoteLabel"
         aria-hidden="true">
         <!-- Envio AJAX -->
@@ -252,6 +245,7 @@
 
 </div><!-- fim de row -->
 </div><!-- fim de page-wrapper -->
+<!-- Para enviar ao JS -->
 <script>
     var base_url = "<?php echo base_url() ?>";
 </script>
