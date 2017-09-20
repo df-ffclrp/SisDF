@@ -55,4 +55,13 @@ class Ajax_model extends CI_Model {
 
     }
 
+    public function get_nome_sala($id_sala){
+        $this->db->select('nome as nome_sala');
+        $this->db->where('id_sala', $id_sala);
+
+        $result = $this->db->get('sala');
+
+        return $result->row_array();
+    }
+
 }

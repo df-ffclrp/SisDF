@@ -171,15 +171,6 @@ class Chamados_model extends CI_Model {
         }
     }
 
-    public function get_nome_sala($id_sala){
-        $this->db->select('nome as nome_sala');
-        $this->db->where('id_sala', $id_sala);
-
-        $result = $this->db->get('sala');
-
-        return $result->row_array();
-    }
-
     public function get_notes($id_os){
         $this->db->select('data_anotacao as data_anot, texto, nome as autor');
         $this->db->join('usuario','id_usuario_fk = id_usuario');

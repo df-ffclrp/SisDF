@@ -11,12 +11,11 @@ class Ajax extends MY_Controller {
     public function __construct(){
         parent::__construct();
 
-        // if(!$this->input->is_ajax_request()){
-        //     não é ajax...
-        //     show404();
-        // }
+        // Se não é AJAX
+        if(!$this->input->is_ajax_request()){
+            show_404();
+        }
         $this->load->model('ajax_model');
-        
 
     }
 
@@ -57,6 +56,8 @@ class Ajax extends MY_Controller {
 
     /**
     * Muda status da ordem de serviço
+    *
+    * Usada na tela Ver OS
     */
     public function change_os_status($id_status = null, $id_os = NULL){
         
@@ -68,6 +69,20 @@ class Ajax extends MY_Controller {
         $db_result = $this->ajax_model->change_os_status( $id_status , $id_os );
         $this->_check_query($db_result);
 
+    }
+
+    /**
+    * Busca nome da sala baseado no ID
+    *
+    * Usada na tela Nova OS
+    */
+
+    public function get_nome_sala() {
+
+        $id_sala = $this->input->post('sala');
+        $res = $this->ajax_model->get_nome_sala($id_sala);
+
+        echo $res['nome_sala'];
     }
    
 

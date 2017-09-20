@@ -238,21 +238,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         return $form_info;
     }
 
-
-
-
-    /*
-    ==== MÉTODOS AJAX ====
-
-    REFATORAR!!!
-    */
-    public function aj_get_nome_sala() {
-        $this->output->enable_profiler(FALSE);
-
-
-        $id_sala = $this->input->post('sala');
-        $res = $this->chamados_model->get_nome_sala($id_sala);
-
-        echo $res['nome_sala'];
-    }
 }
