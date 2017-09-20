@@ -11,6 +11,9 @@ class Ajax extends MY_Controller {
     public function __construct(){
         parent::__construct();
 
+        // Remove debugger
+        $this->output->enable_profiler(FALSE);
+
         // Se não é AJAX
         if(!$this->input->is_ajax_request()){
             show_404();
