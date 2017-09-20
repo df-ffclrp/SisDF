@@ -6,6 +6,28 @@
     Author     : andre
 */
 
-/** {
+/* * {
     border: 1px solid blueviolet;
-}*/
+} */
+
+/* Bootstrap Colors */
+
+.txt-blue {
+    color: #2E6DA4;
+}
+
+.txt-green {
+    color: #4CAE4C;
+}
+
+.txt-light-blue {
+    color: #46B8DA;
+}
+
+.txt-orange{
+    color: #EEA236;
+}
+
+.txt-red {
+    color: #D43F3A;
+}
