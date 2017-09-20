@@ -8,8 +8,10 @@ class Tests extends MY_Controller {
     public function __construct() {
         parent::__construct();
 
+        if (ENVIRONMENT == 'production'):
+            exit("Testing Only");
+        endif;
         
-        $this->output->enable_profiler(TRUE);
     }
 
 
