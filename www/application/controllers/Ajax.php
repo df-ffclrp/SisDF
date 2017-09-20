@@ -35,9 +35,9 @@ class Ajax extends MY_Controller {
         $insert['id_os_fk'] = $this->input->post('id_os');
         $insert['id_usuario_fk'] = $this->input->post('id_usuario');
 
-        $query_ok = $this->ajax_model->add_note($insert);
+        $db_result= $this->ajax_model->add_note($insert);
 
-        $this->_check_query($query_ok);
+        $this->_check_query($db_result);
     }
 
     // Adiciona um técnico ao atendimento
@@ -49,11 +49,10 @@ class Ajax extends MY_Controller {
         }
 
         $id_os = $this->input->post('id_os');
-        // $id_os = 7;
-        $query_ok = $this->ajax_model->add_atendente_os($id_os);
+        $db_result = $this->ajax_model->add_atendente_os($id_os);
         $this->ajax_model->change_os_status( 2 , $id_os );
         
-        $this->_check_query($query_ok);
+        $this->_check_query($db_result);
     }
 
     /**
@@ -66,8 +65,8 @@ class Ajax extends MY_Controller {
             exit();
         }
 
-        $query = $this->ajax_model->change_os_status( $id_status , $id_os );
-        $this->_check_query($query);
+        $db_result = $this->ajax_model->change_os_status( $id_status , $id_os );
+        $this->_check_query($db_result);
 
     }
    
