@@ -1,4 +1,4 @@
-<?php
+
 
 /*
 Guardando view para ser utilizada em outra ocasião
