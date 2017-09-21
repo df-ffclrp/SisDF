@@ -18,7 +18,7 @@
         <link href="<?= base_url() ?>assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <!-- Custom Fonts -->
-        <link href="<?= base_url() ?>assets/custom/sisdf.css" rel="stylesheet" type="text/css">
+        <link href="<?= base_url() ?>assets/sisdf/css/sisdf.css" rel="stylesheet" type="text/css">
 
     </head>
     <body>
@@ -26,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <img src="<?= base_url() ?>assets/custom/img/logo_site.png" alt="Logo USP" class="center-block" width="100" height="100">
+                    <img src="<?= base_url() ?>assets/sisdf/img/logo_site.png" alt="Logo USP" class="center-block" width="100" height="100">
 
                     <h2 class="text-center">
                         Departamento de Física - FFCLRP

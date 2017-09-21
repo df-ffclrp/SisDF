@@ -75,7 +75,7 @@ INSERT INTO `secao` (`id_secao`, `nome_secao`, `icone`, `alias`) VALUES
 --
 
 INSERT INTO `finalidade` (`id_finalidade`, `descricao`) VALUES
-(1, 'Projetos Didátidos'),
+(1, 'Projetos Didáticos'),
 (2, 'Projetos de Pesquisa'),
 (3, 'Projetos de Laboratório'),
 (4, 'Departamento');
