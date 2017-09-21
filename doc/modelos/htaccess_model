@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+# Configura ambiente do Codeigniter. Deixando production por questões de segurança
+SetEnv CI_ENV production
+
+# Caso precise de um subdiretório
+#RewriteBase /my/subfolder/
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
