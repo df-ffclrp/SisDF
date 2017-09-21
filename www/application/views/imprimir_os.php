@@ -8,18 +8,18 @@
         <meta name="description" content="" >
 
         <!-- CSS -->
-        <link href="<?= base_url() ?>assets/custom/imprimir.css" rel="stylesheet" type="text/css" >
+        <link href="<?= base_url() ?>assets/sisdf/css/imprimir_os.css" rel="stylesheet" type="text/css" >
 
         <!-- Custom Fonts -->
         <link href="<?= base_url() ?>assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>
-
+    
         <!-- Timbre -->
         <div id="a4">
             <div id="header">
-                <img src="<?= base_url() ?>assets/custom/img/logo_print.png" alt="DF logo" >
+                <img src="<?= base_url() ?>assets/sisdf/img/logo_print.png" alt="DF logo" >
 
 
                 <div id="timbre">
@@ -39,72 +39,70 @@
 
             <!-- Cabeçalho -->
 
-            <h2 id="titulo">Ordem de Serviço Nº 368 - Oficina Mecânica </h2>
+            <h2 id="titulo">Ordem de Serviço Nº <?= "{$os['id_os']} - {$os['nome_secao']}" ?></h2>
 
             <!-- Solicitante -->
             <div class="box_dados">
                 <h3>Dados do solicitante</h3>
 
-                <p><span class="label">Nome: </span> Lucas Andrade </p>
-                <p><span class="label">Numero USP: </span> 654897 </p>
-                <p><span class="label">Ramal: </span> 0500 </p> 
-                <span class="label">Email: </span> lucas@meeplemaniacs.com <br>
+                <p><span class="label">Nome: </span> <?= $os['relator'] ?></p>
+                <p><span class="label">Numero USP: </span> <?= $os['num_usp'] ?></p>
+                <p><span class="label">Ramal: </span> <?= $os['ramal'] ?> </p> 
+                <span class="label">Email: </span> <?= $os['email'] ?> <br>
 
             </div>
 
             <!-- Pedido -->				
             <div class="box_dados">
                 <h3>Detalhes do Pedido</h3>
-                <p><span class="label">Data de Abertura: </span> <?= date('d/m/Y'); ?> 	</p>
-                <p><span class="label">Finalidade: </span> Projetos Didáticos </p>
-                <p><span class="label">Local: </span> Sala 29 - Board Game Design </p>
-                <p><span class="label">Responsável: </span> Jack Explicador </p>
+                <?php
+                    $data_abertura = date_create($os['data_abertura']);
+                ?>
+
+
+                <p><span class="label">Data de Abertura: </span> <?= date_format($data_abertura, ' d/m/Y à\s H:i') ?> </p>
+                <p><span class="label">Finalidade: </span> <?= $os['finalidade'] ?> </p>
+                <p><span class="label">Local: </span> Sala <?= "{$os['num_sala']} - {$os['nome_sala']}" ?> </p>
+                <p><span class="label">Responsável: </span> <?= $os['resp_sala'] ?> </p>
 
                 <br>
 
-                <p><span class="label">Resumo:</span>  Usinagem de Meeples</p>
+                <p><span class="label">Resumo:</span>  <?= $os['resumo'] ?></p>
 
                 <br>
 
                 <p><span class="label">Descrição do Pedido:</span></p>
 
                 <div class="box_descricao">
-                    Mussum Ipsum, cacilds vidis litro abertis. Nec orci ornare consequat. 
-                    Praesent lacinia ultrices consectetur. Sed non ipsum felis. 
-                    Interagi no mé, cursus quis, vehicula ac nisi. 
-                    Viva Forevis aptent taciti sociosqu ad litora torquent 
-                    Mé faiz elementum girarzis, nisi eros vermeio. 
+                    <?= $os['os_descricao'] ?>
                 </div>
             </div>
 
-
+            <?php if($os['descricao_mat']): ?>
             <div class="box_dados">
                 <h3>Dados do Material:</h3>
 
-                <p><span class="label" >Fornecimento: </span> Departamento</p>
+                <p><span class="label" >Fornecimento: </span> <?= $os['fornecimento']; ?></p>
                 <p><span class="label">Descrição do Material:</span></p>
 
                 <div class="box_descricao">
-                    Mussum Ipsum, cacilds vidis litro abertis. Nec orci ornare consequat. 
-                    Praesent lacinia ultrices consectetur. Sed non ipsum felis. 
-                    Interagi no mé, cursus quis, vehicula ac nisi. 
-                    Viva Forevis aptent taciti sociosqu ad litora torquent 
-                    Mé faiz elementum girarzis, nisi eros vermeio.
+                    <?= $os['descricao_mat']; ?>
                 </div>
             </div>
+            <?php endif;?>
 
             <!-- Assinaturas -->		
             <div class="container_assinaturas">
                 <div class="assinaturas">
 
                     <div class="idf_solicitante">
-                        Lucas Andrade<br>
+                        <?= $os['relator'] ?><br>
                         <strong>Solicitante</strong>
                     </div>
 
                     <div class="idf_responsavel">	
-                        Esse é um nome muito grande de um responsável <br>
-                        <strong> Responsáveis </strong>
+                    <?= $os['resp_secao'] ?><br>
+                        <strong> Responsável da Seção </strong>
                     </div>
                 </div>
             </div>

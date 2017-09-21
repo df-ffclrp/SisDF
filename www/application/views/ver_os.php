@@ -201,10 +201,11 @@
         <div class="col-lg-6">
 
             <a href="<?= base_url() . $this->menu_info['controller'];?>" class="btn btn-primary">Voltar</a>
-            <button class="btn btn-default pull-right">
+            
+            <a href="<?= base_url() . 'chamados/imprimir_os/'. $os['id_os']  ;?>" class="btn btn-default pull-right">
                 <i class="fa fa-print fa-fw"></i>
                 Imprimir
-            </button>
+            </a>
         </div>
 
 <!-- Modal Add anotações -->

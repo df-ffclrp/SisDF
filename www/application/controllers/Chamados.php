@@ -8,29 +8,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      Este controller é comum a todos os usuários
 	*/
 
-     class Chamados extends MY_Controller {
+class Chamados extends MY_Controller {
 
 
-        public function __construct() {
-            parent::__construct();
+    public function __construct() {
+        parent::__construct();
 
-            $this->auth->check_login();//Vê se o usuário está logado
+        $this->auth->check_login();//Vê se o usuário está logado
 
-            $this->load->model('chamados_model');
+        $this->load->model('chamados_model');
 
 
-        // Implementar nível de acesso
+    // Implementar nível de acesso
 
-        }
+    }
 
-        public function index(){
+    public function index(){
 
-            echo "<h1> propriedade UI </h1>";
-            var_dump($this->menu_info);
-            echo "<hr>";
-            var_dump($this->get_secoes());
+        // echo "<h1> propriedade UI </h1>";
+        // var_dump($this->menu_info);
+        // echo "<hr>";
+        // var_dump($this->get_secoes());
 
-        }
+    }
 
      /*
 		Mostra uma única ordem de serviço
@@ -71,6 +71,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         $data['custom_js'] = 'ver_os.js';
 
         $this->load->view('ver_os', $data);
+
+    }
+    /**
+    * Prepara página para impressão
+    *
+    */
+
+    public function imprimir_os($id_os = NULL){
+        if ($id_os === NULL || !is_numeric($id_os)){
+            show_404();
+        }
+
+        //Busca metadados da ordem de serviço
+        $os_metadata = $this->chamados_model->get_os_meta($id_os);
+
+        // Se não tem metadados, redireciona...
+        if(!$os_metadata){
+            $this->redirection($this->get_base_controller());
+        }
+
+         // Se não é gestor da unidade (Nível Chuck Norris), verifica se é autorizado
+         if(!$this->auth->is_gestor_unidade()){
+            if(!$this->_authorized_user($os_metadata)){
+                $this->redirection($this->get_base_controller());
+                exit();
+            }
+        }
+        // Show OS data:
+        $data['os'] = $this->chamados_model->get_os_by_id($id_os);
+        $this->load->view('imprimir_os', $data);
 
     }
 

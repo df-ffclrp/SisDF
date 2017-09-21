@@ -4,9 +4,9 @@ Configurações iniciais
 
 /*Debug*/
 
-/** {
+/* * {
     border: 1px solid red;
-}*/
+} */
 
 body {
 	padding: 0;
@@ -87,11 +87,18 @@ h3 {
             .print i {
                 font-size: 60px;
             }
-            
+			
+			.print a{
+				color: #2E6DA4;
+			}
+
             .print a:link {
                 text-decoration: none;
-                
-            }
+			}
+			
+			.print a:hover {
+				color: #EEA236;
+			}
 
 
 #a4 {
@@ -131,7 +138,7 @@ h3 {
 
 	.assinaturas {
 	/*	position: absolute; */
-		margin-top: 5cm;	
+		margin-top: 4cm;	
 		width: 30cm ;
 		bottom: -11cm;
 	}
