@@ -66,6 +66,9 @@ class Login extends CI_Controller {
         session_destroy();
 
 
+        redirect('login', 'refresh');
+        exit();
+
         echo "Fez logoff!<br>";
         $url = base_url();
         echo '<a href="' . $url . '"> Logar </a>';
