@@ -23,7 +23,7 @@
             </a>
             <!-- .dropdown-user -->
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> Meus Dados</a>
+                <li><a href="<?= base_url() . 'user'; ?>"><i class="fa fa-user fa-fw"></i> Meus Dados</a>
                 </li>
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Configurações</a>
                 </li>
