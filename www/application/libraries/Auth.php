@@ -24,21 +24,17 @@ class Auth {
         $this->roles = $this->CI->auth_model->get_roles();
 
     }
-    /*
-        Checa o usuário logado no sistema
+    /**
+    *  Checa o usuário logado no sistema
     */
-
-
     public function check_login() {
+        $this->CI->load->helper('url');
+
         if (!isset($_SESSION['nivel_acesso'])):
 
-
             session_destroy();
-            // IMPLEMENTAR REDIRECT
-            echo "Precisa estar logado!<br>";
-            $url = base_url();
-
-            echo '<a href="'.$url.'"> Logar </a>';
+            $uri = base_url() . 'login';
+            redirect($uri, 'location', 301);
 
             exit();
         endif;
