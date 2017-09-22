@@ -82,14 +82,14 @@ class Painel extends MY_Controller {
         $this->_set_page_header($status_info);
 
 
-        if($this->auth->in_role('tecnico')){
+        if($this->auth->in_role('tecnico') || $this->auth->in_role('gestor_secao')){
             $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], $id_status_os);
 
         } elseif($this->auth->is_gestor_unidade()) {
 
             $this->data['lista_os'] = $this->painel_model->get_all_os($id_status_os);
 
-        } else {
+        } else { // Apenas relator
             $this->data['lista_os'] = $this->painel_model->get_os_by_owner($_SESSION['id_usuario'], $id_status_os);
         }
 
