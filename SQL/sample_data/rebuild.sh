@@ -8,4 +8,4 @@ mysql --user $dbuser -p$dbpass < ../sisdf_create.sql
 
 echo "Reimportando dados de exemplo..."
 
-mysql --user $dbuser -p$dbpass < batch_insert.sql
+mysql --user $dbuser -p$dbpass < batch_insert_sample.sql
