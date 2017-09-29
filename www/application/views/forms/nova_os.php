@@ -35,7 +35,7 @@
 
                             <?php foreach ($salas as $sala): ?>
 
-                                <option value="<?= $sala['id_sala'] ?>"> Sala Nº <?= $sala['num_sala'] ?></option>
+                                <option value="<?= $sala['id_sala'] ?>"> Sala Nº <?= $sala['num_sala'] .' - '. $sala['nome'] ?></option>
 
                             <?php endforeach; ?>
                         </select>

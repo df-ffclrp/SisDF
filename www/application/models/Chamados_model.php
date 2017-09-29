@@ -122,8 +122,8 @@ class Chamados_model extends CI_Model {
     }
 
     public function get_salas(){
+        $this->db->order_by('num_sala', 'ASC');
         $result = $this->db->get('sala');
-
         return $result->result_array();
     }
 
