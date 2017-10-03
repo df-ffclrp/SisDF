@@ -34,16 +34,20 @@ class Login_model extends CI_Model {
         $this->db->join('secao', 'id_secao_fk = id_secao','left');
 
         // Dados específicos para autenticação
-
+        
         ## IMPLEMENTAR HASHING ##
         $this->db->where('usuario.num_usp', $num_usp);
         $this->db->where('usuario.senha', md5($password));
         $this->db->where('usuario.ativo', 1);
+        $this->db->where('usuario.ativo', 1);
+
+        ## Refatorar ##
+        $this->db->order_by('role_id', 'DESC');
 
         $result = $this->db->get();
 
         ## IMPLEMENTAR MULTI ROLES ##
-        if ($result->num_rows() === 1):
+        if ($result->num_rows() > 0):
 
             return $result->row_array();
 
