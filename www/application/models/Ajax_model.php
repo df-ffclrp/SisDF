@@ -55,11 +55,13 @@ class Ajax_model extends CI_Model {
 
     }
 
-    public function get_nome_sala($id_sala){
-        $this->db->select('nome as nome_sala');
+    public function get_resp_sala($id_sala){
+        $this->db->select('usuario.nome');
+        $this->db->from('usuario');
+        $this->db->join('sala','id_responsavel_fk = id_usuario');
         $this->db->where('id_sala', $id_sala);
 
-        $result = $this->db->get('sala');
+        $result = $this->db->get();
 
         return $result->row_array();
     }

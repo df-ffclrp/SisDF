@@ -75,17 +75,17 @@ class Ajax extends MY_Controller {
     }
 
     /**
-    * Busca nome da sala baseado no ID
+    * Busca responsável da sala baseado no ID
     *
     * Usada na tela Nova OS
     */
 
-    public function get_nome_sala() {
+    public function get_resp_sala() {
 
         $id_sala = $this->input->post('sala');
-        $res = $this->ajax_model->get_nome_sala($id_sala);
+        $res = $this->ajax_model->get_resp_sala($id_sala);
 
-        echo $res['nome_sala'];
+        echo $res['nome'];
     }
    
 

@@ -7,10 +7,10 @@ $(document).ready(function(){
 
 		$.ajax({
 			type: 'POST',
-			url: base_url+'ajax/get_nome_sala',
+			url: base_url+'ajax/get_resp_sala',
 			data: id_sala,
 			success: function (results){
-				$('#nome_sala').html(results);
+				$('#nome_sala').html("Responsável: "+ results);
 			}
 
 		});
