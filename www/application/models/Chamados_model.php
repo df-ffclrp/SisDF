@@ -155,10 +155,10 @@ class Chamados_model extends CI_Model {
 
     // Busca responsável pela sala do atendimento
     public function get_resp_sala($id_sala){
-        $this->db->select('id_resp_fk as responsavel');
-        $this->db->from('resp_sala');
+        $this->db->select('id_responsavel_fk as responsavel');
+        $this->db->from('sala');
 
-        $this->db->where('id_sala_fk',$id_sala);
+        $this->db->where('id_sala',$id_sala);
 
         $query = $this->db->get();
 

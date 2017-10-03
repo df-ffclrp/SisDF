@@ -221,7 +221,8 @@ class Chamados extends MY_Controller {
             $this->redirection($this->get_base_controller());
             exit();
         }
-
+        
+        // Empacotando para o Insert
         $dados_os['id_resp_sala_fk'] = $id_responsavel_sala;
         $dados_os['id_status_fk'] = '1'; // Sempre 1 para aberto!
         $dados_os['id_sala_fk'] = $id_sala_dest;
