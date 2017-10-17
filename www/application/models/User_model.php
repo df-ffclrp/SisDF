@@ -24,7 +24,7 @@ class User_model extends CI_Model {
 
         $this->db->select('1');
         $this->db->where('num_usp', $num_usp);
-        $this->db->where('senha', md5($senha));
+        $this->db->where('senha', hash('sha256', $senha));
 
         $success = $this->db->get('usuario');
 
@@ -37,7 +37,7 @@ class User_model extends CI_Model {
     // Altera senha do usuário
     public function change_pass($nova_senha, $num_usp = null){
         $data = array(
-            'senha' => md5($nova_senha)
+            'senha' => hash('sha256', $nova_senha)
         );
 
         $this->db->where('num_usp', $num_usp);
