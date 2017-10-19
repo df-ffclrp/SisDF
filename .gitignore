@@ -17,3 +17,6 @@
 
 # Database rebuild
 SQL/sample_data/config.sh
+
+# sandbox
+SQL/sample_data/sisdf_replicate.sql
