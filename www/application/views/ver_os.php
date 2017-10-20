@@ -174,7 +174,7 @@
                                         <i class="fa fa-clock-o fa-fw"></i>
                                         <?php
                                             $data_anot = date_create($note['data_anot']);
-                                            echo date_format($data_abert, ' d/m/Y à\s H:i')
+                                            echo date_format($data_anot, ' d/m/Y à\s H:i')
                                         ?>
                                     </small>
                                     
@@ -202,7 +202,7 @@
 
             <a href="<?= base_url() . $this->menu_info['controller'];?>" class="btn btn-primary">Voltar</a>
             
-            <a href="<?= base_url() . 'chamados/imprimir_os/'. $os['id_os']  ;?>" class="btn btn-default pull-right">
+            <a href="<?= base_url() . 'chamados/imprimir_os/'. $os['id_os']  ;?>" target="_blank" class="btn btn-default pull-right">
                 <i class="fa fa-print fa-fw"></i>
                 Imprimir
             </a>
