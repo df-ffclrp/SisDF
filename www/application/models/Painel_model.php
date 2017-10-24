@@ -53,7 +53,7 @@ class Painel_model extends CI_Model {
 
         // Se é o index, mostra apenas os que estão abertos e em andamento
         if ($is_index){
-            $this->db->where_in('id_status',array(1,2,4));
+            $this->db->where_not_in('id_status', array(3));
         }
 
         if(!empty($id_status)){
