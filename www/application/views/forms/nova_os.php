@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">
-                    <i class="fa <?= $secao_dest['icone'] ?> fa-fw"></i> 
+                    <i class="fa <?= $secao_dest['icone'] ?> fa-fw"></i>
                     Novo Chamado - <?= $secao_dest['nome_secao'] ?>
                 </h2>
             </div>
@@ -20,8 +20,8 @@
                     <input name='id_secao' type="hidden" value="<?= $secao_dest['id_secao'] ?>">
                     <div class="form-group">
                         <label>Resumo:</label>
-                        <input class="form-control" name="resumo" value="<?= set_value('resumo')?>" placeholder="<?= $ph['resumo'] ?>">
-                        
+                        <input class="form-control" name="resumo" maxlength="100" value="<?= set_value('resumo')?>" placeholder="<?= $ph['resumo'] ?>">
+
                     </div>
 
                     <!-- LOCAL / SALA -->
@@ -41,7 +41,7 @@
                         </select>
                     </div>
 
-                    <!-- FINALIDADE -->                    
+                    <!-- FINALIDADE -->
                     <div class="form-group">
                         <label>Finalidade</label>
                         <select class="form-control" name="finalidade" id="fin">
@@ -54,8 +54,8 @@
                                 </option>
 
                             <?php endforeach; ?>
-                            
-                            
+
+
                         </select>
 
                     </div>
@@ -80,11 +80,11 @@
                         <input id="has_material" name='has_material' type="hidden" value="false">
 
                         <div class="panel-heading">
-                            <i class="fa fa-cubes fa-fw"></i> 
+                            <i class="fa fa-cubes fa-fw"></i>
                             <strong>Detalhes do Material</strong>
                         </div>
 
-                        
+
                         <div class="panel-body">
 
                             <div  class="form-group">
@@ -93,7 +93,7 @@
                                     <option value="" selected>Selecione uma opção...</option>
                                     <option value="Departamento">Fornecido pelo Departamento </option>
                                     <option value="Solicitante">Fornecido pelo Solicitante </option>
-                                </select>    
+                                </select>
                             </div>
 
                             <div class="form-group">
