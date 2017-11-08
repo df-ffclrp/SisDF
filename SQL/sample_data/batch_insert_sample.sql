@@ -34,31 +34,31 @@ INSERT INTO `cargo` (`id_cargo`, `nome_cargo`) VALUES
 --
 
 INSERT INTO `usuario` (`id_usuario`, `num_usp`, `senha`, `nome`, `email`, `ramal`, `id_cargo_fk`, `ativo`) VALUES
-(1, '500', MD5('dfusp'), 'Relator Simples', 'relator@dev.local', '5005', '2', '1'),
+(1, '500', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Relator Simples', 'relator@dev.local', '5005', '2', '1'),
 -- Manutenção Predial
-(2, '100', MD5('dfusp'), 'Técnico Manutenção', 'manut@dev.local', '1000', '2', '1'),
-(3, '101', MD5('dfusp'), 'Gestor Manutenção', 'gestor_manut@dev.local', '1001', '1', '1'),
+(2, '100', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Técnico Manutenção', 'manut@dev.local', '1000', '2', '1'),
+(3, '101', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Gestor Manutenção', 'gestor_manut@dev.local', '1001', '1', '1'),
 -- Eletrônica
-(4, '200', MD5('dfusp'), 'Técnico Eletrônica', 'eletronica@dev.local', '2000', '2', '1'),
-(5, '201', MD5('dfusp'), 'Gestor Eletrônica', 'gestor_elet@dev.local', '2001', '1', '1'),
+(4, '200', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Técnico Eletrônica', 'eletronica@dev.local', '2000', '2', '1'),
+(5, '201', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Gestor Eletrônica', 'gestor_elet@dev.local', '2001', '1', '1'),
 -- Oficina Mecânica
-(6, '300', MD5('dfusp'), 'Técnico Mecânica', 'mecanica@dev.local', '3000', '2', '1'),
-(7, '301', MD5('dfusp'), 'Gestor Mecânica', 'gestor_mecanica@dev.local', '3001', '1', '1'),
+(6, '300', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Técnico Mecânica', 'mecanica@dev.local', '3000', '2', '1'),
+(7, '301', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Gestor Mecânica', 'gestor_mecanica@dev.local', '3001', '1', '1'),
 -- Informática
-(8, '400', MD5('dfusp'), 'Técnico Informática', 'informatica@dev.local', '4000', '2', '1'),
-(9, '401', MD5('dfusp'), 'Gestor Informática', 'gestor_inf@dev.local', '4001', '1', '1'),
+(8, '400', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Técnico Informática', 'informatica@dev.local', '4000', '2', '1'),
+(9, '401', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Gestor Informática', 'gestor_inf@dev.local', '4001', '1', '1'),
 
 -- Gestor da Unidade e outros para teste, adicionar abaixo deste
-(10, '1000', MD5('dfusp'), 'Gestor da Unidade', 'gestor_unidade@dev.local', '9999', '2', '1');
+(10, '1000', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Gestor da Unidade', 'gestor_unidade@dev.local', '9999', '2', '1');
 
 --
 -- Dumping data for table `sala`
 --
 
-INSERT INTO `sala` (`id_sala`, `num_sala`, `nome`, `ativo`) VALUES
-(1, 220, 'Laboratório de Análises', 1),
-(2, 256, 'Laboratório de Medições', 1),
-(3, 335, 'Auditório 1', 1);
+INSERT INTO `sala` VALUES
+(1, '220', 'Laboratório de Análises', '0011','1','Térreo', 8, 1, 1),
+(2, '256', 'Laboratório de Medições', '0022','1','Térreo', 9, 1, 1),
+(3, '335', 'Auditório 1', '0011','2','Superior', 10, 1, 1);
 
 --
 -- Dumping data for table `secao`
@@ -105,13 +105,6 @@ INSERT INTO `role` (`id_role`, `nome`, `role_desc`) VALUES
 
 -- SOMENTE ADICIONAR APÓS OS ANTERIORES
 
---
--- Dumping data for table `resp_sala`
---
-
-INSERT INTO `resp_sala` (`id_resp_fk`, `id_sala_fk`) VALUES
-(2, 1),
-(3, 1);
 
 --
 -- Dumping data for table `user_role`
