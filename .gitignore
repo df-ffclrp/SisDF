@@ -19,4 +19,5 @@
 SQL/sample_data/config.sh
 
 # sandbox
-SQL/sample_data/sisdf_replicate.sql
+SQL/sisdf_replicate.sql
+SQL/db_config.sh

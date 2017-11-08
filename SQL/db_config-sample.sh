@@ -1,5 +1,5 @@
-dbuser="myuser"
-dbpass="mypass"
+dev_db_user="myuser"
+dev_db_pass="mypass"
 dev_host='localhost'
 dev_database='my_db'
 
