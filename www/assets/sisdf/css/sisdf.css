@@ -31,3 +31,13 @@
 .txt-red {
     color: #D43F3A;
 }
+/* Header para ambiente de desenvolvimento */
+.dev_header {
+    font-family: monospace;
+    font-size: 25px;
+    color: white;
+    background-color: #D43F3A;
+    margin: 0 auto;
+    text-align: center;
+
+}

@@ -38,3 +38,7 @@
 
     </head>
 <body>
+<?php
+    if (ENVIRONMENT == 'development'):
+        echo '<h1 class="dev_header"><i class="fa fa-terminal fa-fw"></i> Ambiente de Desenvolvimento</h1>';
+    endif;
