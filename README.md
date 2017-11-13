@@ -13,12 +13,45 @@ Sistema desenvolvido utilizando as tecnologias abaixo:
 * SB Admin2
 * Font Awesome
 
-Procedimentos para deploy:
+## Procedimentos para deploy em ambiente dev (testado em Ubuntu Server 16.04):
 
- - Montar um servidor MySQL e criar usuário com permissões de root 
- - Copiar arquivo SQL/db_config-sample.sh para SQL/db_config.sh e colocar dados 
-   do mysql
- - Configurar arquivos application/config/config.php e application/config/database.php,
-   copiando modelos da pasta application/config-sample.
- - Importar dumps de teste: ./setup.sh sample
- - Na pasta www subir um localserver PHP: php7.0 -S localhost:8888
+Dependências básicas de PHP e MySQL:
+
+    apt-get install php php-xml php-intl php-mbstring php-gd php-mysql mysql-server
+
+Criar usuário com permissões de root no mysql:
+
+    mysql -p
+    GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'admin';
+
+Arquivo de configuração para import do banco de dados de exemplo, 
+copiar e editar o arquivo com as informações corretas:
+
+    cp SQL/db_config-sample.sh SQL/db_config.sh 
+
+Copiar arquivos de configuração do CI modelos:
+
+    cp application/config-sample/config.php application/config/config.php
+    cp application/config-sample/database.php application/config/databse.php
+
+Editar config.php e alterar ao menos o *base_url*, por exemplo:
+
+    $config['base_url'] = 'http://localhost:8888';
+
+No database.php editar ao menos os seguintes parâmetros:
+
+    'hostname' => 'localhost',
+    'username' => 'admin',
+    'password' => 'admin',
+    'database' => 'sisdf',
+    
+Rodar script que importar dump de exmeplo: 
+
+    ./setup.sh sample
+
+Na pasta www, subir um local server PHP: 
+
+    php -S localhost:8888
+
+Para testar, acessar por exemplo com usuário 400 e senha 123.
+
