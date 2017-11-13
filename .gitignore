@@ -21,3 +21,5 @@ SQL/sample_data/config.sh
 # sandbox
 SQL/sisdf_replicate.sql
 SQL/db_config.sh
+
+www/application/logs/
