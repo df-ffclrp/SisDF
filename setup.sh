@@ -19,10 +19,10 @@ case $1 in
 	sample)
         echo "[ INSTALANDO DADOS DE EXEMPLO em localhost ]"
         echo "Recriando banco de dados...";
-        mysql --user $dev_db_user -p$dev_db_pass < $SQL_ROOT'sisdf_create.sql'
+        mysql --user $dev_db_user -h$dev_host -p$dev_db_pass < $SQL_ROOT'sisdf_create.sql'
 
         echo "Reimportando dados de exemplo..."
-        mysql --user $dev_db_user -p$dev_db_pass < $SQL_ROOT'sample_data/batch_insert_sample.sql'
+        mysql --user $dev_db_user -h$dev_host -p$dev_db_pass < $SQL_ROOT'sample_data/batch_insert_sample.sql'
         
 		;;
 
