@@ -45,13 +45,42 @@ No database.php editar ao menos os seguintes parâmetros:
     'password' => 'admin',
     'database' => 'sisdf',
     
-Rodar script que importar dump de exmeplo: 
+Rodar script que importa dump de exmeplo: 
 
     ./setup.sh sample
 
-Na pasta www, subir um local server PHP: 
+Na pasta *www*, subir um local server PHP: 
 
     php -S localhost:8888
 
-Para testar, acessar por exemplo com usuário 400 e senha 123.
+Para testar, acessar por exemplo com Número USP 400 e senha 123.
+
+## Níveis de Acesso de exemplo
+
+Existem inicialmente 4 níveis de acesso cadastrados:
+
+- **Relator** - Somente abre chamados (todos abaixo também)
+- **Técnico da seção** - Gerencia chamados de sua seção
+- **Gestor da seção** - Vê os chamados da seção
+- **Gestor da Unidade** - Vê os chamados de todas as seções
+
+Os usuários de exemplo possuem as seguintes características: 
+
+| Nº USP | Nível de Acesso |
+| --------- | --------------------- |
+| **500** | Relator |
+| **100** | Técnico Manutenção |
+| **200** | Técnico Eletrônica |
+| **300** | Técnico Mecânica |
+| **400** | Técnico Informática |
+
+Para ver o painel dos Gestores de cada seção de atendimento, adicione o 1 como em:
+
+101 - Gestor Manutenção
+
+O Gestor da unidade possui número USP: **1000**
+
+Senhas: **123**
+
+
 
