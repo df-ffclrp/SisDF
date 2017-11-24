@@ -23,7 +23,7 @@ class Painel_model extends CI_Model {
      */
 
     public function get_os_by_owner($id_usuario , $id_status = NULL){
-        $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao');
+        $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao, secao.icone as icone_secao');
         $this->db->from('ordem_servico');
         $this->db->join('os_status', 'id_status = id_status_fk');
         $this->db->join('secao', 'id_secao = id_secao_fk');
@@ -44,7 +44,7 @@ class Painel_model extends CI_Model {
     }
 
     public function get_os_by_secao($id_secao , $id_status = NULL, $is_index = FALSE){
-        $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao');
+        $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao, secao.icone as icone_secao');
         $this->db->from('ordem_servico');
         $this->db->join('os_status', 'id_status = id_status_fk');
         $this->db->join('secao', 'id_secao = id_secao_fk');
@@ -73,7 +73,7 @@ class Painel_model extends CI_Model {
         Usado no painel do gestor da unidade
     */
     public function get_all_os($id_status = NULL){
-        $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao');
+        $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao, secao.icone as icone_secao');
         $this->db->from('ordem_servico');
         $this->db->join('os_status', 'id_status = id_status_fk');
         $this->db->join('secao', 'id_secao = id_secao_fk');

@@ -52,7 +52,10 @@
                                     ?>
                                 <td><?= $os['resumo']?></td>
                                 </td>
-                                <td> <?= $os['nome_secao']?> </td>
+                                <td>
+                                    <i class="fa fa-fw <?= $os['icone_secao'] ?>"></i>
+                                    <?= $os['nome_secao']?> 
+                                </td>
                                 <td>
                                     <span class="label label-<?= $os['bs_label']?>">
                                         <i class="fa <?= $os['icone'] ?> fa-fw"></i>
