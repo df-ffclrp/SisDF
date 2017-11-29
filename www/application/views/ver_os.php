@@ -143,7 +143,7 @@
     <div class="col-lg-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <strong> <i class="fa fa-sticky-note-o fa-fw"></i> Andamento do Chamado</strong>
+                <strong> <i class="fa fa-tasks fa-fw"></i> Andamento do Chamado</strong>
 
                 <?php if($this->auth->in_secao($os['secao_os']) && $this->auth->in_role('tecnico')): ?>
 
