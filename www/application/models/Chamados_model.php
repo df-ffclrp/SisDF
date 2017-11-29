@@ -171,15 +171,25 @@ class Chamados_model extends CI_Model {
         }
     }
 
-    public function get_notes($id_os){
+    public function get_notes($id_os, $limit = NULL){
         $this->db->select('data_anotacao as data_anot, texto, nome as autor');
         $this->db->join('usuario','id_usuario_fk = id_usuario');
         $this->db->where('id_os_fk', $id_os);
         $this->db->order_by('data_anotacao', 'DESC');
+        
+        if($limit){
+            $this->db->limit($limit);
+        }
 
         $result = $this->db->get('anotacao');
 
         return $result->result_array();
+    }
+
+    public function get_num_notes($id_os){
+        
+        $this->db->where('id_os_fk', $id_os);
+        return $this->db->count_all_results('anotacao');
     }
 
     public function grava_os($dados_os){

@@ -137,13 +137,32 @@
 
                 </div>
             </div>
+                <a href="<?= base_url() . $this->menu_info['controller'];?>" class="btn btn-primary">
+                    <i class="fa fa-arrow-circle-o-left fa-fw"></i>
+                Voltar
+                </a>
+                
+                <a href="<?= base_url() . 'chamados/imprimir_os/'. $os['id_os']  ;?>" target="_blank" class="btn btn-default pull-right">
+                    <i class="fa fa-print fa-fw"></i>
+                    Imprimir
+                </a>
         </div>
 
     <!-- Andamento do Chamado -->
     <div class="col-lg-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <strong> <i class="fa fa-tasks fa-fw"></i> Andamento do Chamado</strong>
+                <strong>
+                    <i class="fa fa-tasks fa-fw"></i> Andamento do Chamado
+                
+                <?php if(!empty($notes)): ?>
+                    
+                    / <span class="badge"><?= $num_tasks ?></span> Tarefas Realizadas
+                    
+                <?php endif; ?>
+                
+                </strong> 
+
 
                 <?php if($this->auth->in_secao($os['secao_os']) && $this->auth->in_role('tecnico')): ?>
 
@@ -193,20 +212,19 @@
 
                 </ul>
             </div>
+            <div class='panel-footer'>
+                <a href="<?= base_url() . 'chamados/#/'. $os['id_os']  ;?>" target="_blank" disabled >
+                    <i class="fa fa-archive fa-fw"></i>
+                    Ver todos 
+                    <i class="fa fa-chevron-circle-right fa-fw"></i>
+                </a>
+                    
+            </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
-
-            <a href="<?= base_url() . $this->menu_info['controller'];?>" class="btn btn-primary">Voltar</a>
-            
-            <a href="<?= base_url() . 'chamados/imprimir_os/'. $os['id_os']  ;?>" target="_blank" class="btn btn-default pull-right">
-                <i class="fa fa-print fa-fw"></i>
-                Imprimir
-            </a>
-        </div>
 
 <!-- Modal Add anotações -->
 <form>

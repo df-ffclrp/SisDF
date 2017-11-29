@@ -24,6 +24,7 @@ class Chamados extends MY_Controller {
     }
 
     public function index(){
+        show_404();
 
         // echo "<h1> propriedade UI </h1>";
         // var_dump($this->menu_info);
@@ -67,7 +68,12 @@ class Chamados extends MY_Controller {
         $data['change_status_menu'] = $this->chamados_model->get_other_status($cur_status);
 
         //var_dump($data['change_status_menu']);
-        $data['notes'] = $this->chamados_model->get_notes($id_os);
+        $data['notes'] = $this->chamados_model->get_notes($id_os , $limit = 10);
+
+        // Se tem anotações, conte-as
+        if($data['notes']){
+            $data['num_tasks'] = $this->chamados_model->get_num_notes($id_os);
+        }
         $data['custom_js'] = 'ver_os.js';
 
         $this->load->view('ver_os', $data);
