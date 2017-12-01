@@ -40,7 +40,7 @@ class Chamados extends MY_Controller {
      */
 
     public function ver_os($id_os = NULL){
-        if ($id_os === NULL || !is_numeric($id_os)){
+        if ($id_os == NULL || !is_numeric($id_os)){
             show_404();
         }
 
@@ -67,16 +67,55 @@ class Chamados extends MY_Controller {
         $cur_status = $os_metadata['id_status']; // status atual
         $data['change_status_menu'] = $this->chamados_model->get_other_status($cur_status);
 
-        //var_dump($data['change_status_menu']);
         $data['notes'] = $this->chamados_model->get_notes($id_os , $limit = 10);
 
         // Se tem anotações, conte-as
         if($data['notes']){
-            $data['num_tasks'] = $this->chamados_model->get_num_notes($id_os);
+            $data['num_notes'] = $this->chamados_model->get_num_notes($id_os);
         }
         $data['custom_js'] = 'ver_os.js';
 
         $this->load->view('ver_os', $data);
+
+    }
+
+    /** 
+     * busca todas as Anotações / Tarefas do chamado
+     * 
+     *  
+    */
+    public function ver_tarefas($id_os){
+        
+        if ($id_os == NULL || !is_numeric($id_os)){
+            show_404();
+        }
+
+        //Busca metadados da ordem de serviço
+        $os_metadata = $this->chamados_model->get_os_meta($id_os);
+
+        // Se não tem metadados, redireciona...
+        if(!$os_metadata){
+            $this->redirection($this->get_base_controller());
+        }
+
+
+        // Se não é gestor da unidade (Nível Chuck Norris), verifica se é autorizado
+        if(!$this->auth->is_gestor_unidade()){
+            if(!$this->_authorized_user($os_metadata)){
+                $this->redirection($this->get_base_controller());
+                exit();
+            }
+        }
+        $data['os'] = $os_metadata;
+        // $data['notes'] = $this->chamados_model->get_notes($id_os , $limit = 10);
+        $data['notes'] = $this->chamados_model->get_notes($id_os);
+
+        if(!$data['notes']){
+            show_404();
+        }
+        $data['num_notes'] = $this->chamados_model->get_num_notes($id_os);
+        // var_dump($data);
+        $this->load->view('ver_tarefas', $data);
 
     }
     /**

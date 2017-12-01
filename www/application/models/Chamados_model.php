@@ -21,7 +21,7 @@ class Chamados_model extends CI_Model {
     * - secao que foi aberta
     */
     public function get_os_meta($id_os){
-        $this->db->select('id_os, id_relator_fk as id_relator, alias as secao, id_status_fk as id_status');
+        $this->db->select('id_os, id_relator_fk as id_relator, alias as secao, nome_secao, id_status_fk as id_status');
         $this->db->from('ordem_servico');
         $this->db->join('secao', 'id_secao = id_secao_fk');
         $this->db->where('id_os', $id_os);

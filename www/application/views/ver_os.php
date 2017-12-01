@@ -157,7 +157,7 @@
                 
                 <?php if(!empty($notes)): ?>
                     
-                    / <span class="badge"><?= $num_tasks ?></span> Tarefas Realizadas
+                    / <span class="badge"><?= $num_notes ?></span> Tarefas Realizadas
                     
                 <?php endif; ?>
                 
@@ -212,14 +212,16 @@
 
                 </ul>
             </div>
-            <div class='panel-footer'>
-                <a href="<?= base_url() . 'chamados/#/'. $os['id_os']  ;?>" target="_blank" disabled >
-                    <i class="fa fa-archive fa-fw"></i>
-                    Ver todos 
-                    <i class="fa fa-chevron-circle-right fa-fw"></i>
-                </a>
-                    
-            </div>
+            <?php if(!empty($notes)): ?>
+                <div class='panel-footer'>
+                    <a href="<?= base_url() . 'chamados/ver_tarefas/'. $os['id_os']  ;?>">
+                        <i class="fa fa-archive fa-fw"></i>
+                        Ver todas 
+                        <i class="fa fa-chevron-circle-right fa-fw"></i>
+                    </a>
+                        
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
