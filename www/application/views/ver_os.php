@@ -137,15 +137,7 @@
 
                 </div>
             </div>
-                <a href="<?= base_url() . $this->menu_info['controller'];?>" class="btn btn-primary">
-                    <i class="fa fa-arrow-circle-o-left fa-fw"></i>
-                Voltar
-                </a>
                 
-                <a href="<?= base_url() . 'chamados/imprimir_os/'. $os['id_os']  ;?>" target="_blank" class="btn btn-default pull-right">
-                    <i class="fa fa-print fa-fw"></i>
-                    Imprimir
-                </a>
         </div>
 
     <!-- Andamento do Chamado -->

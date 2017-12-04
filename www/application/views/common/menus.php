@@ -90,14 +90,49 @@
                  
                  <!-- fim de abrir chamado -->
 
-                 <?php if(!$this->auth->in_role('relator')): ?>
-                     <li>
-                         <a href="<?= base_url() . $controller.'/meus_chamados'; ?>"><i class="fa fa-tasks fa-fw"></i>
+                <!-- Monta menu apenas para usuários NÃO relatores -->
+                <?php if(!$this->auth->in_role('relator')): ?>
+                    <li>
+                        <a href="<?= base_url() . $controller.'/meus_chamados'; ?>"><i class="fa fa-tasks fa-fw"></i>
                              Meus Chamados
-                         </a>
-                     </li>
+                        </a>
+                    </li>
 
-                 <?php endif;?>
+                <?php endif;?>
+
+                
+                <!-- Monta menu de impressão de chamados e botão "voltar" -->
+                <?php if($this->uri->segment(2) == 'ver_os'): ?>
+                    <li>
+                         <a class='txt-blue' href="<?= base_url() . '/chamados/imprimir_os/'. $os['id_os']; ?>" target="_blank">
+                            <i class="fa fa-print fa-fw"></i>
+                            Imprimir    
+                         </a>
+                    </li>
+                    <!-- Menu "voltar" para o painel de atendimento -->
+                    <li>
+                        <a class='txt-orange' href="<?= base_url() . $this->menu_info['controller']; ?>">
+                        <strong>
+                            <i class="fa fa-arrow-circle-o-left fa-fw"></i>
+                            Voltar 
+                        </a>
+                        </strong>
+                    </li>
+                <?php endif;?>
+
+                <!-- Monta menu "voltar" para tela de Chamado (ver_os/$id_os) -->
+                <?php if($this->uri->segment(2) == 'ver_tarefas'): ?>
+                    <li>
+                        <a class='txt-orange' href="<?= base_url() . 'chamados/ver_os/'. $os['id_os']; ?>">
+                        <strong>
+                            <i class="fa fa-arrow-circle-o-left fa-fw"></i>
+                            Voltar 
+                        </a>
+                        </strong>
+                    </li>
+
+                <?php endif;?>
+                 
             </ul>
         </div>
             <!-- /.sidebar-collapse -->

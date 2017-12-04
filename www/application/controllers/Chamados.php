@@ -67,7 +67,7 @@ class Chamados extends MY_Controller {
         $cur_status = $os_metadata['id_status']; // status atual
         $data['change_status_menu'] = $this->chamados_model->get_other_status($cur_status);
 
-        $data['notes'] = $this->chamados_model->get_notes($id_os , $limit = 10);
+        $data['notes'] = $this->chamados_model->get_notes($id_os , $limit = 9);
 
         // Se tem anotações, conte-as
         if($data['notes']){
