@@ -13,6 +13,7 @@
 
         <!--Painel de Chamados-->
         <div class="row">
+            <div class="col-lg-12">
             <form>
             <div class="form-inline">
                 <div class="form-group">
@@ -53,6 +54,7 @@
                 </button>
             </div>
             </form>
+            </div>
         </div>
 
         <div class="row">
@@ -64,7 +66,7 @@
                     <thead>
                         <tr>
                             <th>Nº OS</th>
-                            <th>Data atendimento</th>
+                            <th>Data Abertura</th>
                             <th>Resumo OS</th>
                             <th>Seção</th>
                             <th>Staus</th>

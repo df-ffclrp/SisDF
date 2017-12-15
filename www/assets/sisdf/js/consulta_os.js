@@ -1,5 +1,18 @@
 $(document).ready(function(){
 
+
+    format_date = function(datetime){
+        var date_timeArr = datetime.split(' ');
+        date = date_timeArr[0];
+        // Splits again:
+        date = date.split('-');
+        // Reverses
+        date.reverse();
+
+        return date.join('/');
+
+    }
+
     $('#busca_os').bind('click', function(){
 
         dados = $('form').serialize();
@@ -20,15 +33,18 @@ $(document).ready(function(){
                 $("tbody").empty();
 
                 console.log('deu certo');
-                console.log(results);
+                // console.log(results);
 
                 $.each(results, function(indice, os){
 
+                    var data_abrt = format_date(os.data_abertura);
+                    console.log(data_abrt);
+
                     $('<tr>').append(
                         $('<td>').text(os.id_os),
-                        $('<td>').text(os.data_abertura),
+                        $('<td>').text(data_abrt),
                         $('<td>').text(os.resumo),
-                        $('<td>').text(os.nome_secao),
+                        $('<td>').text(' ' + os.nome_secao).prepend($('<i>').addClass('fa fa-fw ' + os.icone_secao)),
                         $('<td>').text(os.nome_status),
                         $('<td>').text(os.id_os),
                     ).appendTo('.table');
