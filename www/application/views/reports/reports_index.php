@@ -10,17 +10,16 @@
             <!-- /.col-lg-12 -->
         </div>
 
-        <!--END Alert Box-->
 
         <!--Painel de Chamados-->
         <div class="row">
-            
+            <form>
             <div class="form-inline">
                 <div class="form-group">
                 <!-- Select Seções -->
                 <label for="secao">Seção: </label>
-                    <select name="secao" id="secao" class="form-control">
-                        <option value="all">Todas</option>
+                    <select name="secao" id="secao" class="form-control input-sm">
+                        <option value="">Todas</option>
                         <?php foreach($secoes as $secao): ?>
                             <option value="<?= $secao['id_secao'] ?>">
  
@@ -37,8 +36,8 @@
                 <div class="form-group">
                 
                     <label for="secao">Status </label>
-                    <select name="os_status" id="os_status" class="form-control">
-                        <option value="all">Todos</option>
+                    <select name="os_status" id="os_status" class="form-control input-sm">
+                        <option value="">Todos</option>
                         <?php foreach($os_status as $status): ?>
                             <option value="<?= $status['id_status'] ?>">
  
@@ -49,16 +48,17 @@
                     </select>
 
                 </div>
-                <button type="button" class="btn btn-outline btn-primary">
+                <button id="busca_os" type="button" class="btn btn-primary">
                     <i class="fa fa-fw fa-search"></i> Buscar
                 </button>
             </div>
+            </form>
         </div>
 
         <div class="row">
             <div class="col-lg-12">
 
-               <div class="table-responsive">
+                <div class="table-responsive">
                 <table class="table">
 
                     <thead>
@@ -66,7 +66,9 @@
                             <th>Nº OS</th>
                             <th>Data atendimento</th>
                             <th>Resumo OS</th>
-                            <th>Atendimento</th>
+                            <th>Seção</th>
+                            <th>Staus</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
 

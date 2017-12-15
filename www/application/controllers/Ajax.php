@@ -14,10 +14,14 @@ class Ajax extends MY_Controller {
         // Remove debugger
         $this->output->enable_profiler(FALSE);
 
-        // Se não é AJAX
-        if(!$this->input->is_ajax_request()){
-            show_404();
+        
+        if (ENVIRONMENT !== 'development'){
+            // Se não é AJAX
+            if(!$this->input->is_ajax_request()){
+                show_404();
+            }
         }
+
         $this->load->model('ajax_model');
 
     }
@@ -87,11 +91,24 @@ class Ajax extends MY_Controller {
 
         echo $res['nome'];
     }
-   
 
-    // Pra não ter que reescrever over and over again
-    // @param $db_response = BOOLEAN
-    // Retornado do query builder
+    public function get_os_by($id_secao = NULL, $id_status = NULL){
+        $id_secao = $this->input->post('secao');
+        $id_status = $this->input->post('os_status');
+
+
+        // $this->output->enable_profiler(TRUE);
+        $os_list = $this->ajax_model->get_os_by($id_secao, $id_status);
+        // var_dump($os_list);
+        echo json_encode($os_list);
+        
+    }
+   
+    /**
+     * Pra não ter que reescrever over and over again
+     * @param $db_response = BOOLEAN
+     * Retornado do query builder
+     */
     private function _check_query($db_response){
         if($db_response){
             echo 'success';

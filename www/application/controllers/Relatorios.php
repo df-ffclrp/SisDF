@@ -27,8 +27,12 @@ class Relatorios extends MY_Controller {
     }
 
     public function index(){
+        $data['header'] = "Painel de Atendimento";
+        $data['header_icon'] = "fa-inbox";
+
         $data['secoes'] = $this->get_secoes();
         $data['os_status'] = $this->get_os_status();
+        $data['custom_js'] = 'consulta_os.js';
 
         $this->load->view('common/header');
         $this->load->view('common/menus', $this->menu_info);

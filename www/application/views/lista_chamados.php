@@ -11,19 +11,19 @@
             <!-- /.col-lg-12 -->
         </div>
 
-        <!--Alert Box-->
-        <?php
-        if (isset($_SESSION['message'])):
-            show_alert_box();
-        endif;
-        ?>
-
-        <!--END Alert Box-->
 
         <!--Painel de Chamados-->
 
         <div class="row">
             <div class="col-lg-12">
+                <!--Alert Box-->
+                <?php
+                if (isset($_SESSION['message'])):
+                    show_alert_box();
+                endif;
+                ?>
+
+                <!--END Alert Box-->
 
                <div class="table-responsive">
                 <table class="table table-hover">
@@ -40,7 +40,7 @@
                     </thead>
 
                     <tbody>
-
+                        
                         <?php foreach ($lista_os as $os): ?>
                             <tr>
                                 <td><?= $os['id_os']?></td>
