@@ -89,9 +89,7 @@
                     <p> <strong>Resumo:</strong> <?= $os['resumo'] ?> </p>
 
                     <p> <strong>Descrição do Pedido:</strong> </p>
-                        <div class="panel panel-info panel-body">
-                            <?= $os['os_descricao'] ?>
-                        </div>
+                        <div style="white-space:pre-line;"> <?=$os['os_descricao'] ?> </div>
                         <input id="id_atendente" type="hidden" value="<?= $os['id_atendente']?>">
                 </div>
             </div>
