@@ -90,16 +90,25 @@
                  
                  <!-- fim de abrir chamado -->
 
-                <!-- Monta menu apenas para usuários NÃO relatores -->
                 <?php if(!$this->auth->in_role('relator')): ?>
+                <!-- Monta menu apenas para usuários NÃO relatores -->
                     <li>
                         <a href="<?= base_url() . $controller.'/meus_chamados'; ?>"><i class="fa fa-tasks fa-fw"></i>
-                             Meus Chamados
+                            Meus Chamados
                         </a>
                     </li>
 
                 <?php endif;?>
 
+                <?php if($this->auth->in_role('gestor_unidade')): ?>
+                <!-- Link para os relatórios -->
+                <li>
+                    <a href="<?= base_url() .'relatorios'; ?>"><i class="fa fa-search fa-fw"></i>
+                        Constultar Chamados
+                    </a>
+                </li>
+                <?php endif;?>
+                
                 
                 <!-- Monta menu de impressão de chamados e botão "voltar" -->
                 <?php if($this->uri->segment(2) == 'ver_os'): ?>
