@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+    make_icon = function(icon_name){
+
+        var icon = document.createElement('i');
+        icon.className = 'fa fa-fw ' + icon_name;
+
+        return icon.outerHTML;
+    }
+
 
     format_date = function(datetime){
         var date_timeArr = datetime.split(' ');
@@ -25,31 +33,50 @@ $(document).ready(function(){
             data: dados,
             dataType: 'json',
             beforeSend: function(){
-                console.log("enviando: " + dados);
+                // console.log("enviando: " + dados);
             },
             
             success: function (results){
                 // Limpa resultado anterior
                 $("tbody").empty();
 
-                console.log('deu certo');
-                // console.log(results);
+                // Array para armazenar a tabela de resultados
+                var tbodyArr = [];
 
-                $.each(results, function(indice, os){
-
+                for (var i=0; i<results.length; i++){
+                    var os = results[i];
+                    // console.log(os);
                     var data_abrt = format_date(os.data_abertura);
-                    console.log(data_abrt);
 
-                    $('<tr>').append(
-                        $('<td>').text(os.id_os),
-                        $('<td>').text(data_abrt),
-                        $('<td>').text(os.resumo),
-                        $('<td>').text(' ' + os.nome_secao).prepend($('<i>').addClass('fa fa-fw ' + os.icone_secao)),
-                        $('<td>').text(os.nome_status),
-                        $('<td>').text(os.id_os),
-                    ).appendTo('.table');
+                    tbodyArr.push('<tr>');
+                    tbodyArr.push('<td>' + os.id_os + '</td>');
+                    tbodyArr.push('<td>' + data_abrt + '</td>');
+                    tbodyArr.push('<td>' + os.resumo + '</td>');
 
-                });
+                    var secao_icon = make_icon(os.icone_secao);
+                    var status_icon = make_icon(os.icone_status);
+
+                    tbodyArr.push('<td>' + secao_icon +' '+ os.nome_secao + '</td>');
+                    tbodyArr.push('<td><label class="label label-' + os.bs_label +'">'+ status_icon+ os.nome_status + '</label></td>');
+
+                    tbodyArr.push('<td>');
+
+                        var link_os = document.createElement('a');
+
+                        link_os.className = "btn btn-sm btn-default";
+                        link_os.href = base_url + 'chamados/ver_os/' + os.id_os;
+
+                        link_os.setAttribute('target', '_blank')
+
+                        var eye_icon = make_icon('fa-eye');
+                        link_os.innerHTML = eye_icon + " Ver OS";
+
+                        tbodyArr.push(link_os.outerHTML);
+                    tbodyArr.push('</td>');
+                    tbodyArr.push('</tr>');
+                }
+                $('.table').append(tbodyArr.join(''));
+
             }
         });// Fim de Ajax
 

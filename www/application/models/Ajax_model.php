@@ -77,7 +77,7 @@ class Ajax_model extends CI_Model {
             data_abertura, 
             nome_status, 
             bs_label, 
-            os_status.icone, 
+            os_status.icone as icone_status, 
             nome_secao, 
             secao.icone as icone_secao');
         $this->db->from('ordem_servico');

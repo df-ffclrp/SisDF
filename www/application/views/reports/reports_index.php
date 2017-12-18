@@ -11,13 +11,13 @@
         </div>
 
 
-        <!--Painel de Chamados-->
+        <!-- Form -->
         <div class="row">
             <div class="col-lg-12">
             <form>
             <div class="form-inline">
                 <div class="form-group">
-                <!-- Select Seções -->
+
                 <label for="secao">Seção: </label>
                     <select name="secao" id="secao" class="form-control input-sm">
                         <option value="">Todas</option>
@@ -33,7 +33,7 @@
                 </div>
 
                 |
-                <!-- Select Status  -->
+                
                 <div class="form-group">
                 
                     <label for="secao">Status </label>
@@ -57,6 +57,7 @@
             </div>
         </div>
 
+        <!--Tabela de Chamados-->
         <div class="row">
             <div class="col-lg-12">
 
