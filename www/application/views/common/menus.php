@@ -104,7 +104,7 @@
                 <!-- Link para os relatórios -->
                 <li>
                     <a href="<?= base_url() .'relatorios'; ?>"><i class="fa fa-search fa-fw"></i>
-                        Constultar Chamados
+                        Consultar Chamados
                     </a>
                 </li>
                 <?php endif;?>
