@@ -186,6 +186,24 @@ class Chamados_model extends CI_Model {
         return $result->result_array();
     }
 
+    // MÉTODO TEMPORÁRIO
+
+    public function get_monthly_report(){
+        $this->db->select('data_anotacao as data_anot, id_os, resumo, texto, nome as autor');
+        $this->db->join('usuario','id_usuario_fk = id_usuario');
+        $this->db->join('ordem_servico','id_os = id_os_fk');
+        $this->db->where('id_secao_fk', 4);
+        $this->db->where('MONTH(data_anotacao)', 11);
+        $this->db->order_by('data_anotacao', 'ASC');
+        
+        //$this->db->limit(100);
+
+        $result = $this->db->get('anotacao');
+
+        return $result->result_array();
+
+    }
+
     public function get_num_notes($id_os){
         
         $this->db->where('id_os_fk', $id_os);

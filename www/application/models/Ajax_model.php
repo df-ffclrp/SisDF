@@ -66,4 +66,38 @@ class Ajax_model extends CI_Model {
         return $result->row_array();
     }
 
+    /**
+     * Busca os por seção e por status
+     * 
+     */
+
+    public function get_os_by($id_secao = NULL , $id_status = NULL){
+        $this->db->select('id_os, 
+            resumo, 
+            data_abertura, 
+            nome_status, 
+            bs_label, 
+            os_status.icone as icone_status, 
+            nome_secao, 
+            secao.icone as icone_secao');
+        $this->db->from('ordem_servico');
+        $this->db->join('os_status', 'id_status = id_status_fk');
+        $this->db->join('secao', 'id_secao = id_secao_fk');
+
+        if($id_secao){
+            $this->db->where('id_secao', $id_secao);
+        }
+
+        if($id_status){
+            $this->db->where('id_status_fk', $id_status);
+        }
+
+
+        $this->db->order_by('data_abertura','ASC');
+
+        $result = $this->db->get();
+
+        return $result->result_array();
+
+    }
 }

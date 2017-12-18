@@ -9,7 +9,7 @@ class Tests extends MY_Controller {
         parent::__construct();
 
         if (ENVIRONMENT == 'production'):
-            exit("Testing Only");
+            show_404();
         endif;
         
     }
@@ -63,6 +63,21 @@ Auth->is_owner
         else:
             echo "não tem usuário com esses dados";
         endif;
+
+    }
+    // Gera página de relatório de atendimento
+    public function relatorio(){
+        $this->output->enable_profiler(FALSE);
+
+        $this->load->model('chamados_model');
+
+        $data['report'] = $this->chamados_model->get_monthly_report();
+        //var_dump($data);
+
+        // $this->load->view('common/header');
+        $this->load->view('common/report', $data);
+        $this->load->view('common/footer');
+
 
     }
 
