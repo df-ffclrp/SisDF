@@ -8,7 +8,8 @@ class Tests extends MY_Controller {
     public function __construct() {
         parent::__construct();
 
-        if (ENVIRONMENT == 'production'):
+        // Secure it
+        if (ENVIRONMENT !== 'development'):
             show_404();
         endif;
         
@@ -79,6 +80,43 @@ Auth->is_owner
         $this->load->view('common/footer');
 
 
+    }
+
+    // Criando testes de paginação
+    public function paginacao(){
+        $this->output->enable_profiler(FALSE);
+        $this->load->library('pagination');
+
+        # =========================
+        # paginação
+        $pg_config['base_url'] = base_url() . 'tests/paginacao';
+        $pg_config['total_rows'] = 200;
+        $pg_config['per_page'] = 10;
+
+        // tags que formatam todo o grupo
+        $pg_config['full_tag_open'] = '<ul class="pagination">';
+        $pg_config['full_tag_close'] = '</ul>';
+
+        $pg_config['next_link'] = 'Proximo';
+        $pg_config['prev_link'] = 'Anterior';
+
+
+
+        $pg_config['cur_tag_open'] = '<li class="active">';
+        $pg_config['cur_tag_close'] = '</li>';
+
+        $pg_config['num_tag_open'] = '<li>';
+        $pg_config['num_tag_close'] = '</li>';
+
+        $this->pagination->initialize($pg_config);
+
+        $this->load->view('common/header');
+        $this->load->view('tests/pagination');
+        
+        $this->load->view('common/footer');
+
+        
+        var_dump($pg_config);
     }
 
 }
