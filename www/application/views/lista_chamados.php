@@ -25,7 +25,7 @@
 
                 <!--END Alert Box-->
 
-               <div class="table-responsive">
+            <div class="table-responsive">
                 <table class="table table-hover">
 
                     <thead>
@@ -81,6 +81,11 @@
                 </table>
             </div>
             <!-- table responsive -->
+            <div class="col-lg-12">
+                <nav>
+                    <?= $this->pagination->create_links();?>
+                </nav>
+            </div>
         </div>
         <!-- /.row -->
     </div>

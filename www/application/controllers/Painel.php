@@ -24,6 +24,7 @@ class Painel extends MY_Controller {
 
         $this->load->helper('alert_box');
         $this->load->model('painel_model');
+        $this->load->library('pagination');
 
         //$this->_set_ui_data();
 
@@ -80,6 +81,10 @@ class Painel extends MY_Controller {
 
         // Monta dados da página de acordo com o status informado
         $this->_set_page_header($status_info);
+
+        // Configura a classe de paginação
+        $this->configure_pagination();
+        
 
 
         if($this->auth->in_role('tecnico') || $this->auth->in_role('gestor_secao')){

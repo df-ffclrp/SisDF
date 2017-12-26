@@ -98,6 +98,49 @@ class MY_Controller extends CI_Controller {
 
         return false;
     }
+    /**
+     * Configura Paginação de resultados
+     */
+
+    protected function configure_pagination(){
+        $pg_config['base_url'] = base_url() . 'painel/os_status';
+        $pg_config['total_rows'] = 200;
+        $pg_config['per_page'] = 10;
+
+        // tags que formatam todo o grupo
+        $pg_config['full_tag_open'] = '<ul class="pagination">';
+        $pg_config['full_tag_close'] = '</ul>'. PHP_EOL;
+
+        
+        // Texto que aparece em "próximo" e suas tags
+        $pg_config['next_link'] = 'Proximo &rsaquo;';
+        $pg_config['next_tag_open'] = '<li>';
+        $pg_config['next_tag_close'] = '</li>'. PHP_EOL;
+        
+        // Texto que aparece em "Anterior" e suas tags
+        $pg_config['prev_link'] = '&lsaquo; Anterior';
+        $pg_config['prev_tag_open'] = '<li>';
+        $pg_config['prev_tag_close'] = '</li>';
+
+
+        $pg_config['first_link'] = '&laquo; Primeiro';
+        $pg_config['first_tag_open'] = '<li>';
+        $pt_config['first_tag_close'] = '</li>';
+        
+        
+        $pg_config['last_link'] = 'Último &raquo;';
+        $pg_config['last_tag_open'] = '<li>';
+        $pt_config['last_tag_close'] = '</li>';
+
+        $pg_config['cur_tag_open'] = '<li class="active"><a>';
+        $pg_config['cur_tag_close'] = '</a></li>';
+
+        $pg_config['num_tag_open'] = '<li>';
+        $pg_config['num_tag_close'] = '</li>';
+        
+        $this->pagination->initialize($pg_config);
+
+    }
 
     /*
     ========================
