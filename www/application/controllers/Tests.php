@@ -97,13 +97,29 @@ Auth->is_owner
         $pg_config['full_tag_open'] = '<ul class="pagination">';
         $pg_config['full_tag_close'] = '</ul>';
 
-        $pg_config['next_link'] = 'Proximo';
-        $pg_config['prev_link'] = 'Anterior';
+        
+        // Texto que aparece em "próximo" e suas tags
+        $pg_config['next_link'] = 'Proximo &rsaquo;';
+        $pg_config['next_tag_open'] = '<li>';
+        $pg_config['next_tag_close'] = '</li>';
+        
+        // Texto que aparece em "Anterior" e suas tags
+        $pg_config['prev_link'] = '&lsaquo; Anterior';
+        $pg_config['prev_tag_open'] = '<li>';
+        $pg_config['prev_tag_close'] = '</li>';
 
 
+        $pg_config['first_link'] = '&laquo; Primeiro';
+        $pg_config['first_tag_open'] = '<li>';
+        $pt_config['first_tag_close'] = '</li>';
+        
+        
+        $pg_config['last_link'] = 'Último &raquo;';
+        $pg_config['last_tag_open'] = '<li>';
+        $pt_config['last_tag_close'] = '</li>';
 
-        $pg_config['cur_tag_open'] = '<li class="active">';
-        $pg_config['cur_tag_close'] = '</li>';
+        $pg_config['cur_tag_open'] = '<li class="active"><a>';
+        $pg_config['cur_tag_close'] = '</a></li>';
 
         $pg_config['num_tag_open'] = '<li>';
         $pg_config['num_tag_close'] = '</li>';
