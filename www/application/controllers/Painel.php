@@ -76,14 +76,14 @@ class Painel extends MY_Controller {
 
         // Se status não existe, redireciona para a página inicial
         if(!$status_info){
-            $this->redirection($this->router->class);
+            //$this->redirection($this->router->class);
         }
 
         // Monta dados da página de acordo com o status informado
         $this->_set_page_header($status_info);
 
         // Configura a classe de paginação
-        $this->configure_pagination();
+        $this->configure_pagination($id_status_os);
         
 
 

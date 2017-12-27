@@ -90,18 +90,32 @@ Auth->is_owner
         # =========================
         # paginação
         $pg_config['base_url'] = base_url() . 'tests/paginacao';
-        $pg_config['total_rows'] = 200;
+
+        $pg_config['total_rows'] = 100;
         $pg_config['per_page'] = 10;
+
+        // $pg_config['num_links'] = 3;
+        
+        
+
+        // $pg_config['reuse_query_string'] = TRUE;
+        $pg_config['uri_segment'] = 4;
 
         // tags que formatam todo o grupo
         $pg_config['full_tag_open'] = '<ul class="pagination">';
-        $pg_config['full_tag_close'] = '</ul>';
+        $pg_config['full_tag_close'] = '</ul>'. PHP_EOL;
 
+        $pg_config['first_link'] = '&laquo; Primeiro';
+        $pg_config['first_tag_open'] = '<li>';
+        $pt_config['first_tag_close'] = '</li>';
+        
+        $pg_config['cur_tag_open'] = '<li class="active"><a>';
+        $pg_config['cur_tag_close'] = '</a></li>';
         
         // Texto que aparece em "próximo" e suas tags
         $pg_config['next_link'] = 'Proximo &rsaquo;';
-        $pg_config['next_tag_open'] = '<li>';
-        $pg_config['next_tag_close'] = '</li>';
+        $pg_config['next_tag_open'] = "<li>";
+        $pg_config['next_tag_close'] = '</li>'. PHP_EOL;
         
         // Texto que aparece em "Anterior" e suas tags
         $pg_config['prev_link'] = '&lsaquo; Anterior';
@@ -109,20 +123,13 @@ Auth->is_owner
         $pg_config['prev_tag_close'] = '</li>';
 
 
-        $pg_config['first_link'] = '&laquo; Primeiro';
-        $pg_config['first_tag_open'] = '<li>';
-        $pt_config['first_tag_close'] = '</li>';
+        $pg_config['num_tag_open'] = '<li>';
+        $pg_config['num_tag_close'] = '</li>';
         
         
         $pg_config['last_link'] = 'Último &raquo;';
         $pg_config['last_tag_open'] = '<li>';
         $pt_config['last_tag_close'] = '</li>';
-
-        $pg_config['cur_tag_open'] = '<li class="active"><a>';
-        $pg_config['cur_tag_close'] = '</a></li>';
-
-        $pg_config['num_tag_open'] = '<li>';
-        $pg_config['num_tag_close'] = '</li>';
 
         $this->pagination->initialize($pg_config);
 
@@ -132,7 +139,7 @@ Auth->is_owner
         $this->load->view('common/footer');
 
         
-        var_dump($pg_config);
+        // var_dump($pg_config);
     }
 
 }
