@@ -10,6 +10,9 @@
 # VS Code
 .vscode/
 
+# Phpstorm
+.idea/
+
 # Configurações da aplicação 
 /www/application/config/config.php
 /www/application/config/database.php
