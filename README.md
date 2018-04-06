@@ -15,7 +15,7 @@ Sistema desenvolvido utilizando as tecnologias abaixo:
 
 ## Procedimentos para deploy em ambiente dev (testado em Ubuntu Server 16.04):
 
-Clonaro repositório GIT.
+Clonar o repositório GIT.
 
 Dependências básicas de PHP e MySQL:
 
@@ -26,7 +26,7 @@ Criar usuário com permissões de root no mysql:
     mysql -p
     GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%' IDENTIFIED BY 'admin';
     
-Alternativamente pode criar um banco de dados e um usuário pelo phpmyadmin.
+Alternativamente criar um banco de dados e um usuário pelo phpmyadmin.
 
 Arquivo de configuração para import do banco de dados de exemplo, 
 copiar e editar o arquivo com as informações corretas:
@@ -57,13 +57,13 @@ Na pasta *www*, subir um local server PHP:
 
     php -S localhost:8888
     
-Ou configurar o apache para esta aplicação
+Ou configurar o Apache para esta aplicação com `mod_rewrite` habilidado
 
 Criar o arquivo .htaccess
    
     cp www/sample.htaccess www/.htaccess
     
-E ajustar o RewriteBase para o seu caminho.
+Ajustar o RewriteBase para o seu caminho.
 
 Para testar, acessar por exemplo com Número USP 400 e senha 123.
 
@@ -93,6 +93,3 @@ Para ver o painel dos Gestores de cada seção de atendimento, adicione o 1 como
 O Gestor da unidade possui número USP: **1000**
 
 Senhas: **123**
-
-
-
