@@ -42,18 +42,21 @@ class Auth
     }
 
 
-    /*
-        Verifica se o usuário é dono do recurso a ser visualizado
-
-        Por enquanto apenas verifica donos de OS
+    /**
+     *  Verifica se o usuário é dono do recurso a ser visualizado
+     *  Por enquanto apenas verifica donos de OS
+     * 
+     * @param array $metadados_os - Esse parâmetro pode ser passado ou 
+     * retirado de um construtor em Chamados Controller
+     * 
      */
 
-    public function is_owner($os_metadata)
+    public function is_owner($metadados_os)
     {
 
         $id_usuario = $_SESSION['id_usuario'];
 
-        if ($os_metadata['id_relator'] == $id_usuario) {
+        if ($metadados_os['id_relator'] == $id_usuario) {
             return true;
         }
         return false;
