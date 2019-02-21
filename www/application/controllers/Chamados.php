@@ -11,6 +11,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Chamados extends MY_Controller
 {
 
+    private $id_os;
+    private $metadados_os;
 
     public function __construct()
     {
@@ -19,12 +21,59 @@ class Chamados extends MY_Controller
         $this->auth->check_login();//Vê se o usuário está logado
 
         $this->load->model('chamados_model');
+        
+        // Busca terceiro segmento da URL. Se não tiver nada, retorna NULL
+        $this->id_os = $this->uri->segment(3, null);
 
+        // Verificações de segurança
+        $this->_valida_id_os();
+        $this->_valida_metadados_os();
 
-    // Implementar nível de acesso
+        // Se não é autorizado, mostra 404
+        if(!$this->auth->authorized_user($this->metadados_os))
+        {
+            show_404();
+        }
 
     }
 
+    # ======================================================= #
+    # Segurança                                               #
+    # ======================================================= #
+    /**
+     * Verifica se o id passado na URL é numérico ou nulo
+     * 
+     * Mostra 404 caso não valide
+     */
+    private function _valida_id_os()
+    {
+        if ($this->id_os == null || !is_numeric($this->id_os)) {
+            show_404();
+        }
+    }
+
+    /**
+     * Checagem extra se a ordem de serviço foi aberta corretamente com os dados:
+     * - id_os
+     * - id_relator
+     * - secao que foi aberta
+     * 
+     * Alimenta atributo classe com os metadados atuais
+     */
+    private function _valida_metadados_os()
+    {
+        // Busca metadados da ordem de serviço
+        $os_metadata = $this->chamados_model->get_os_meta($this->id_os);
+
+        // Se não tem metadados, redireciona...
+        if (!$os_metadata) {
+            
+            $this->redirection($this->get_base_controller());
+            exit();
+        }
+        $this->metadados_os = $os_metadata;
+    }
+    
     public function index()
     {
         show_404();
@@ -44,28 +93,8 @@ class Chamados extends MY_Controller
 
     public function ver_os($id_os = null)
     {
-        if ($id_os == null || !is_numeric($id_os)) {
-            show_404();
-        }
-
-        //Busca metadados da ordem de serviço
-        $os_metadata = $this->chamados_model->get_os_meta($id_os);
-
-        // Se não tem metadados, redireciona...
-        if (!$os_metadata) {
-            $this->redirection($this->get_base_controller());
-        }
-
-
-        // Se não é gestor da unidade (Nível Chuck Norris), verifica se é autorizado
-        if (!$this->auth->is_gestor_unidade()) {
-            if (!$this->_authorized_user($os_metadata)) {
-                $this->redirection($this->get_base_controller());
-                exit();
-            }
-        }
-        
-        // Show OS data:
+   
+        // Mostra anotações:
         $data['os'] = $this->chamados_model->get_os_by_id($id_os);
 
         $cur_status = $os_metadata['id_status']; // status atual
@@ -91,26 +120,6 @@ class Chamados extends MY_Controller
     public function ver_tarefas($id_os)
     {
 
-        if ($id_os == null || !is_numeric($id_os)) {
-            show_404();
-        }
-
-        //Busca metadados da ordem de serviço
-        $os_metadata = $this->chamados_model->get_os_meta($id_os);
-
-        // Se não tem metadados, redireciona...
-        if (!$os_metadata) {
-            $this->redirection($this->get_base_controller());
-        }
-
-
-        // Se não é gestor da unidade (Nível Chuck Norris), verifica se é autorizado
-        if (!$this->auth->is_gestor_unidade()) {
-            if (!$this->_authorized_user($os_metadata)) {
-                $this->redirection($this->get_base_controller());
-                exit();
-            }
-        }
         $data['os'] = $os_metadata;
         // $data['notes'] = $this->chamados_model->get_notes($id_os , $limit = 10);
         $data['notes'] = $this->chamados_model->get_notes($id_os);
@@ -130,53 +139,11 @@ class Chamados extends MY_Controller
 
     public function imprimir_os($id_os = null)
     {
-        if ($id_os === null || !is_numeric($id_os)) {
-            show_404();
-        }
-
-        //Busca metadados da ordem de serviço
-        $os_metadata = $this->chamados_model->get_os_meta($id_os);
-
-        // Se não tem metadados, redireciona...
-        if (!$os_metadata) {
-            $this->redirection($this->get_base_controller());
-        }
-
-         // Se não é gestor da unidade (Nível Chuck Norris), verifica se é autorizado
-        if (!$this->auth->is_gestor_unidade()) {
-            if (!$this->_authorized_user($os_metadata)) {
-                $this->redirection($this->get_base_controller());
-                exit();
-            }
-        }
         // Show OS data:
         $data['os'] = $this->chamados_model->get_os_by_id($id_os);
         $this->load->view('imprimir_os', $data);
 
     }
-
-    /*
-        Checa se um usuário pode ver a ordem de serviço ou não,
-        Baseado na sua seção, se é dono ou se é gestor da unidade.
-
-        Utiliza os recursos da biblioteca de autenticação
-     */
-
-    private function _authorized_user($os_metadata)
-    {
-
-        // Se não é dono, vê se está na seção que a OS foi aberta
-        if (!$this->auth->is_owner($os_metadata)) {
-            if (!$this->auth->in_secao($os_metadata['secao'])) {
-                //echo "não é dono e não está na seção, então não pode!";
-                return false;
-            }
-        }
-        //é dono ou está na seção, então pode...
-        return true;
-    }
-
-
 
     /*
     Abre novo Chamado
