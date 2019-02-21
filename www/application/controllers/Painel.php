@@ -119,9 +119,13 @@ class Painel extends MY_Controller
     public function meus_chamados()
     {
 
-
+        $id_usuario = $_SESSION['id_usuario'];
         $this->data['header'] = "Meus Chamados";
-        $this->data['lista_os'] = $this->painel_model->get_os_by_owner($_SESSION['id_usuario']);
+        $this->data['lista_os'] = $this->painel_model->get_os_by_owner(
+            $id_usuario,
+            $status_os = null,
+            $order_by = 'data_abertura'
+        );
 
         $this->load->view('common/header');
         $this->load->view('common/menus', $this->menu_info);
