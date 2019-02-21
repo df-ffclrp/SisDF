@@ -1,8 +1,9 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Painel extends MY_Controller {
+class Painel extends MY_Controller
+{
 
     /**
      * Controller para nível de acesso de
@@ -17,7 +18,8 @@ class Painel extends MY_Controller {
         'header_icon' => 'fa-tasks'
     );
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         $this->auth->check_login();//Vê se o usuário está logado
@@ -34,14 +36,15 @@ class Painel extends MY_Controller {
      * Painel de controle Geral
      */
 
-    public function index() {
+    public function index()
+    {
 
-        if($this->auth->in_role('tecnico') || $this->auth->in_role('gestor_secao')){
+        if ($this->auth->in_role('tecnico') || $this->auth->in_role('gestor_secao')) {
             $this->data['header'] = "Painel de Atendimento";
             $this->data['header_icon'] = "fa-inbox";
-            $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], NULL , $is_index = TRUE);
+            $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], null, $is_index = true);
 
-        } elseif($this->auth->is_gestor_unidade()) {
+        } elseif ($this->auth->is_gestor_unidade()) {
             $this->data['header'] = "Chamados em Andamento";
             $this->data['lista_os'] = $this->painel_model->get_all_os();
 
@@ -64,17 +67,18 @@ class Painel extends MY_Controller {
 
         Esse método mudará de acordo com a role, por isso
         Não está no controller Chamados
-    */
+     */
 
-    public function os_status($id_status_os = NULL){
-        if ($id_status_os === NULL || !is_numeric($id_status_os)){
+    public function os_status($id_status_os = null)
+    {
+        if ($id_status_os === null || !is_numeric($id_status_os)) {
             show_404();
         }
 
         $status_info = $this->_check_status($id_status_os);
 
         // Se status não existe, redireciona para a página inicial
-        if(!$status_info){
+        if (!$status_info) {
             $this->redirection($this->router->class);
         }
 
@@ -82,10 +86,10 @@ class Painel extends MY_Controller {
         $this->_set_page_header($status_info);
 
 
-        if($this->auth->in_role('tecnico') || $this->auth->in_role('gestor_secao')){
+        if ($this->auth->in_role('tecnico') || $this->auth->in_role('gestor_secao')) {
             $this->data['lista_os'] = $this->painel_model->get_os_by_secao($_SESSION['id_secao'], $id_status_os);
 
-        } elseif($this->auth->is_gestor_unidade()) {
+        } elseif ($this->auth->is_gestor_unidade()) {
 
             $this->data['lista_os'] = $this->painel_model->get_all_os($id_status_os);
 
@@ -94,7 +98,7 @@ class Painel extends MY_Controller {
         }
 
         $this->load->view('common/header');
-        $this->load->view('common/menus',$this->menu_info);
+        $this->load->view('common/menus', $this->menu_info);
         $this->load->view('lista_chamados', $this->data);
         $this->load->view('common/footer');
 
@@ -104,15 +108,16 @@ class Painel extends MY_Controller {
         Lista chamados abertos pelo usuário.
 
         Estará presente nos painéis do gestor, técnico e gestor da unidade
-    */
-    public function meus_chamados(){
+     */
+    public function meus_chamados()
+    {
 
 
         $this->data['header'] = "Meus Chamados";
         $this->data['lista_os'] = $this->painel_model->get_os_by_owner($_SESSION['id_usuario']);
 
         $this->load->view('common/header');
-        $this->load->view('common/menus',$this->menu_info);
+        $this->load->view('common/menus', $this->menu_info);
         $this->load->view('lista_chamados', $this->data);
         $this->load->view('common/footer');
 
@@ -122,10 +127,11 @@ class Painel extends MY_Controller {
      Seta o header da página de chamados conforme o status recebido
 
      @param $status_info : array()
-    */
+     */
 
 
-    private function _set_page_header($status_info){
+    private function _set_page_header($status_info)
+    {
         $this->data['header'] = $status_info['nome_status'];
         $this->data['header_icon'] = $status_info['icone'];
     }
