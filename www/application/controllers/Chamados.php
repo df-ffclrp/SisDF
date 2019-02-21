@@ -120,7 +120,7 @@ class Chamados extends MY_Controller
     public function ver_tarefas($id_os)
     {
 
-        $data['os'] = $os_metadata;
+        $data['os'] = $this->metadados_os;
         // $data['notes'] = $this->chamados_model->get_notes($id_os , $limit = 10);
         $data['notes'] = $this->chamados_model->get_notes($id_os);
 
