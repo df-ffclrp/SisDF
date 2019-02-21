@@ -98,10 +98,33 @@ class Auth
      * 
      * Nível Chuck Norris
      */
-        
+
     public function is_gestor_unidade()
     {
         return $this->in_role('gestor_unidade');
     }
 
+    /**
+     * Checa se um usuário pode ver a ordem de serviço ou não,
+     * Baseado na sua seção, se é dono ou se é gestor da unidade.
+     * 
+     * @param array $os_metadata - Metadados da Ordem de Serviço providas no controller
+     */
+    public function authorized_user($os_metadata)
+    {
+        if ($this->is_gestor_unidade()) {
+            return true;
+        }
+        // Se é dono, tudo certo
+        if ($this->is_owner($os_metadata)) {
+            return true;
+        }
+        // Se não é nenhum, está em sua seção?
+        if ($this->in_secao($os_metadata['secao'])) {
+            return true;
+        }
+    
+        // echo "não é dono e não está na seção, então não pode!";
+        return false;
+    }
 }
