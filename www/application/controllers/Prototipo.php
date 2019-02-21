@@ -21,9 +21,12 @@ class Prototipo extends CI_Controller {
      */
     public function __construct() {
         parent::__construct();
+        if (ENVIRONMENT !== 'development'){
+            show_404();
+        }
         $this->load->helper('url');
         $this->load->library('parser');
-//        $this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(TRUE);
     }
     
     
