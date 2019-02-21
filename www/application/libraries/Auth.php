@@ -91,17 +91,17 @@ class Auth
 
     }
 
-    /*
-        Checa se um usuário é gestor da unidade
-
-        Nível Chuck Norris
+    /**
+     * 
+     * Checa se um usuário é gestor da unidade
+     *  Wrapper para o método in_role()
+     * 
+     * Nível Chuck Norris
      */
+        
     public function is_gestor_unidade()
     {
-        if ($_SESSION['nivel_acesso'] === 'gestor_unidade') {
-            return true;
-        }
-        return false;
+        return $this->in_role('gestor_unidade');
     }
 
 }
