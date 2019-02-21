@@ -22,9 +22,10 @@ class Painel_model extends CI_Model
      *
      * - Busca chamados de todas as seções
      * - Filtra chamados por Status
+     * - Pode ordenar por parâmetro externo
      */
 
-    public function get_os_by_owner($id_usuario, $id_status = null)
+    public function get_os_by_owner($id_usuario, $id_status = null, $order_by = 'id_status')
     {
         $this->db->select('id_os, resumo, data_abertura, nome_status, bs_label, os_status.icone, nome_secao, secao.icone as icone_secao');
         $this->db->from('ordem_servico');
@@ -38,7 +39,8 @@ class Painel_model extends CI_Model
         }
 
 
-        $this->db->order_by('id_status', 'ASC');
+        // Tá ali no parâmetro do método :3
+        $this->db->order_by($order_by, 'ASC');
 
         $result = $this->db->get();
 
