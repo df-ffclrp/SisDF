@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Controller Login
@@ -10,9 +10,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  * @copyright (c) 2017, André Girol / FFCLRP - USP
  */
-class Login extends CI_Controller {
+class Login extends CI_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
 
         $this->load->helper('url_helper');
@@ -21,47 +23,45 @@ class Login extends CI_Controller {
         $this->load->library('session');
 
         // Habilita debugger para ambiente de desenvolvimento
-        if (ENVIRONMENT == 'development'):
-            $this->output->enable_profiler(TRUE);
+        if (ENVIRONMENT == 'development') :
+            $this->output->enable_profiler(true);
         endif;
     }
 
-    public function index() {
+    public function index()
+    {
 
         $this->form_validation->set_rules('num_usp', 'Número USP', 'is_numeric|trim|required');
         $this->form_validation->set_rules('senha', 'Senha', 'trim|required');
 
 
-        if ($this->form_validation->run() === FALSE):
-
+        if ($this->form_validation->run() === false) {
             $this->load->view('login');
-
-        else:
-
+        } else {
             $num_usp = $this->input->post('num_usp');
             $senha = $this->input->post('senha');
 
             $dados_usuario = $this->login_model->check_user($num_usp, $senha);
-
-            if ($dados_usuario):
-
-                // Registra Sessão
-                $this->session->set_userdata($dados_usuario);
-                redirect('painel', 'refresh');
-
-            else:
+            
+            // Se não tem dados, mensagem de erro
+            if (!$dados_usuario) {
                 $data['erro'] = ('Número USP ou senha inválidos');
                 $this->load->view('login', $data);
-            endif;
-
-        endif;
+            } else {
+                // Registra Sessão e vai pro painel
+                $this->session->set_userdata($dados_usuario);
+                redirect('painel', 'refresh');
+                exit();
+            }
+        }
     }
 
     /*
      * Desloga o usuário
      */
 
-    public function sair() {
+    public function sair()
+    {
         unset($_SESSION);
         session_destroy();
 
@@ -69,15 +69,9 @@ class Login extends CI_Controller {
         redirect('login', 'refresh');
         exit();
 
+        // Debug mode
         echo "Fez logoff!<br>";
         $url = base_url();
         echo '<a href="' . $url . '"> Logar </a>';
     }
-
-    //===================================
-    //Métodos Privados
-    //===================================
-
-
-
 }
