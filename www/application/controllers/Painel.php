@@ -37,8 +37,11 @@ class Painel extends MY_Controller
 
     public function index()
     {
+        if ($this->auth->is_gestor_unidade()) {
+            $this->data['header'] = "Chamados em Andamento";
+            $this->data['lista_os'] = $this->painel_model->get_all_os();
 
-        if ($this->auth->in_role('tecnico') || $this->auth->in_role('gestor_secao')) {
+        } elseif ($this->auth->in_role('tecnico') || $this->auth->in_role('gestor_secao')) {
             $this->data['header'] = "Painel de Atendimento";
             $this->data['header_icon'] = "fa-inbox";
 
@@ -46,13 +49,14 @@ class Painel extends MY_Controller
             $ids_secao_usuario = $this->user_model->get_secoes_usuario();
             $this->data['lista_os'] = $this->painel_model->get_os_by_secao($ids_secao_usuario, $status_os = null, $is_index = true);
 
-        } elseif ($this->auth->is_gestor_unidade()) {
-            $this->data['header'] = "Chamados em Andamento";
-            $this->data['lista_os'] = $this->painel_model->get_all_os();
-
         } else {
+            $id_usuario = $_SESSION['id_usuario'];
             $this->data['header'] = "Chamados Ativos";
-            $this->data['lista_os'] = $this->painel_model->get_os_by_owner($_SESSION['id_usuario']);
+            $this->data['lista_os'] = $this->painel_model->get_os_by_owner(
+                $id_usuario,
+                $status_os = null,
+                $order_by = 'data_abertura'
+            );
         }
 
 
