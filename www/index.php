@@ -65,6 +65,10 @@
  */
 switch (ENVIRONMENT)
 {
+	case 'maintenance':
+		echo '<h1>Sistema em Manutenção.</h1>';
+		exit(1);
+	break;
 	case 'development':
 		error_reporting(-1);
 		ini_set('display_errors', 1);

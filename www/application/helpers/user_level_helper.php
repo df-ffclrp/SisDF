@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
 /*
  * Mostra na do bootstrap o nível do acesso do usuário
  *

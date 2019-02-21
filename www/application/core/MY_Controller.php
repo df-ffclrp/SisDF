@@ -22,7 +22,7 @@ class MY_Controller extends CI_Controller {
 
         $this->load->helper('url_helper');
         $this->load->helper('make_icon_helper');
-        //$this->load->helper('user_level');/
+        $this->load->helper('var_dumper');
         $this->load->library('session');
         $this->load->library('auth');
 
