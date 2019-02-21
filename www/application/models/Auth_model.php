@@ -42,16 +42,39 @@ class Auth_model extends CI_Model
         // Que nível de acesso?
         $this->db->join('user_role', "role_id = id_role");
         $this->db->where('role.nome', $role_to_check);
-    
+
         $this->db->where('usuario_id', $id_usuario);
         $result = $this->db->get();
 
-        if($result->num_rows() == 1){
+        if ($result->num_rows() == 1) {
             return true;
         };
-        
+
         return false;
     }
 
+    /**
+     * Checa se determinado usuário está em uma Seção de Atendimento
+     * @param int $id_usuario 
+     * @param string $secao_a_checar - no formato 'caixa_baixa_snake_case'
+     */
+
+    public function check_secao_usuario($id_usuario, $secao_a_checar)
+    {
+        $this->db->select('id_secao, alias as nome_secao');
+        $this->db->from('secao');
+
+        $this->db->join('membro_secao', "id_secao_fk = id_secao");
+        $this->db->where('nome_secao', $secao_a_checar);
+
+        $this->db->where('id_usuario_fk', $id_usuario);
+        $result = $this->db->get();
+
+        if ($result->num_rows() == 1) {
+            return true;
+        };
+
+        return false;
+    }
 
 }

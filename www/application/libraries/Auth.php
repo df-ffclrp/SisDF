@@ -62,19 +62,18 @@ class Auth
         return false;
 
     }
-    /*
-    Checa se o usuário está em determinada seção
-    de atendimento
+    /**
+     * Checa se o usuário está em determinada seção de atendimento
+     * 
+     * @param string $secao - Alias cadastrado no banco no campo "alias"
+     * Tem o formato: 'informatica', 'manutencao', 'eletronica'
      */
-
+    
     public function in_secao($secao = false)
     {
-
-        if ($secao === $_SESSION['membro_secao']) {
-            return true;
-        } else {
-            return false;
-        }
+        $id_usuario_logado = $_SESSION['id_usuario'];
+        $autorizado = $this->CI->auth_model->check_secao_usuario($id_usuario_logado, $secao);
+        return $autorizado;
     }
 
 
@@ -91,7 +90,6 @@ class Auth
         $id_logged_user = $_SESSION['id_usuario'];
         $autorizado = $this->CI->auth_model->check_user_role($id_logged_user, $role);
         return $autorizado;
-
     }
 
     /**
