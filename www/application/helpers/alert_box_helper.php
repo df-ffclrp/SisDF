@@ -1,4 +1,6 @@
 <?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
 /*
  * Mostra box com mensagem para o usuário
  *
