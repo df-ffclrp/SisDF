@@ -10,10 +10,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Chamados extends MY_Controller
 {
-
-    private $id_os;
-    private $metadados_os;
-
     public function __construct()
     {
         parent::__construct();
@@ -21,83 +17,33 @@ class Chamados extends MY_Controller
         $this->auth->check_login();//Vê se o usuário está logado
 
         $this->load->model('chamados_model');
-        
-        // Busca terceiro segmento da URL. Se não tiver nada, retorna NULL
-        $this->id_os = $this->uri->segment(3, null);
-
-        // Verificações de segurança
-        $this->_valida_id_os();
-        $this->_valida_metadados_os();
-
-        // Se não é autorizado, mostra 404
-        if(!$this->auth->authorized_user($this->metadados_os))
-        {
-            show_404();
-        }
-
+        $this->load->library('validator'); // Customizada
     }
-
-    # ======================================================= #
-    # Segurança                                               #
-    # ======================================================= #
-    /**
-     * Verifica se o id passado na URL é numérico ou nulo
-     * 
-     * Mostra 404 caso não valide
-     */
-    private function _valida_id_os()
-    {
-        if ($this->id_os == null || !is_numeric($this->id_os)) {
-            show_404();
-        }
-    }
-
-    /**
-     * Checagem extra se a ordem de serviço foi aberta corretamente com os dados:
-     * - id_os
-     * - id_relator
-     * - secao que foi aberta
-     * 
-     * Alimenta atributo classe com os metadados atuais
-     */
-    private function _valida_metadados_os()
-    {
-        // Busca metadados da ordem de serviço
-        $os_metadata = $this->chamados_model->get_os_meta($this->id_os);
-
-        // Se não tem metadados, redireciona...
-        if (!$os_metadata) {
-            
-            $this->redirection($this->get_base_controller());
-            exit();
-        }
-        $this->metadados_os = $os_metadata;
-    }
-    
     public function index()
     {
-        show_404();
-
-        // echo "<h1> propriedade UI </h1>";
-        // var_dump($this->menu_info);
-        // echo "<hr>";
-        // var_dump($this->get_secoes());
-
+        $this->redirection($this->get_base_controller());
+        exit();
     }
 
-     /*
-		Mostra uma única ordem de serviço
-
-		Mostra OS que o usuário abriu apenas
+    /**
+     * Mostra uma única ordem de serviço
+     * Mostra OS que o usuário abriu ou para os atendentes da
+     * Seção de atendimento
      */
-
     public function ver_os($id_os = null)
     {
-   
+        // Validações...
+        $this->validator->valida_id($id_os);
+        $metadados_os = $this->validator->valida_metadados_os($id_os);
+        
+        // Se não é autorizado, mostra 404
+        if (!$this->auth->authorized_user($metadados_os)) {
+            show_404();
+        }
         // Mostra anotações:
         $data['os'] = $this->chamados_model->get_os_by_id($id_os);
 
-        $cur_status = $this->metadados_os['id_status']; // status atual
+        $cur_status = $metadados_os['id_status']; // status atual
         $data['change_status_menu'] = $this->chamados_model->get_other_status($cur_status);
 
         $data['notes'] = $this->chamados_model->get_notes($id_os, $limit = 9);
@@ -119,8 +65,16 @@ class Chamados extends MY_Controller
      */
     public function ver_tarefas($id_os)
     {
+        // Validações...
+        $this->validator->valida_id($id_os);
+        $metadados_os = $this->validator->valida_metadados_os($id_os);
+                
+        // Se não é autorizado, mostra 404
+        if (!$this->auth->authorized_user($metadados_os)) {
+            show_404();
+        }
 
-        $data['os'] = $this->metadados_os;
+        $data['os'] = $metadados_os;
         // $data['notes'] = $this->chamados_model->get_notes($id_os , $limit = 10);
         $data['notes'] = $this->chamados_model->get_notes($id_os);
 
@@ -139,7 +93,15 @@ class Chamados extends MY_Controller
 
     public function imprimir_os($id_os = null)
     {
-        // Show OS data:
+        // Validações...
+        $this->validator->valida_id($id_os);
+        $metadados_os = $this->validator->valida_metadados_os($id_os);
+                      
+        // Se não é autorizado, mostra 404
+        if (!$this->auth->authorized_user($metadados_os)) {
+            show_404();
+        }
+        
         $data['os'] = $this->chamados_model->get_os_by_id($id_os);
         $this->load->view('imprimir_os', $data);
 
@@ -152,10 +114,10 @@ class Chamados extends MY_Controller
      */
     public function novo($id_secao = null)
     {
-        if ($id_secao === null || !is_numeric($id_secao)) {
-            show_404();
-        }
-        // always filter!
+        $this->validator->valida_id($id_secao);
+
+        // Sempre filtremos o input do usuário!
+        // TODO: mover verificações para a classe de validação
         $secao_exists = $this->_check_secao($id_secao);
 
         // Se a seção não existe, redireciona usuário para a base
@@ -164,7 +126,7 @@ class Chamados extends MY_Controller
         }
 
         $this->load->library('form_validation');
-        $this->config->load('placeholders', true);
+        $this->config->load('placeholders', $no_conflict = true);
 
         $data['salas'] = $this->chamados_model->get_salas();
         // fin = finalidade
