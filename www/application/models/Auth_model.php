@@ -65,7 +65,7 @@ class Auth_model extends CI_Model
         $this->db->from('secao');
 
         $this->db->join('membro_secao', "id_secao_fk = id_secao");
-        $this->db->where('nome_secao', $secao_a_checar);
+        $this->db->where('alias', $secao_a_checar);
 
         $this->db->where('id_usuario_fk', $id_usuario);
         $result = $this->db->get();
